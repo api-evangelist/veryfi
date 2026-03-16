@@ -1,0 +1,100 @@
+aid: veryfi
+name: Veryfi
+description: >-
+  Veryfi provides OCR APIs for extracting structured data from invoices,
+  receipts, checks, purchase orders, and other financial documents in real time.
+  The platform uses AI to capture line items, taxes, totals, barcodes, vendor
+  details, and more across 91 currencies and 38 languages with enterprise-grade
+  accuracy.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - OCR
+  - Receipts
+  - Invoices
+  - Document Processing
+  - AI
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/veryfi/refs/heads/main/apis.yml
+created: '2026-03-16'
+modified: '2026-03-16'
+specificationVersion: '0.19'
+apis:
+  - aid: veryfi:receipts-invoices-api
+    name: Veryfi Receipts & Invoices API
+    description: >-
+      The Veryfi Receipts & Invoices API uses AI-powered OCR to extract
+      structured JSON data from receipts, invoices, bills, and other financial
+      documents. It supports documents in PDF and image formats and returns
+      line-item level data including taxes, totals, vendor details, and barcodes.
+    humanURL: https://docs.veryfi.com/
+    tags:
+      - OCR
+      - Receipts
+      - Invoices
+      - Document Processing
+    properties:
+      - type: Documentation
+        url: https://docs.veryfi.com/
+      - type: Reference
+        url: https://docs.veryfi.com/api/receipts-invoices/process-a-document/
+  - aid: veryfi:w2-api
+    name: Veryfi W2 API
+    description: >-
+      The Veryfi W2 API extracts structured data from W2 tax forms using
+      AI-powered OCR, enabling automated processing of employee wage and tax
+      documents.
+    humanURL: https://docs.veryfi.com/api/w2s/
+    tags:
+      - OCR
+      - Tax Forms
+      - W2
+    properties:
+      - type: Documentation
+        url: https://docs.veryfi.com/api/w2s/
+  - aid: veryfi:bank-statements-api
+    name: Veryfi Bank Statements API
+    description: >-
+      The Veryfi Bank Statements API extracts structured data from bank
+      statements using AI-powered OCR, enabling automated reconciliation and
+      financial data capture workflows.
+    humanURL: https://docs.veryfi.com/api/bank-statements/
+    tags:
+      - OCR
+      - Bank Statements
+      - Finance
+    properties:
+      - type: Documentation
+        url: https://docs.veryfi.com/api/bank-statements/
+common:
+  - url: https://www.veryfi.com/
+    name: Veryfi - OCR APIs for Invoices, Receipts, Checks
+    type: Website
+    description: 'null'
+  - url: https://docs.veryfi.com/
+    name: Veryfi Docs - API Reference, Tutorials, and Integration Guides
+    type: Documentation
+    description: 'null'
+  - url: https://hub.veryfi.com/
+    name: Veryfi Interactive API Docs
+    type: Console
+    description: 'null'
+  - url: https://faq.veryfi.com/
+    name: Veryfi Help Center
+    type: Support
+    description: 'null'
+  - url: https://github.com/veryfi
+    name: Veryfi GitHub Organization
+    type: GitHubOrganization
+    description: 'null'
+  - url: https://www.veryfi.com/privacy-policy/
+    name: Privacy Policy | Veryfi
+    type: PrivacyPolicy
+    description: 'null'
+  - url: https://www.veryfi.com/terms-of-service/
+    name: Terms of Service | Veryfi
+    type: TermsOfService
+    description: 'null'
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
