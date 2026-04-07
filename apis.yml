@@ -9,11 +9,11 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
+  - AI
+  - Document Processing
+  - Invoices
   - OCR
   - Receipts
-  - Invoices
-  - Document Processing
-  - AI
 url: >-
   https://raw.githubusercontent.com/api-evangelist/veryfi/refs/heads/main/apis.yml
 created: '2026-03-16'
@@ -29,10 +29,10 @@ apis:
       line-item level data including taxes, totals, vendor details, and barcodes.
     humanURL: https://docs.veryfi.com/
     tags:
+      - Document Processing
+      - Invoices
       - OCR
       - Receipts
-      - Invoices
-      - Document Processing
     properties:
       - type: Documentation
         url: https://docs.veryfi.com/
@@ -60,9 +60,9 @@ apis:
       financial data capture workflows.
     humanURL: https://docs.veryfi.com/api/bank-statements/
     tags:
-      - OCR
       - Bank Statements
       - Finance
+      - OCR
     properties:
       - type: Documentation
         url: https://docs.veryfi.com/api/bank-statements/
