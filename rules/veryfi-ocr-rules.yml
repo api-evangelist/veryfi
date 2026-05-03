@@ -1,0 +1,107 @@
+extends: spectral:oas
+rules:
+  veryfi-operation-ids-camel-case:
+    description: Operation IDs must use camelCase as per Veryfi API conventions
+    message: "Operation ID '{{value}}' must use camelCase"
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]+$"
+
+  veryfi-paths-must-use-partner-prefix:
+    description: All paths must be under /partner/ namespace
+    message: "Path '{{path}}' must be under /partner/ namespace"
+    severity: warn
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/partner/"
+
+  veryfi-require-client-id-security:
+    description: All operations must declare clientId security
+    message: "Operation must require CLIENT-ID authentication"
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          properties:
+            security:
+              type: array
+
+  veryfi-document-responses-must-be-201:
+    description: Document creation endpoints must return 201 Created
+    message: "POST document operations must return 201 Created"
+    severity: warn
+    given: "$.paths[*].post.responses"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          required:
+            - '201'
+
+  veryfi-require-operation-description:
+    description: All operations must have a description
+    message: "Operation must include a description"
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: description
+      function: truthy
+
+  veryfi-require-operation-tags:
+    description: All operations must have at least one tag
+    message: "Operations must have at least one tag"
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: length
+      functionOptions:
+        min: 1
+
+  veryfi-error-responses-must-reference-schema:
+    description: Error responses must include a schema
+    message: "Error responses must include a content schema"
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].responses['4*','5*'].content['application/json']"
+    then:
+      field: schema
+      function: truthy
+
+  veryfi-require-api-contact:
+    description: API info must include contact information
+    message: "API info should include contact information"
+    severity: info
+    given: "$.info"
+    then:
+      field: contact
+      function: truthy
+
+  veryfi-document-id-must-be-integer:
+    description: Document IDs in paths must be integers
+    message: "Document ID path parameters must be of type integer"
+    severity: warn
+    given: "$.paths[*][get,delete].parameters[?(@.name == 'documentId')].schema"
+    then:
+      field: type
+      function: enumeration
+      functionOptions:
+        values:
+          - integer
+
+  veryfi-post-requests-must-have-body:
+    description: POST operations must have a request body defined
+    message: "POST operation must define a requestBody"
+    severity: error
+    given: "$.paths[*].post"
+    then:
+      field: requestBody
+      function: truthy

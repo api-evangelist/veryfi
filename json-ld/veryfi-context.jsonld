@@ -1,0 +1,132 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "veryfi": "https://www.veryfi.com/vocabulary/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "gr": "http://purl.org/goodrelations/v1#",
+
+    "Document": "schema:CreativeWork",
+    "BankStatement": "schema:FinancialProduct",
+    "Invoice": "schema:Invoice",
+    "Receipt": "schema:Receipt",
+    "W2Form": "veryfi:W2Form",
+    "W9Form": "veryfi:W9Form",
+    "Check": "schema:PaymentCard",
+    "LineItem": "schema:OrderItem",
+    "Vendor": "schema:Organization",
+
+    "id": {
+      "@id": "schema:identifier",
+      "@type": "xsd:integer"
+    },
+    "external_id": {
+      "@id": "veryfi:externalId",
+      "@type": "xsd:string"
+    },
+    "document_type": {
+      "@id": "veryfi:documentType",
+      "@type": "xsd:string"
+    },
+    "vendor": {
+      "@id": "schema:seller",
+      "@type": "@id"
+    },
+    "date": {
+      "@id": "schema:dateIssued",
+      "@type": "xsd:string"
+    },
+    "due_date": {
+      "@id": "schema:paymentDueDate",
+      "@type": "xsd:string"
+    },
+    "invoice_number": {
+      "@id": "schema:confirmationNumber",
+      "@type": "xsd:string"
+    },
+    "total": {
+      "@id": "schema:totalPaymentDue",
+      "@type": "xsd:decimal"
+    },
+    "subtotal": {
+      "@id": "veryfi:subtotal",
+      "@type": "xsd:decimal"
+    },
+    "tax": {
+      "@id": "veryfi:taxAmount",
+      "@type": "xsd:decimal"
+    },
+    "tip": {
+      "@id": "veryfi:tipAmount",
+      "@type": "xsd:decimal"
+    },
+    "currency_code": {
+      "@id": "schema:priceCurrency",
+      "@type": "xsd:string"
+    },
+    "line_items": {
+      "@id": "schema:orderedItem",
+      "@container": "@list"
+    },
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "quantity": {
+      "@id": "schema:orderQuantity",
+      "@type": "xsd:decimal"
+    },
+    "price": {
+      "@id": "schema:price",
+      "@type": "xsd:decimal"
+    },
+    "tags": {
+      "@id": "schema:keywords",
+      "@container": "@list"
+    },
+    "created": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "updated": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "account_number": {
+      "@id": "veryfi:accountNumber",
+      "@type": "xsd:string"
+    },
+    "routing_number": {
+      "@id": "veryfi:routingNumber",
+      "@type": "xsd:string"
+    },
+    "bank_name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "opening_balance": {
+      "@id": "veryfi:openingBalance",
+      "@type": "xsd:decimal"
+    },
+    "closing_balance": {
+      "@id": "veryfi:closingBalance",
+      "@type": "xsd:decimal"
+    },
+    "transactions": {
+      "@id": "schema:accountId",
+      "@container": "@list"
+    },
+    "wages": {
+      "@id": "veryfi:wages",
+      "@type": "xsd:decimal"
+    },
+    "federal_tax_withheld": {
+      "@id": "veryfi:federalTaxWithheld",
+      "@type": "xsd:decimal"
+    },
+    "tin": {
+      "@id": "veryfi:taxpayerIdentificationNumber",
+      "@type": "xsd:string"
+    }
+  }
+}

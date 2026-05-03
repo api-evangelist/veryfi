@@ -1,0 +1,54 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.veryfi.com/api/v8/partner/bank-statements",
+    "headers": {
+      "CLIENT-ID": "vrfxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "AUTHORIZATION": "apikey john.doe@company.com:api_key_here",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "file_url": "https://cdn.example.com/statements/bank-statement-april-2026.pdf",
+      "max_pages_to_process": 5
+    }
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "id": 98765432,
+      "account_number": "****4521",
+      "routing_number": "121000248",
+      "account_holder": "Acme Corporation",
+      "bank_name": "Wells Fargo Bank",
+      "statement_date": "2026-04-30",
+      "opening_balance": 45230.00,
+      "closing_balance": 52104.75,
+      "transactions": [
+        {
+          "date": "2026-04-01",
+          "description": "ACH Deposit - Payroll",
+          "amount": 8500.00,
+          "type": "credit",
+          "balance": 53730.00
+        },
+        {
+          "date": "2026-04-03",
+          "description": "AWS Cloud Services",
+          "amount": -1250.00,
+          "type": "debit",
+          "balance": 52480.00
+        },
+        {
+          "date": "2026-04-15",
+          "description": "Client Payment - Invoice #1045",
+          "amount": 12500.00,
+          "type": "credit",
+          "balance": 64980.00
+        }
+      ]
+    }
+  }
+}

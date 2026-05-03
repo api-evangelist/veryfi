@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/veryfi/refs/heads/main/json-schema/veryfi-bank-statement-schema.json",
+  "title": "Veryfi Bank Statement",
+  "description": "A processed bank statement with extracted transaction data from the Veryfi OCR API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique bank statement ID"
+    },
+    "account_number": {
+      "type": "string",
+      "description": "Masked bank account number"
+    },
+    "routing_number": {
+      "type": "string",
+      "description": "Bank routing number"
+    },
+    "account_holder": {
+      "type": "string",
+      "description": "Account holder name"
+    },
+    "bank_name": {
+      "type": "string",
+      "description": "Bank or financial institution name"
+    },
+    "statement_date": {
+      "type": "string",
+      "description": "Statement period end date"
+    },
+    "opening_balance": {
+      "type": "number",
+      "format": "float",
+      "description": "Account balance at beginning of statement period"
+    },
+    "closing_balance": {
+      "type": "number",
+      "format": "float",
+      "description": "Account balance at end of statement period"
+    },
+    "transactions": {
+      "type": "array",
+      "description": "List of transactions in the statement",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": { "type": "string" },
+          "description": { "type": "string" },
+          "amount": { "type": "number", "format": "float" },
+          "type": { "type": "string", "enum": ["credit", "debit"] },
+          "balance": { "type": ["number", "null"], "format": "float" }
+        },
+        "required": ["date", "description", "amount", "type"]
+      }
+    }
+  },
+  "required": ["id"]
+}

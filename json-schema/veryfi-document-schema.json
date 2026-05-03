@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/veryfi/refs/heads/main/json-schema/veryfi-document-schema.json",
+  "title": "Veryfi Document",
+  "description": "A processed financial document (receipt or invoice) with AI-extracted structured data from the Veryfi OCR API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique document ID assigned by Veryfi"
+    },
+    "external_id": {
+      "type": ["string", "null"],
+      "description": "Customer-provided external identifier for the document"
+    },
+    "document_type": {
+      "type": "string",
+      "description": "Detected document type",
+      "enum": ["receipt", "invoice", "bill", "bank_statement", "check", "w2", "w9", "w8", "business_card", "contract", "other"]
+    },
+    "vendor": {
+      "type": "object",
+      "description": "Vendor or merchant information extracted from the document",
+      "properties": {
+        "name": { "type": "string", "description": "Vendor/merchant name" },
+        "address": { "type": "string", "description": "Full vendor address" },
+        "phone_number": { "type": "string", "description": "Vendor phone number" },
+        "email": { "type": ["string", "null"], "format": "email", "description": "Vendor email" }
+      }
+    },
+    "date": {
+      "type": "string",
+      "description": "Document date (receipt date, invoice date, etc.)"
+    },
+    "due_date": {
+      "type": ["string", "null"],
+      "description": "Payment due date for invoices"
+    },
+    "invoice_number": {
+      "type": ["string", "null"],
+      "description": "Invoice or receipt number"
+    },
+    "total": {
+      "type": ["number", "null"],
+      "format": "float",
+      "description": "Total document amount"
+    },
+    "subtotal": {
+      "type": ["number", "null"],
+      "format": "float",
+      "description": "Subtotal before taxes and gratuity"
+    },
+    "tax": {
+      "type": ["number", "null"],
+      "format": "float",
+      "description": "Total tax amount"
+    },
+    "tip": {
+      "type": ["number", "null"],
+      "format": "float",
+      "description": "Tip or gratuity amount"
+    },
+    "currency_code": {
+      "type": "string",
+      "description": "ISO 4217 currency code (e.g., USD, EUR, GBP)"
+    },
+    "line_items": {
+      "type": "array",
+      "description": "Extracted line items from the document",
+      "items": {
+        "type": "object",
+        "properties": {
+          "description": { "type": "string" },
+          "quantity": { "type": ["number", "null"] },
+          "price": { "type": ["number", "null"] },
+          "total": { "type": ["number", "null"] },
+          "sku": { "type": ["string", "null"] },
+          "tax": { "type": ["number", "null"] }
+        }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "User-defined tags for document organization"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when document was processed by Veryfi"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of last update to the document record"
+    }
+  },
+  "required": ["id", "document_type"]
+}

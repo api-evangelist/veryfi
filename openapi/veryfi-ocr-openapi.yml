@@ -1,0 +1,1153 @@
+openapi: 3.1.0
+info:
+  title: Veryfi OCR API
+  description: >-
+    The Veryfi OCR API extracts structured data from financial documents
+    including receipts, invoices, bank statements, checks, W-2s, W-8s, W-9s,
+    business cards, contracts, and more. The API uses AI-powered OCR to capture
+    line items, taxes, totals, barcodes, vendor details, and other financial
+    data across 91 currencies and 38 languages with enterprise-grade accuracy.
+  version: v8
+  contact:
+    name: Veryfi Support
+    url: https://docs.veryfi.com/
+    email: support@veryfi.com
+  license:
+    name: Proprietary
+    url: https://www.veryfi.com/terms/
+servers:
+  - url: https://api.veryfi.com/api/v8
+    description: Veryfi OCR API v8
+security:
+  - clientId: []
+    apiKey: []
+paths:
+  /partner/documents:
+    post:
+      operationId: processDocument
+      summary: Process a Document
+      description: >-
+        Submit a document (receipt, invoice, bill, or other financial document)
+        for AI-powered OCR extraction. Returns structured JSON with vendor
+        details, line items, taxes, totals, and other captured fields.
+        Supports file uploads, URLs, base64-encoded data, and S3 references.
+        Optionally supports asynchronous processing via webhooks.
+      tags:
+        - Documents
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcessDocumentRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProcessDocumentRequest'
+      responses:
+        '201':
+          description: Document successfully processed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '400':
+          description: Bad request - malformed or missing required fields
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized - invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      operationId: listDocuments
+      summary: List All Documents
+      description: >-
+        Retrieve a paginated list of previously processed documents with
+        optional filtering by date range, tags, and other criteria.
+      tags:
+        - Documents
+      parameters:
+        - name: created_date__gt
+          in: query
+          required: false
+          description: Filter documents created after this date (format YYYY-MM-DD+HH:MM:SS)
+          schema:
+            type: string
+        - name: created_date__lt
+          in: query
+          required: false
+          description: Filter documents created before this date
+          schema:
+            type: string
+        - name: page
+          in: query
+          required: false
+          description: Page number for pagination
+          schema:
+            type: integer
+            default: 1
+        - name: page_size
+          in: query
+          required: false
+          description: Number of documents per page
+          schema:
+            type: integer
+            default: 50
+            maximum: 100
+      responses:
+        '200':
+          description: List of documents
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  documents:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Document'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /partner/documents/{documentId}:
+    get:
+      operationId: getDocument
+      summary: Get a Document
+      description: Retrieve a previously processed document by its ID.
+      tags:
+        - Documents
+      parameters:
+        - name: documentId
+          in: path
+          required: true
+          description: Unique document identifier
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Document details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Document not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      operationId: updateDocument
+      summary: Update a Document
+      description: Update metadata, tags, or category for a processed document.
+      tags:
+        - Documents
+      parameters:
+        - name: documentId
+          in: path
+          required: true
+          description: Unique document identifier
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  description: Updated tags list
+                category:
+                  type: string
+                  description: Updated category
+                external_id:
+                  type: string
+                  description: External system reference ID
+      responses:
+        '200':
+          description: Document updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Document not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteDocument
+      summary: Delete a Document
+      description: Permanently delete a processed document and its extracted data.
+      tags:
+        - Documents
+      parameters:
+        - name: documentId
+          in: path
+          required: true
+          description: Unique document identifier
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Document deleted successfully
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Document not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /partner/bank-statements:
+    post:
+      operationId: processBankStatement
+      summary: Process a Bank Statement
+      description: >-
+        Submit a bank statement for AI-powered data extraction. Returns
+        structured transaction data, account information, balances, and
+        metadata. Supports PDF, image formats, and multi-page documents.
+      tags:
+        - Bank Statements
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcessDocumentRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProcessDocumentRequest'
+      responses:
+        '201':
+          description: Bank statement processed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BankStatement'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      operationId: listBankStatements
+      summary: List All Bank Statements
+      description: Retrieve a list of previously processed bank statements.
+      tags:
+        - Bank Statements
+      responses:
+        '200':
+          description: List of bank statements
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BankStatement'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /partner/bank-statements/{documentId}:
+    get:
+      operationId: getBankStatement
+      summary: Get a Bank Statement
+      description: Retrieve a specific processed bank statement by ID.
+      tags:
+        - Bank Statements
+      parameters:
+        - name: documentId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Bank statement details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BankStatement'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteBankStatement
+      summary: Delete a Bank Statement
+      description: Permanently delete a processed bank statement.
+      tags:
+        - Bank Statements
+      parameters:
+        - name: documentId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Deleted successfully
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /partner/checks:
+    post:
+      operationId: processCheck
+      summary: Process a Check
+      description: >-
+        Submit a check image for OCR extraction including bank routing number,
+        account number, check number, payee, amount, and date.
+      tags:
+        - Checks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcessDocumentRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProcessDocumentRequest'
+      responses:
+        '201':
+          description: Check processed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Check'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      operationId: listChecks
+      summary: List All Checks
+      description: Retrieve a list of previously processed checks.
+      tags:
+        - Checks
+      responses:
+        '200':
+          description: List of checks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Check'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /partner/checks/{documentId}:
+    get:
+      operationId: getCheck
+      summary: Get a Check
+      description: Retrieve a specific processed check by ID.
+      tags:
+        - Checks
+      parameters:
+        - name: documentId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Check details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Check'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteCheck
+      summary: Delete a Check
+      description: Permanently delete a processed check.
+      tags:
+        - Checks
+      parameters:
+        - name: documentId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Deleted successfully
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /partner/w2s:
+    post:
+      operationId: processW2
+      summary: Process a W-2 Form
+      description: >-
+        Submit a W-2 tax form for OCR extraction including employer details,
+        employee information, wages, tax withholdings, and all W-2 box values.
+      tags:
+        - W-2 Forms
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcessDocumentRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProcessDocumentRequest'
+      responses:
+        '201':
+          description: W-2 processed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/W2Form'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      operationId: listW2s
+      summary: List All W-2 Forms
+      description: Retrieve a list of previously processed W-2 forms.
+      tags:
+        - W-2 Forms
+      responses:
+        '200':
+          description: List of W-2 forms
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/W2Form'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /partner/w2s/{documentId}:
+    get:
+      operationId: getW2
+      summary: Get a W-2 Form
+      description: Retrieve a specific processed W-2 form by ID.
+      tags:
+        - W-2 Forms
+      parameters:
+        - name: documentId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: W-2 form details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/W2Form'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteW2
+      summary: Delete a W-2 Form
+      description: Permanently delete a processed W-2 form.
+      tags:
+        - W-2 Forms
+      parameters:
+        - name: documentId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Deleted successfully
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /partner/w9s:
+    post:
+      operationId: processW9
+      summary: Process a W-9 Form
+      description: >-
+        Submit a W-9 tax form for OCR extraction including taxpayer information,
+        TIN, business name, entity type, and certification details.
+      tags:
+        - W-9 Forms
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcessDocumentRequest'
+      responses:
+        '201':
+          description: W-9 processed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/W9Form'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      operationId: listW9s
+      summary: List All W-9 Forms
+      description: Retrieve a list of previously processed W-9 forms.
+      tags:
+        - W-9 Forms
+      responses:
+        '200':
+          description: List of W-9 forms
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/W9Form'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /partner/w9s/{documentId}:
+    get:
+      operationId: getW9
+      summary: Get a W-9 Form
+      description: Retrieve a specific processed W-9 form by ID.
+      tags:
+        - W-9 Forms
+      parameters:
+        - name: documentId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: W-9 form details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/W9Form'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteW9
+      summary: Delete a W-9 Form
+      description: Permanently delete a processed W-9 form.
+      tags:
+        - W-9 Forms
+      parameters:
+        - name: documentId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Deleted successfully
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /partner/any-documents:
+    post:
+      operationId: processAnyDocument
+      summary: Process Any Document
+      description: >-
+        Submit any document type for custom field extraction using a named
+        blueprint. The ∀Docs API can extract structured data from any
+        unstructured document type including contracts, custom forms, and
+        non-standard documents.
+      tags:
+        - Any Documents
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/ProcessDocumentRequest'
+                - type: object
+                  required:
+                    - blueprint_name
+                  properties:
+                    blueprint_name:
+                      type: string
+                      description: Name of the custom extraction blueprint to use
+      responses:
+        '201':
+          description: Document processed using blueprint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      operationId: listAnyDocuments
+      summary: List Any Documents
+      description: Retrieve a list of documents processed with custom blueprints.
+      tags:
+        - Any Documents
+      parameters:
+        - name: created_date__gt
+          in: query
+          required: false
+          description: Filter by creation date greater than
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of any documents
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Document'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /partner/any-documents/{documentId}:
+    get:
+      operationId: getAnyDocument
+      summary: Get Any Document
+      description: Retrieve a specific document processed with a custom blueprint.
+      tags:
+        - Any Documents
+      parameters:
+        - name: documentId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Document details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteAnyDocument
+      summary: Delete Any Document
+      description: Permanently delete a custom document extraction.
+      tags:
+        - Any Documents
+      parameters:
+        - name: documentId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Deleted successfully
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /partner/classify:
+    post:
+      operationId: classifyDocument
+      summary: Classify a Document
+      description: >-
+        Submit a document for classification to determine its type before
+        processing. Returns the detected document type to route to the
+        appropriate extraction endpoint.
+      tags:
+        - Classification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                file_url:
+                  type: string
+                  format: uri
+                  description: URL of document to classify
+                file_data:
+                  type: string
+                  description: Base64-encoded document
+                document_types:
+                  type: array
+                  items:
+                    type: string
+                  description: Restrict classification to specific document types
+                  example: ["receipt", "invoice", "bank_statement", "w2", "w9"]
+      responses:
+        '200':
+          description: Document classification result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  document_type:
+                    type: string
+                    description: Detected document type
+                  confidence:
+                    type: number
+                    format: float
+                    description: Classification confidence score (0-1)
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  securitySchemes:
+    clientId:
+      type: apiKey
+      in: header
+      name: CLIENT-ID
+      description: Your Veryfi account client identifier
+    apiKey:
+      type: apiKey
+      in: header
+      name: AUTHORIZATION
+      description: "API key in format: 'apikey USERNAME:API_KEY'"
+    requestSignature:
+      type: apiKey
+      in: header
+      name: X-Veryfi-Request-Signature
+      description: HMAC-SHA256 signature for request validation
+  schemas:
+    ProcessDocumentRequest:
+      type: object
+      description: Request body for document processing operations
+      properties:
+        file_url:
+          type: string
+          format: uri
+          description: Publicly accessible URL to the document
+        file_urls:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: Multiple document URLs (for multi-page documents)
+        file_data:
+          type: string
+          description: Base64-encoded document data
+        file:
+          type: string
+          format: binary
+          description: Binary file upload
+        async:
+          type: boolean
+          default: false
+          description: Enable asynchronous processing via webhook
+        boost_mode:
+          type: boolean
+          default: false
+          description: Skip enrichment for faster processing
+        max_pages_to_process:
+          type: integer
+          default: 15
+          maximum: 15
+          description: Maximum pages to process
+        bounding_boxes:
+          type: boolean
+          default: false
+          description: Include coordinate data for extracted fields
+        confidence_details:
+          type: boolean
+          default: false
+          description: Include confidence scores for each extracted field
+        external_id:
+          type: string
+          description: Custom identifier for the document in your system
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags for document organization
+        country:
+          type: string
+          description: Two-letter country code as currency hint
+        parse_address:
+          type: boolean
+          description: Break address fields into individual components
+    Document:
+      type: object
+      description: A processed document with extracted data
+      properties:
+        id:
+          type: integer
+          description: Unique document ID
+        external_id:
+          type: string
+          description: Customer-provided external identifier
+        document_type:
+          type: string
+          description: Detected or specified document type
+        vendor:
+          type: object
+          description: Vendor information extracted from the document
+          properties:
+            name:
+              type: string
+            address:
+              type: string
+            phone_number:
+              type: string
+            email:
+              type: string
+        date:
+          type: string
+          description: Document date
+        due_date:
+          type: string
+          description: Payment due date (for invoices)
+        invoice_number:
+          type: string
+          description: Invoice or receipt number
+        total:
+          type: number
+          format: float
+          description: Total amount
+        subtotal:
+          type: number
+          format: float
+          description: Subtotal before taxes
+        tax:
+          type: number
+          format: float
+          description: Total tax amount
+        tip:
+          type: number
+          format: float
+          description: Tip/gratuity amount
+        currency_code:
+          type: string
+          description: ISO 4217 currency code
+        line_items:
+          type: array
+          description: Extracted line items
+          items:
+            type: object
+            properties:
+              description:
+                type: string
+              quantity:
+                type: number
+              price:
+                type: number
+              total:
+                type: number
+              sku:
+                type: string
+              tax:
+                type: number
+        tags:
+          type: array
+          items:
+            type: string
+          description: User-defined tags
+        created:
+          type: string
+          format: date-time
+          description: Processing timestamp
+        updated:
+          type: string
+          format: date-time
+          description: Last update timestamp
+    BankStatement:
+      type: object
+      description: A processed bank statement with extracted transaction data
+      properties:
+        id:
+          type: integer
+        account_number:
+          type: string
+          description: Bank account number
+        routing_number:
+          type: string
+          description: Bank routing number
+        account_holder:
+          type: string
+          description: Account holder name
+        bank_name:
+          type: string
+          description: Bank or financial institution name
+        statement_date:
+          type: string
+          description: Statement period date
+        opening_balance:
+          type: number
+          format: float
+        closing_balance:
+          type: number
+          format: float
+        transactions:
+          type: array
+          items:
+            type: object
+            properties:
+              date:
+                type: string
+              description:
+                type: string
+              amount:
+                type: number
+                format: float
+              type:
+                type: string
+                enum: [credit, debit]
+              balance:
+                type: number
+                format: float
+    Check:
+      type: object
+      description: A processed check with extracted data
+      properties:
+        id:
+          type: integer
+        routing_number:
+          type: string
+          description: Bank routing number (MICR)
+        account_number:
+          type: string
+          description: Bank account number (MICR)
+        check_number:
+          type: string
+          description: Check number
+        payee:
+          type: string
+          description: Pay to the order of
+        payer:
+          type: string
+          description: Check issuer name
+        amount:
+          type: number
+          format: float
+          description: Check amount
+        date:
+          type: string
+          description: Check date
+        memo:
+          type: string
+          description: Memo field contents
+    W2Form:
+      type: object
+      description: A processed W-2 wage and tax statement
+      properties:
+        id:
+          type: integer
+        employee_name:
+          type: string
+        employee_ssn:
+          type: string
+          description: Employee Social Security Number (last 4 digits)
+        employer_name:
+          type: string
+        employer_ein:
+          type: string
+          description: Employer Identification Number
+        tax_year:
+          type: string
+          description: Tax year of the W-2
+        wages:
+          type: number
+          format: float
+          description: Box 1 - Wages, tips, other compensation
+        federal_tax_withheld:
+          type: number
+          format: float
+          description: Box 2 - Federal income tax withheld
+        social_security_wages:
+          type: number
+          format: float
+          description: Box 3 - Social security wages
+        social_security_tax:
+          type: number
+          format: float
+          description: Box 4 - Social security tax withheld
+        medicare_wages:
+          type: number
+          format: float
+          description: Box 5 - Medicare wages and tips
+        medicare_tax:
+          type: number
+          format: float
+          description: Box 6 - Medicare tax withheld
+    W9Form:
+      type: object
+      description: A processed W-9 request for taxpayer identification
+      properties:
+        id:
+          type: integer
+        taxpayer_name:
+          type: string
+          description: Legal name of taxpayer
+        business_name:
+          type: string
+          description: Business or DBA name
+        entity_type:
+          type: string
+          description: Federal tax classification entity type
+          enum:
+            - individual
+            - c_corporation
+            - s_corporation
+            - partnership
+            - trust
+            - llc
+            - other
+        tin:
+          type: string
+          description: Taxpayer Identification Number (SSN or EIN)
+        address:
+          type: string
+          description: Address of taxpayer
+        city:
+          type: string
+        state:
+          type: string
+        zip_code:
+          type: string
+        exempt_payee_code:
+          type: string
+          description: Exempt payee code if applicable
+    Error:
+      type: object
+      description: API error response
+      properties:
+        status:
+          type: integer
+          description: HTTP status code
+        error:
+          type: string
+          description: Error type
+        message:
+          type: string
+          description: Human-readable error message

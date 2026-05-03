@@ -1,0 +1,48 @@
+{
+  "name": "Veryfi Document",
+  "description": "Structure documentation for the Veryfi OCR API document entity (receipts and invoices)",
+  "fields": [
+    { "name": "id", "type": "integer", "required": true, "description": "Unique document ID" },
+    { "name": "external_id", "type": "string", "required": false, "description": "Customer external identifier" },
+    { "name": "document_type", "type": "string", "required": true, "description": "Document type: receipt, invoice, bill, etc." },
+    {
+      "name": "vendor",
+      "type": "object",
+      "required": false,
+      "description": "Extracted vendor information",
+      "fields": [
+        { "name": "name", "type": "string", "description": "Vendor name" },
+        { "name": "address", "type": "string", "description": "Vendor address" },
+        { "name": "phone_number", "type": "string", "description": "Vendor phone" },
+        { "name": "email", "type": "string", "description": "Vendor email" }
+      ]
+    },
+    { "name": "date", "type": "string", "required": false, "description": "Document date" },
+    { "name": "due_date", "type": "string", "required": false, "description": "Payment due date" },
+    { "name": "invoice_number", "type": "string", "required": false, "description": "Invoice/receipt number" },
+    { "name": "total", "type": "number", "required": false, "description": "Total amount" },
+    { "name": "subtotal", "type": "number", "required": false, "description": "Subtotal before tax" },
+    { "name": "tax", "type": "number", "required": false, "description": "Tax amount" },
+    { "name": "tip", "type": "number", "required": false, "description": "Gratuity amount" },
+    { "name": "currency_code", "type": "string", "required": false, "description": "ISO 4217 currency code" },
+    {
+      "name": "line_items",
+      "type": "array",
+      "required": false,
+      "description": "Extracted line items",
+      "items": {
+        "fields": [
+          { "name": "description", "type": "string" },
+          { "name": "quantity", "type": "number" },
+          { "name": "price", "type": "number" },
+          { "name": "total", "type": "number" },
+          { "name": "sku", "type": "string" },
+          { "name": "tax", "type": "number" }
+        ]
+      }
+    },
+    { "name": "tags", "type": "array", "required": false, "description": "User tags" },
+    { "name": "created", "type": "datetime", "required": false, "description": "Processing timestamp" },
+    { "name": "updated", "type": "datetime", "required": false, "description": "Last update timestamp" }
+  ]
+}

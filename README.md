@@ -1,80 +1,120 @@
-# Veryfi (veryfi)
-Veryfi provides OCR APIs for extracting structured data from invoices, receipts, checks, purchase orders, and other financial documents in real time. The platform uses AI to capture line items, taxes, totals, barcodes, vendor details, and more across 91 currencies and 38 languages with enterprise-grade accuracy.
+# Veryfi
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/veryfi/refs/heads/main/apis.yml)
+Veryfi provides AI-powered OCR APIs for extracting structured data from financial documents including receipts, invoices, bank statements, checks, W-2s, W-8s, W-9s, business cards, contracts, and custom documents. The platform captures line items, taxes, totals, barcodes, vendor details, and more across 91 currencies and 38 languages with enterprise-grade accuracy.
 
-## Scope
+**URL:** [https://raw.githubusercontent.com/api-evangelist/veryfi/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/veryfi/refs/heads/main/apis.yml)
 
-- **Type:** Index 
-- **Position:** Consuming 
-- **Access:** 3rd-Party 
+## Tags
 
-## Tags:
-
- - OCR, Receipts, Invoices, Document Processing, AI
+- AI
+- Document Processing
+- Finance
+- Invoices
+- OCR
+- Receipts
+- Tax Forms
 
 ## Timestamps
 
-- **Created:** 2026-03-16 
-- **Modified:** 2026-03-16 
+- **Created:** 2026-05-03
+- **Modified:** 2026-05-03
 
 ## APIs
 
-### Veryfi Receipts & Invoices API
-The Veryfi Receipts & Invoices API uses AI-powered OCR to extract structured JSON data from receipts, invoices, bills, and other financial documents. It supports documents in PDF and image formats and returns line-item level data including taxes, totals, vendor details, and barcodes.
+### Veryfi OCR API (v8)
 
-**Human URL:** [https://docs.veryfi.com/](https://docs.veryfi.com/)
+Base URL: `https://api.veryfi.com/api/v8`
 
+Authentication: `CLIENT-ID` header + `AUTHORIZATION: apikey USERNAME:API_KEY` header + optional HMAC-SHA256 request signatures.
 
-#### Tags:
+- **Documentation:** [https://docs.veryfi.com/](https://docs.veryfi.com/)
+- **Interactive Console:** [https://hub.veryfi.com/](https://hub.veryfi.com/)
+- **OpenAPI Spec:** [openapi/veryfi-ocr-openapi.yml](openapi/veryfi-ocr-openapi.yml)
 
- - OCR, Receipts, Invoices, Document Processing
+### Supported Document Types
 
-#### Properties
+| API | Endpoint | Description |
+|-----|----------|-------------|
+| Receipts & Invoices | `/partner/documents` | Full line-item extraction from receipts/invoices |
+| Bank Statements | `/partner/bank-statements` | Transaction data, balances, account info |
+| Checks | `/partner/checks` | MICR data, payee, amount, date |
+| W-2 Forms | `/partner/w2s` | Wages, tax withholdings, employer/employee info |
+| W-9 Forms | `/partner/w9s` | TIN, entity type, taxpayer info |
+| Any Documents | `/partner/any-documents` | Custom blueprint extraction for any doc type |
+| Classification | `/partner/classify` | Determine document type before processing |
 
-- [Documentation](https://docs.veryfi.com/)
-- [Reference](https://docs.veryfi.com/api/receipts-invoices/process-a-document/)
+## SDKs
 
-### Veryfi W2 API
-The Veryfi W2 API extracts structured data from W2 tax forms using AI-powered OCR, enabling automated processing of employee wage and tax documents.
+Veryfi provides official SDKs for 12+ languages via the [veryfi GitHub org](https://github.com/veryfi):
+Python, Node.js, Go, Java, Swift, C#, Ruby, PHP, Rust, Kotlin, Dart
 
-**Human URL:** [https://docs.veryfi.com/api/w2s/](https://docs.veryfi.com/api/w2s/)
+Mobile SDKs (Veryfi Lens): iOS, Android, React Native, Ionic Capacitor, Xamarin, Cordova
 
+## Artifacts
 
-#### Tags:
+### OpenAPI Specifications
 
- - OCR, Tax Forms, W2
+| Spec | Description |
+|------|-------------|
+| [openapi/veryfi-ocr-openapi.yml](openapi/veryfi-ocr-openapi.yml) | Full Veryfi OCR API v8 — documents, bank statements, checks, W-2s, W-9s, classification |
 
-#### Properties
+### Capabilities (Naftiko)
 
-- [Documentation](https://docs.veryfi.com/api/w2s/)
+| File | Description |
+|------|-------------|
+| [capabilities/financial-document-processing.yaml](capabilities/financial-document-processing.yaml) | Unified financial document processing workflow — 12 tools for all document types |
+| [capabilities/shared/veryfi-ocr.yaml](capabilities/shared/veryfi-ocr.yaml) | Shared Veryfi OCR API consumed definition |
 
-### Veryfi Bank Statements API
-The Veryfi Bank Statements API extracts structured data from bank statements using AI-powered OCR, enabling automated reconciliation and financial data capture workflows.
+### Spectral Rules
 
-**Human URL:** [https://docs.veryfi.com/api/bank-statements/](https://docs.veryfi.com/api/bank-statements/)
+| File | Description |
+|------|-------------|
+| [rules/veryfi-ocr-rules.yml](rules/veryfi-ocr-rules.yml) | Spectral ruleset enforcing Veryfi OCR API conventions |
 
+### JSON Schemas
 
-#### Tags:
+| Schema | Description |
+|--------|-------------|
+| [json-schema/veryfi-document-schema.json](json-schema/veryfi-document-schema.json) | Receipt/invoice document schema |
+| [json-schema/veryfi-bank-statement-schema.json](json-schema/veryfi-bank-statement-schema.json) | Bank statement schema |
 
- - OCR, Bank Statements, Finance
+### JSON Structures
 
-#### Properties
+| Structure | Description |
+|-----------|-------------|
+| [json-structure/veryfi-document-structure.json](json-structure/veryfi-document-structure.json) | Document field structure documentation |
 
-- [Documentation](https://docs.veryfi.com/api/bank-statements/)
+### JSON-LD
+
+| File | Description |
+|------|-------------|
+| [json-ld/veryfi-context.jsonld](json-ld/veryfi-context.jsonld) | JSON-LD context mapping Veryfi vocabulary to schema.org |
+
+### Examples
+
+| Example | Description |
+|---------|-------------|
+| [examples/veryfi-process-document-example.json](examples/veryfi-process-document-example.json) | Process a receipt/invoice |
+| [examples/veryfi-process-bank-statement-example.json](examples/veryfi-process-bank-statement-example.json) | Process a bank statement |
+| [examples/veryfi-process-w2-example.json](examples/veryfi-process-w2-example.json) | Process a W-2 tax form |
+
+### Vocabulary
+
+| File | Description |
+|------|-------------|
+| [vocabulary/veryfi-vocabulary.yml](vocabulary/veryfi-vocabulary.yml) | OCR and financial document domain vocabulary |
 
 ## Common Properties
 
 - [Website](https://www.veryfi.com/)
-- [Documentation](https://docs.veryfi.com/)
-- [Console](https://hub.veryfi.com/)
-- [Support](https://faq.veryfi.com/)
-- [GitHubOrganization](https://github.com/veryfi)
-- [PrivacyPolicy](https://www.veryfi.com/privacy-policy/)
-- [TermsOfService](https://www.veryfi.com/terms-of-service/)
+- [API Documentation](https://docs.veryfi.com/)
+- [Interactive Console](https://hub.veryfi.com/)
+- [Sign Up](https://app.veryfi.com/signup/api/)
+- [Help Center](https://faq.veryfi.com/)
+- [GitHub Organization](https://github.com/veryfi)
+- [Privacy Policy](https://www.veryfi.com/privacy-policy/)
+- [Terms of Service](https://www.veryfi.com/terms-of-service/)
 
 ## Maintainers
 
-**FN:** Kin Lane
-
-**Email:** kin@apievangelist.com
+**Kin Lane** — kin@apievangelist.com

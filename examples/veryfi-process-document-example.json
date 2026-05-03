@@ -1,0 +1,72 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.veryfi.com/api/v8/partner/documents",
+    "headers": {
+      "CLIENT-ID": "vrfxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "AUTHORIZATION": "apikey john.doe@company.com:api_key_here",
+      "X-Veryfi-Request-Timestamp": "1746273600000",
+      "X-Veryfi-Request-Signature": "hmac_sha256_signature_here",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "file_url": "https://cdn.example.com/receipts/receipt-2026-05-03.jpg",
+      "tags": ["travel", "Q2-2026"],
+      "bounding_boxes": false,
+      "confidence_details": false
+    }
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "id": 12345678,
+      "external_id": null,
+      "document_type": "receipt",
+      "vendor": {
+        "name": "Starbucks Coffee",
+        "address": "123 Main St, San Francisco, CA 94105",
+        "phone_number": "+1-415-555-0100",
+        "email": null
+      },
+      "date": "2026-05-03",
+      "invoice_number": "R-20260503-001",
+      "total": 14.75,
+      "subtotal": 13.50,
+      "tax": 1.25,
+      "tip": null,
+      "currency_code": "USD",
+      "line_items": [
+        {
+          "description": "Venti Latte",
+          "quantity": 1,
+          "price": 7.25,
+          "total": 7.25,
+          "sku": null,
+          "tax": null
+        },
+        {
+          "description": "Blueberry Muffin",
+          "quantity": 1,
+          "price": 3.75,
+          "total": 3.75,
+          "sku": null,
+          "tax": null
+        },
+        {
+          "description": "Banana",
+          "quantity": 1,
+          "price": 2.50,
+          "total": 2.50,
+          "sku": null,
+          "tax": null
+        }
+      ],
+      "tags": ["travel", "Q2-2026"],
+      "created": "2026-05-03T14:30:00Z",
+      "updated": "2026-05-03T14:30:05Z"
+    }
+  }
+}

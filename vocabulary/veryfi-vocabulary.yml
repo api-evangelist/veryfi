@@ -1,0 +1,136 @@
+vocabulary:
+  name: Veryfi OCR API Vocabulary
+  description: >-
+    Domain vocabulary for Veryfi AI-powered OCR document data extraction,
+    covering financial documents, tax forms, data extraction concepts, and
+    SDK terminology.
+  version: '2026-05-03'
+  terms:
+    - term: Blueprint
+      definition: >-
+        A named custom extraction schema in the Veryfi ∀Docs (Any Documents)
+        API that defines which fields to extract from non-standard document
+        types like contracts or custom forms.
+      tags:
+        - Any Documents
+        - Custom Extraction
+
+    - term: Boost Mode
+      definition: >-
+        An API flag that skips enrichment processing for faster document
+        extraction. When enabled, the API returns raw OCR data without
+        additional data enrichment like address parsing or category matching.
+      tags:
+        - Performance
+        - Processing
+
+    - term: Document Classification
+      definition: >-
+        The process of determining the type of a document (receipt, invoice,
+        W-2, bank statement, etc.) before routing it to the appropriate
+        extraction endpoint. Available via the Veryfi /classify endpoint.
+      tags:
+        - Classification
+        - Document Processing
+
+    - term: Line Item
+      definition: >-
+        An individual product or service entry within a receipt or invoice,
+        containing description, quantity, unit price, total, and optional SKU
+        and tax fields.
+      tags:
+        - Invoices
+        - Line Items
+        - Receipts
+
+    - term: OCR
+      definition: >-
+        Optical Character Recognition. AI-powered technology used by Veryfi
+        to convert images of documents into structured, machine-readable data.
+        Veryfi's OCR supports 91 currencies and 38 languages.
+      tags:
+        - AI
+        - Document Processing
+        - OCR
+
+    - term: Veryfi Lens
+      definition: >-
+        Veryfi's mobile SDK collection for camera-based document capture on
+        iOS, Android, React Native, Ionic, Xamarin, and Cordova. Lens products
+        handle document capture and submit to the Veryfi OCR API.
+      tags:
+        - Mobile SDK
+        - SDK
+
+    - term: HMAC Signature
+      definition: >-
+        Hash-based Message Authentication Code used by Veryfi for request
+        validation. The X-Veryfi-Request-Signature header is computed using
+        HMAC-SHA256 with the CLIENT_SECRET and is valid for 30 minutes.
+      tags:
+        - Authentication
+        - Security
+
+    - term: W-2 Form
+      definition: >-
+        IRS Wage and Tax Statement reporting employee wages, tips, and tax
+        withholdings. Veryfi's W-2 API extracts all box values including wages,
+        federal/state/FICA withholdings, and employer/employee identifiers.
+      tags:
+        - Tax Forms
+        - W-2
+
+    - term: W-9 Form
+      definition: >-
+        IRS Request for Taxpayer Identification Number and Certification form.
+        Veryfi's W-9 API extracts taxpayer name, TIN (SSN or EIN), entity type,
+        address, and exemption codes for HR and vendor management workflows.
+      tags:
+        - Tax Forms
+        - W-9
+
+    - term: W-8BEN-E Form
+      definition: >-
+        IRS Certificate of Foreign Status of Beneficial Owner for United States
+        Tax Withholding and Reporting. Used for international business entities
+        claiming treaty benefits for FATCA compliance.
+      tags:
+        - International
+        - Tax Forms
+        - W-8
+
+    - term: MICR
+      definition: >-
+        Magnetic Ink Character Recognition. The characters at the bottom of a
+        check encoding routing number, account number, and check number.
+        Veryfi's Checks API extracts MICR data along with payee, amount, and date.
+      tags:
+        - Banking
+        - Checks
+
+    - term: Bounding Box
+      definition: >-
+        Coordinate data returned by the Veryfi API (when bounding_boxes=true)
+        indicating the pixel position of each extracted field within the
+        original document image.
+      tags:
+        - Bounding Boxes
+        - Document Processing
+
+    - term: Confidence Score
+      definition: >-
+        A numeric value (0-1) returned by the Veryfi API (when
+        confidence_details=true) indicating the AI model's confidence in each
+        extracted field value.
+      tags:
+        - AI
+        - Confidence
+
+    - term: Async Processing
+      definition: >-
+        Asynchronous document processing mode where the Veryfi API accepts the
+        document, returns immediately, and delivers results via webhook callback
+        when processing is complete.
+      tags:
+        - Async
+        - Webhooks
