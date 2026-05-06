@@ -4,161 +4,152 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Veryfi
 providerId: veryfi
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
-  - AI
-  - Document Processing
-  - Finance
-  - Invoices
   - OCR
+  - Document AI
+  - Data Extraction
   - Receipts
-  - Tax Forms
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+  - Invoices
+  - Expense Management
+description: Veryfi prices its OCR / document-extraction APIs with a freemium entry tier (100 docs/mo)
+  plus a metered Starter plan that bills per document by document type, and a Growth plan with
+  volume discounts and add-ons negotiated directly. Per-document rates are documented on the public
+  pricing page; a one-cent-per-doc discount is offered on Starter with a 12-month commitment.
+sources:
+  - https://www.veryfi.com/pricing/
 plans:
   - id: veryfi-free
     name: Free
     type: freemium
-    description: Free entry tier for the Veryfi API surface. Intended for evaluation, prototyping, and
-      low-volume integrations. Real limits and pricing must be reconciled with the provider's published
-      plan documentation.
+    description: Free tier for evaluation; up to 100 documents per month across all document types.
     entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
+      - label: Documents per month
+        name: documents_included
         type: quota
-        metric: requests
-        limit: 1000
-        timeFrame: month
-        geo: global
-        domains: []
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
-        geo: global
-        domains: []
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: Veryfi OCR API
-      - name: Veryfi Receipts & Invoices API
-      - name: Veryfi Bank Statements API
-      - name: Veryfi W-2 API
-      - name: Veryfi W-9 API
-      - name: Veryfi Checks API
-      - name: Veryfi Any Documents API
-      - name: Veryfi Classification API
-  - id: veryfi-pro
-    name: Professional
-    type: paid
-    description: Production tier for Veryfi. Provides higher quotas, priority support, and access to the
-      broader API portfolio. Pricing placeholder; align with the provider's pricing page.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
-        geo: global
-        domains: []
-        unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
+        metric: document
         limit: 100
-        timeFrame: minute
-        geo: global
-        domains: []
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
-        type: metered
-        metric: requests
-        limit: -1
         timeFrame: month
         geo: global
-        domains: []
-        unit: 1000
-        price: TBD
+        unit: 1
+        price: '$0'
         userMultiplied: false
     elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: Veryfi OCR API
-      - name: Veryfi Receipts & Invoices API
-      - name: Veryfi Bank Statements API
-      - name: Veryfi W-2 API
-      - name: Veryfi W-9 API
-      - name: Veryfi Checks API
-      - name: Veryfi Any Documents API
-      - name: Veryfi Classification API
-  - id: veryfi-enterprise
-    name: Enterprise
-    type: enterprise
-    description: Custom-negotiated tier for Veryfi. Includes dedicated capacity, contractual SLAs, security
-      review, data residency options, and named technical account management.
+      - name: All document types
+      - name: SDKs
+      - name: Limited storage
+      - name: Email support
+  - id: veryfi-starter
+    name: Starter
+    type: usage-based
+    description: Per-document metered plan with a $500/mo minimum commitment. Per-document price
+      varies by document type.
     entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: -1
+      - label: Plan minimum
+        name: monthly_minimum
+        type: subscription
+        metric: month
+        limit: 1
         timeFrame: month
-        geo: configurable
-        domains: []
+        geo: global
         unit: 1
-        price: custom
+        price: '$500+/mo (minimum commitment)'
         userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains: []
+      - label: Receipts
+        name: receipts
+        type: metered
+        metric: document
+        limit: -1
+        timeFrame: usage
+        geo: global
         unit: 1
-        price: custom
+        price: '$0.08 per receipt'
+        userMultiplied: false
+      - label: Invoices
+        name: invoices
+        type: metered
+        metric: document
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '$0.16 per invoice'
+        userMultiplied: false
+      - label: Bank Checks
+        name: bank_checks
+        type: metered
+        metric: document
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '$0.25 per check'
+        userMultiplied: false
+      - label: Bank Statements
+        name: bank_statements
+        type: metered
+        metric: document
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '$0.25 per statement'
+        userMultiplied: false
+      - label: W-2 / W-9 forms
+        name: w2_w9_forms
+        type: metered
+        metric: document
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '$0.16 per form'
+        userMultiplied: false
+      - label: Other documents
+        name: other_documents
+        type: metered
+        metric: document
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: contact for pricing
         userMultiplied: false
     elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: Veryfi OCR API
-      - name: Veryfi Receipts & Invoices API
-      - name: Veryfi Bank Statements API
-      - name: Veryfi W-2 API
-      - name: Veryfi W-9 API
-      - name: Veryfi Checks API
-      - name: Veryfi Any Documents API
-      - name: Veryfi Classification API
+      - name: All document types
+      - name: SDKs
+      - name: OpenClaw Skill
+      - name: Optional add-ons
+      - name: API Hub access
+      - name: Email support
+      - name: 1-cent-per-document discount with 12-month commitment
+  - id: veryfi-growth
+    name: Growth
+    type: enterprise
+    description: Volume-discounted custom plan with add-ons (unlimited storage, custom retention,
+      model training, SLA, SAML SSO, enhanced support).
+    entries:
+      - label: Custom Quote
+        name: custom_quote
+        type: flat
+        metric: varies
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: custom (volume discounts)
+        userMultiplied: false
+    elements:
+      - name: All document types
+      - name: SDKs
+      - name: Multiple add-ons
+      - name: Unlimited storage
+      - name: Custom data retention
+      - name: Model training
+      - name: SLA options
+      - name: SAML SSO
+      - name: Enhanced support
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

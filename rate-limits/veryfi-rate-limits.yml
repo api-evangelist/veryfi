@@ -4,123 +4,41 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Veryfi
 providerId: veryfi
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
-  - AI
-  - Document Processing
-  - Finance
-  - Invoices
-  - OCR
-  - Receipts
-  - Tax Forms
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Veryfi API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+  - OCR
+  - Document AI
+  - Data Extraction
+description: Veryfi does not publish a public rate-limit table for its OCR / document APIs on the
+  marketing or documentation hub pages reviewed at reconciliation time. Per-document quotas are
+  enforced via the plan (e.g. 100/mo on Free); request-rate limits, if any, are not publicly
+  documented and should be confirmed with Veryfi support for production workloads.
+sources:
+  - https://www.veryfi.com/pricing/
+  - https://docs.veryfi.com/
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Veryfi OCR API
-      - Veryfi Receipts & Invoices API
-      - Veryfi Bank Statements API
-      - Veryfi W-2 API
-      - Veryfi W-9 API
-      - Veryfi Checks API
-      - Veryfi Any Documents API
-      - Veryfi Classification API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Veryfi OCR API
-      - Veryfi Receipts & Invoices API
-      - Veryfi Bank Statements API
-      - Veryfi W-2 API
-      - Veryfi W-9 API
-      - Veryfi Checks API
-      - Veryfi Any Documents API
-      - Veryfi Classification API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
+  - name: Plan-level monthly document quota
+    scope: account
+    metric: documents_per_month
     limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Veryfi OCR API
-      - Veryfi Receipts & Invoices API
-      - Veryfi Bank Statements API
-      - Veryfi W-2 API
-      - Veryfi W-9 API
-      - Veryfi Checks API
-      - Veryfi Any Documents API
-      - Veryfi Classification API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
     timeFrame: month
-    applies:
-      - Veryfi OCR API
-      - Veryfi Receipts & Invoices API
-      - Veryfi Bank Statements API
-      - Veryfi W-2 API
-      - Veryfi W-9 API
-      - Veryfi Checks API
-      - Veryfi Any Documents API
-      - Veryfi Classification API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Veryfi OCR API
-      - Veryfi Receipts & Invoices API
-      - Veryfi Bank Statements API
-      - Veryfi W-2 API
-      - Veryfi W-9 API
-      - Veryfi Checks API
-      - Veryfi Any Documents API
-      - Veryfi Classification API
+    notes: Free tier; Starter and Growth plans are metered with no fixed monthly cap (subject to
+      minimum commitment / volume agreement).
+  - name: Per-second / per-minute request rate
+    scope: account
+    metric: varies
+    limit: not publicly documented; contact Veryfi support for production allocations
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: Quota model
+    description: The Free tier hard-caps document processing at the plan quota; metered plans bill
+      per document with no fixed request-rate ceiling published.
+  - name: Backoff
+    description: Clients receiving 429 responses should implement exponential backoff with jitter
+      and honor any Retry-After header returned.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

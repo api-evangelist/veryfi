@@ -8,186 +8,85 @@ alignedWith:
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 provider: Veryfi
 providerId: veryfi
-publisherName: Veryfi
-serviceCategory: API
+publisherName: Veryfi, Inc.
+serviceCategory: Document AI / OCR
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
-  - AI
-  - Document Processing
-  - Finance
-  - Invoices
-  - OCR
-  - Receipts
-  - Tax Forms
   - FinOps
-  - Cost Management
   - FOCUS
-description: FinOps framework definition for the Veryfi API surface. Provides a FOCUS-aligned mapping
-  for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+  - OCR
+  - Document AI
+  - Data Extraction
+description: 'FOCUS-aligned FinOps shape for Veryfi: per-document metered pricing on the Starter
+  plan ($500/mo minimum, document-type-specific unit prices) and a Free quota tier; Growth plan is
+  custom-quoted with volume discounts. The dominant unit of consumption is the processed document.'
+sources:
+  - https://www.veryfi.com/pricing/
 billingModel:
-  pricingCategory: Usage-Based
+  pricingCategory: Pay-As-You-Go + Subscription Minimum
   billingFrequency: Monthly
   billingCurrency: USD
   chargeCategories:
     - Usage
     - Purchase
     - Tax
-    - Credit
     - Adjustment
-  chargeFrequency: Recurring
 focusColumns:
-  ServiceName: Veryfi
-  ServiceCategory: Developer Tools / API
+  ServiceName: Veryfi OCR API
+  ServiceCategory: Document AI / OCR
   ProviderName: Veryfi
-  PublisherName: Veryfi
-  InvoiceIssuerName: Veryfi
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  PublisherName: Veryfi, Inc.
+  InvoiceIssuerName: Veryfi, Inc.
   BillingCurrency: USD
   ChargeCategory: Usage
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
+  - name: documents_processed
+    unit: document
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
+      - document_type
+      - plan
+  - name: receipts_processed
+    unit: document
     aggregation: sum
     dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
+      - plan
+  - name: invoices_processed
+    unit: document
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Veryfi OCR API
-    baseURL: ''
-    tags:
-      - AI
-      - Document Processing
-      - OCR
-    serviceName: Veryfi OCR API
-    serviceCategory: API
-  - name: Veryfi Receipts & Invoices API
-    baseURL: ''
-    tags:
-      - Document Processing
-      - Invoices
-      - OCR
-      - Receipts
-    serviceName: Veryfi Receipts & Invoices API
-    serviceCategory: API
-  - name: Veryfi Bank Statements API
-    baseURL: ''
-    tags:
-      - Bank Statements
-      - Finance
-      - OCR
-    serviceName: Veryfi Bank Statements API
-    serviceCategory: API
-  - name: Veryfi W-2 API
-    baseURL: ''
-    tags:
-      - OCR
-      - Tax Forms
-      - W-2
-    serviceName: Veryfi W-2 API
-    serviceCategory: API
-  - name: Veryfi W-9 API
-    baseURL: ''
-    tags:
-      - HR
-      - OCR
-      - Tax Forms
-      - W-9
-    serviceName: Veryfi W-9 API
-    serviceCategory: API
-  - name: Veryfi Checks API
-    baseURL: ''
-    tags:
-      - Banking
-      - Checks
-      - OCR
-    serviceName: Veryfi Checks API
-    serviceCategory: API
-  - name: Veryfi Any Documents API
-    baseURL: ''
-    tags:
-      - Contracts
-      - Custom Documents
-      - Document Processing
-      - OCR
-    serviceName: Veryfi Any Documents API
-    serviceCategory: API
-  - name: Veryfi Classification API
-    baseURL: ''
-    tags:
-      - Classification
-      - Document Processing
-      - OCR
-    serviceName: Veryfi Classification API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+      - plan
+  - name: bank_documents_processed
+    unit: document
+    aggregation: sum
+    dimensions:
+      - subtype
+  - name: tax_forms_processed
+    unit: document
+    aggregation: sum
+    dimensions:
+      - form_type
+  - name: monthly_minimum
+    unit: month
+    aggregation: max
+    dimensions:
+      - plan
+principles:
+  - name: Visibility
+    description: Track per-document consumption via the Veryfi Hub usage views and the API Hub
+      account page; document-type rates are itemized on the monthly invoice.
+  - name: Allocation
+    description: Tag uploads with the originating tenant / business unit at the API request layer
+      (e.g. category or external_id) so document-type cost can be attributed downstream.
+  - name: Optimization
+    description: Right-size the document mix toward lower-priced types (receipts at $0.08 vs invoices
+      at $0.16, checks/statements at $0.25); commit to the 12-month Starter plan for the
+      one-cent-per-document discount; aggregate volume into the Growth plan when usage justifies it.
+  - name: Accountability
+    description: Assign the Veryfi account owner from the integrating product team; finance reconciles
+      monthly against the $500 plan minimum and per-document overage lines on the invoice.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
