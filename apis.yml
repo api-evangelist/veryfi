@@ -199,6 +199,26 @@ common:
     name: Veryfi Node.js SDK (npm)
     type: SDK
     description: Official Veryfi Node.js SDK available on npm.
+  - type: Integrations
+    url: https://www.veryfi.com/integrations/
+integrations:
+  - name: Build Loyalty Programs using Veryfi Embedded
+  - name: Receipts OCR & Expenses App
+  - name: Document Capture
+  - name: Rippling
+  - name: Dropbox
+  - name: Box
+  - name: Slack
+  - name: Microsoft OneDrive (Personal)
+  - name: Google Drive
+  - name: QuickBooks Desktop
+  - name: Saasu
+  - name: Evernote
+  - name: About Veryfi by ChatGPT
+  - name: About Veryfi by Claude
+  - name: About Veryfi by Gemini
+  - name: About Veryfi by Grok
+  - name: About Veryfi by Perplexity
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
