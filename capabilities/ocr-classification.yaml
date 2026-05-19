@@ -1,0 +1,82 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Veryfi OCR API — Classification
+  description: 'Veryfi OCR API — Classification. 1 operations. Lead operation: Classify a Document. Self-contained Naftiko
+    capability covering one Veryfi business surface.'
+  tags:
+  - Veryfi
+  - Classification
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    VERYFI_API_KEY: VERYFI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ocr-classification
+    baseUri: https://api.veryfi.com/api/v8
+    description: Veryfi OCR API — Classification business capability. Self-contained, no shared references.
+    resources:
+    - name: partner-classify
+      path: /partner/classify
+      operations:
+      - name: classifydocument
+        method: POST
+        description: Classify a Document
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: CLIENT-ID
+      value: '{{env.VERYFI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: ocr-classification-rest
+    port: 8080
+    description: REST adapter for Veryfi OCR API — Classification. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/partner/classify
+      name: partner-classify
+      description: REST surface for partner-classify.
+      operations:
+      - method: POST
+        name: classifydocument
+        description: Classify a Document
+        call: ocr-classification.classifydocument
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ocr-classification-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Veryfi OCR API — Classification. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: classify-document
+      description: Classify a Document
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: ocr-classification.classifydocument
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

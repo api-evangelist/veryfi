@@ -1,0 +1,253 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Veryfi OCR API — Documents
+  description: 'Veryfi OCR API — Documents. 5 operations. Lead operation: Process a Document. Self-contained Naftiko capability
+    covering one Veryfi business surface.'
+  tags:
+  - Veryfi
+  - Documents
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    VERYFI_API_KEY: VERYFI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ocr-documents
+    baseUri: https://api.veryfi.com/api/v8
+    description: Veryfi OCR API — Documents business capability. Self-contained, no shared references.
+    resources:
+    - name: partner-documents
+      path: /partner/documents
+      operations:
+      - name: processdocument
+        method: POST
+        description: Process a Document
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listdocuments
+        method: GET
+        description: List All Documents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: created_date__gt
+          in: query
+          type: string
+          description: Filter documents created after this date (format YYYY-MM-DD+HH:MM:SS)
+        - name: created_date__lt
+          in: query
+          type: string
+          description: Filter documents created before this date
+        - name: page
+          in: query
+          type: integer
+          description: Page number for pagination
+        - name: page_size
+          in: query
+          type: integer
+          description: Number of documents per page
+    - name: partner-documents-documentId
+      path: /partner/documents/{documentId}
+      operations:
+      - name: getdocument
+        method: GET
+        description: Get a Document
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: documentId
+          in: path
+          type: integer
+          description: Unique document identifier
+          required: true
+      - name: updatedocument
+        method: PUT
+        description: Update a Document
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: documentId
+          in: path
+          type: integer
+          description: Unique document identifier
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletedocument
+        method: DELETE
+        description: Delete a Document
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: documentId
+          in: path
+          type: integer
+          description: Unique document identifier
+          required: true
+    authentication:
+      type: apikey
+      key: CLIENT-ID
+      value: '{{env.VERYFI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: ocr-documents-rest
+    port: 8080
+    description: REST adapter for Veryfi OCR API — Documents. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/partner/documents
+      name: partner-documents
+      description: REST surface for partner-documents.
+      operations:
+      - method: POST
+        name: processdocument
+        description: Process a Document
+        call: ocr-documents.processdocument
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listdocuments
+        description: List All Documents
+        call: ocr-documents.listdocuments
+        with:
+          created_date__gt: rest.created_date__gt
+          created_date__lt: rest.created_date__lt
+          page: rest.page
+          page_size: rest.page_size
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/partner/documents/{documentid}
+      name: partner-documents-documentid
+      description: REST surface for partner-documents-documentId.
+      operations:
+      - method: GET
+        name: getdocument
+        description: Get a Document
+        call: ocr-documents.getdocument
+        with:
+          documentId: rest.documentId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatedocument
+        description: Update a Document
+        call: ocr-documents.updatedocument
+        with:
+          documentId: rest.documentId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletedocument
+        description: Delete a Document
+        call: ocr-documents.deletedocument
+        with:
+          documentId: rest.documentId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ocr-documents-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Veryfi OCR API — Documents. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: process-document
+      description: Process a Document
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: ocr-documents.processdocument
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-documents
+      description: List All Documents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ocr-documents.listdocuments
+      with:
+        created_date__gt: tools.created_date__gt
+        created_date__lt: tools.created_date__lt
+        page: tools.page
+        page_size: tools.page_size
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-document
+      description: Get a Document
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ocr-documents.getdocument
+      with:
+        documentId: tools.documentId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-document
+      description: Update a Document
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: ocr-documents.updatedocument
+      with:
+        documentId: tools.documentId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-document
+      description: Delete a Document
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: ocr-documents.deletedocument
+      with:
+        documentId: tools.documentId
+      outputParameters:
+      - type: object
+        mapping: $.

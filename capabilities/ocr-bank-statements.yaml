@@ -1,0 +1,182 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Veryfi OCR API — Bank Statements
+  description: 'Veryfi OCR API — Bank Statements. 4 operations. Lead operation: Process a Bank Statement. Self-contained Naftiko
+    capability covering one Veryfi business surface.'
+  tags:
+  - Veryfi
+  - Bank Statements
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    VERYFI_API_KEY: VERYFI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ocr-bank-statements
+    baseUri: https://api.veryfi.com/api/v8
+    description: Veryfi OCR API — Bank Statements business capability. Self-contained, no shared references.
+    resources:
+    - name: partner-bank-statements
+      path: /partner/bank-statements
+      operations:
+      - name: processbankstatement
+        method: POST
+        description: Process a Bank Statement
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listbankstatements
+        method: GET
+        description: List All Bank Statements
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: partner-bank-statements-documentId
+      path: /partner/bank-statements/{documentId}
+      operations:
+      - name: getbankstatement
+        method: GET
+        description: Get a Bank Statement
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: documentId
+          in: path
+          type: integer
+          required: true
+      - name: deletebankstatement
+        method: DELETE
+        description: Delete a Bank Statement
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: documentId
+          in: path
+          type: integer
+          required: true
+    authentication:
+      type: apikey
+      key: CLIENT-ID
+      value: '{{env.VERYFI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: ocr-bank-statements-rest
+    port: 8080
+    description: REST adapter for Veryfi OCR API — Bank Statements. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/partner/bank-statements
+      name: partner-bank-statements
+      description: REST surface for partner-bank-statements.
+      operations:
+      - method: POST
+        name: processbankstatement
+        description: Process a Bank Statement
+        call: ocr-bank-statements.processbankstatement
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listbankstatements
+        description: List All Bank Statements
+        call: ocr-bank-statements.listbankstatements
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/partner/bank-statements/{documentid}
+      name: partner-bank-statements-documentid
+      description: REST surface for partner-bank-statements-documentId.
+      operations:
+      - method: GET
+        name: getbankstatement
+        description: Get a Bank Statement
+        call: ocr-bank-statements.getbankstatement
+        with:
+          documentId: rest.documentId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletebankstatement
+        description: Delete a Bank Statement
+        call: ocr-bank-statements.deletebankstatement
+        with:
+          documentId: rest.documentId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ocr-bank-statements-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Veryfi OCR API — Bank Statements. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: process-bank-statement
+      description: Process a Bank Statement
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: ocr-bank-statements.processbankstatement
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-bank-statements
+      description: List All Bank Statements
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ocr-bank-statements.listbankstatements
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-bank-statement
+      description: Get a Bank Statement
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ocr-bank-statements.getbankstatement
+      with:
+        documentId: tools.documentId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-bank-statement
+      description: Delete a Bank Statement
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: ocr-bank-statements.deletebankstatement
+      with:
+        documentId: tools.documentId
+      outputParameters:
+      - type: object
+        mapping: $.

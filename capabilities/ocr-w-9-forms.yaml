@@ -1,0 +1,182 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Veryfi OCR API — W-9 Forms
+  description: 'Veryfi OCR API — W-9 Forms. 4 operations. Lead operation: Process a W-9 Form. Self-contained Naftiko capability
+    covering one Veryfi business surface.'
+  tags:
+  - Veryfi
+  - W-9 Forms
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    VERYFI_API_KEY: VERYFI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ocr-w-9-forms
+    baseUri: https://api.veryfi.com/api/v8
+    description: Veryfi OCR API — W-9 Forms business capability. Self-contained, no shared references.
+    resources:
+    - name: partner-w9s
+      path: /partner/w9s
+      operations:
+      - name: processw9
+        method: POST
+        description: Process a W-9 Form
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listw9s
+        method: GET
+        description: List All W-9 Forms
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: partner-w9s-documentId
+      path: /partner/w9s/{documentId}
+      operations:
+      - name: getw9
+        method: GET
+        description: Get a W-9 Form
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: documentId
+          in: path
+          type: integer
+          required: true
+      - name: deletew9
+        method: DELETE
+        description: Delete a W-9 Form
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: documentId
+          in: path
+          type: integer
+          required: true
+    authentication:
+      type: apikey
+      key: CLIENT-ID
+      value: '{{env.VERYFI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: ocr-w-9-forms-rest
+    port: 8080
+    description: REST adapter for Veryfi OCR API — W-9 Forms. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/partner/w9s
+      name: partner-w9s
+      description: REST surface for partner-w9s.
+      operations:
+      - method: POST
+        name: processw9
+        description: Process a W-9 Form
+        call: ocr-w-9-forms.processw9
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listw9s
+        description: List All W-9 Forms
+        call: ocr-w-9-forms.listw9s
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/partner/w9s/{documentid}
+      name: partner-w9s-documentid
+      description: REST surface for partner-w9s-documentId.
+      operations:
+      - method: GET
+        name: getw9
+        description: Get a W-9 Form
+        call: ocr-w-9-forms.getw9
+        with:
+          documentId: rest.documentId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletew9
+        description: Delete a W-9 Form
+        call: ocr-w-9-forms.deletew9
+        with:
+          documentId: rest.documentId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ocr-w-9-forms-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Veryfi OCR API — W-9 Forms. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: process-w-9-form
+      description: Process a W-9 Form
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: ocr-w-9-forms.processw9
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-w-9-forms
+      description: List All W-9 Forms
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ocr-w-9-forms.listw9s
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-w-9-form
+      description: Get a W-9 Form
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ocr-w-9-forms.getw9
+      with:
+        documentId: tools.documentId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-w-9-form
+      description: Delete a W-9 Form
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: ocr-w-9-forms.deletew9
+      with:
+        documentId: tools.documentId
+      outputParameters:
+      - type: object
+        mapping: $.

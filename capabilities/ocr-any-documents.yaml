@@ -1,0 +1,191 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Veryfi OCR API — Any Documents
+  description: 'Veryfi OCR API — Any Documents. 4 operations. Lead operation: Process Any Document. Self-contained Naftiko
+    capability covering one Veryfi business surface.'
+  tags:
+  - Veryfi
+  - Any Documents
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    VERYFI_API_KEY: VERYFI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ocr-any-documents
+    baseUri: https://api.veryfi.com/api/v8
+    description: Veryfi OCR API — Any Documents business capability. Self-contained, no shared references.
+    resources:
+    - name: partner-any-documents
+      path: /partner/any-documents
+      operations:
+      - name: processanydocument
+        method: POST
+        description: Process Any Document
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listanydocuments
+        method: GET
+        description: List Any Documents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: created_date__gt
+          in: query
+          type: string
+          description: Filter by creation date greater than
+    - name: partner-any-documents-documentId
+      path: /partner/any-documents/{documentId}
+      operations:
+      - name: getanydocument
+        method: GET
+        description: Get Any Document
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: documentId
+          in: path
+          type: integer
+          required: true
+      - name: deleteanydocument
+        method: DELETE
+        description: Delete Any Document
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: documentId
+          in: path
+          type: integer
+          required: true
+    authentication:
+      type: apikey
+      key: CLIENT-ID
+      value: '{{env.VERYFI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: ocr-any-documents-rest
+    port: 8080
+    description: REST adapter for Veryfi OCR API — Any Documents. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/partner/any-documents
+      name: partner-any-documents
+      description: REST surface for partner-any-documents.
+      operations:
+      - method: POST
+        name: processanydocument
+        description: Process Any Document
+        call: ocr-any-documents.processanydocument
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listanydocuments
+        description: List Any Documents
+        call: ocr-any-documents.listanydocuments
+        with:
+          created_date__gt: rest.created_date__gt
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/partner/any-documents/{documentid}
+      name: partner-any-documents-documentid
+      description: REST surface for partner-any-documents-documentId.
+      operations:
+      - method: GET
+        name: getanydocument
+        description: Get Any Document
+        call: ocr-any-documents.getanydocument
+        with:
+          documentId: rest.documentId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteanydocument
+        description: Delete Any Document
+        call: ocr-any-documents.deleteanydocument
+        with:
+          documentId: rest.documentId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ocr-any-documents-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Veryfi OCR API — Any Documents. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: process-any-document
+      description: Process Any Document
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: ocr-any-documents.processanydocument
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-any-documents
+      description: List Any Documents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ocr-any-documents.listanydocuments
+      with:
+        created_date__gt: tools.created_date__gt
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-any-document
+      description: Get Any Document
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ocr-any-documents.getanydocument
+      with:
+        documentId: tools.documentId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-any-document
+      description: Delete Any Document
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: ocr-any-documents.deleteanydocument
+      with:
+        documentId: tools.documentId
+      outputParameters:
+      - type: object
+        mapping: $.
