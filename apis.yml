@@ -22,7 +22,7 @@ tags:
 url: >-
   https://raw.githubusercontent.com/api-evangelist/veryfi/refs/heads/main/apis.yml
 created: '2026-05-03'
-modified: '2026-05-03'
+modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
   - aid: veryfi:ocr-api
@@ -201,6 +201,12 @@ common:
     description: Official Veryfi Node.js SDK available on npm.
   - type: Integrations
     url: https://www.veryfi.com/integrations/
+  - name: MCP Server
+    url: https://github.com/veryfi/mcp-server
+    type: MCPServer
+  - name: Agent Skills
+    url: https://github.com/veryfi/veryfi-openclaw-skill
+    type: AgentSkill
 integrations:
   - name: Build Loyalty Programs using Veryfi Embedded
   - name: Receipts OCR & Expenses App
