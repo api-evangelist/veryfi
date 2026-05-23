@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProcessDocumentRequest",
+  "title": "ProcessDocumentRequest",
+  "type": "object",
+  "description": "Request body for document processing operations",
+  "properties": {
+    "file_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Publicly accessible URL to the document"
+    },
+    "file_urls": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      },
+      "description": "Multiple document URLs (for multi-page documents)"
+    },
+    "file_data": {
+      "type": "string",
+      "description": "Base64-encoded document data"
+    },
+    "file": {
+      "type": "string",
+      "format": "binary",
+      "description": "Binary file upload"
+    },
+    "async": {
+      "type": "boolean",
+      "default": false,
+      "description": "Enable asynchronous processing via webhook"
+    },
+    "boost_mode": {
+      "type": "boolean",
+      "default": false,
+      "description": "Skip enrichment for faster processing"
+    },
+    "max_pages_to_process": {
+      "type": "integer",
+      "default": 15,
+      "maximum": 15,
+      "description": "Maximum pages to process"
+    },
+    "bounding_boxes": {
+      "type": "boolean",
+      "default": false,
+      "description": "Include coordinate data for extracted fields"
+    },
+    "confidence_details": {
+      "type": "boolean",
+      "default": false,
+      "description": "Include confidence scores for each extracted field"
+    },
+    "external_id": {
+      "type": "string",
+      "description": "Custom identifier for the document in your system"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tags for document organization"
+    },
+    "country": {
+      "type": "string",
+      "description": "Two-letter country code as currency hint"
+    },
+    "parse_address": {
+      "type": "boolean",
+      "description": "Break address fields into individual components"
+    }
+  }
+}

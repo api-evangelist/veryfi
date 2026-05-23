@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/W2Form",
+  "title": "W2Form",
+  "type": "object",
+  "description": "A processed W-2 wage and tax statement",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "employee_name": {
+      "type": "string"
+    },
+    "employee_ssn": {
+      "type": "string",
+      "description": "Employee Social Security Number (last 4 digits)"
+    },
+    "employer_name": {
+      "type": "string"
+    },
+    "employer_ein": {
+      "type": "string",
+      "description": "Employer Identification Number"
+    },
+    "tax_year": {
+      "type": "string",
+      "description": "Tax year of the W-2"
+    },
+    "wages": {
+      "type": "number",
+      "format": "float",
+      "description": "Box 1 - Wages, tips, other compensation"
+    },
+    "federal_tax_withheld": {
+      "type": "number",
+      "format": "float",
+      "description": "Box 2 - Federal income tax withheld"
+    },
+    "social_security_wages": {
+      "type": "number",
+      "format": "float",
+      "description": "Box 3 - Social security wages"
+    },
+    "social_security_tax": {
+      "type": "number",
+      "format": "float",
+      "description": "Box 4 - Social security tax withheld"
+    },
+    "medicare_wages": {
+      "type": "number",
+      "format": "float",
+      "description": "Box 5 - Medicare wages and tips"
+    },
+    "medicare_tax": {
+      "type": "number",
+      "format": "float",
+      "description": "Box 6 - Medicare tax withheld"
+    }
+  }
+}

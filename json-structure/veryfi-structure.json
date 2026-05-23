@@ -1,0 +1,288 @@
+{
+  "provider": "Veryfi",
+  "providerId": "veryfi",
+  "kind": "json-structure",
+  "description": "Structural overview of the Veryfi API surface; extracted from openapi/.",
+  "schemaCount": 7,
+  "operationCount": 26,
+  "schemas": [
+    {
+      "name": "ProcessDocumentRequest",
+      "type": "object",
+      "propertyCount": 13,
+      "required": []
+    },
+    {
+      "name": "Document",
+      "type": "object",
+      "propertyCount": 16,
+      "required": []
+    },
+    {
+      "name": "BankStatement",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "Check",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "W2Form",
+      "type": "object",
+      "propertyCount": 12,
+      "required": []
+    },
+    {
+      "name": "W9Form",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "Error",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/partner/documents",
+      "operationId": "listDocuments",
+      "summary": "List All Documents",
+      "tags": [
+        "Documents"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/partner/documents",
+      "operationId": "processDocument",
+      "summary": "Process a Document",
+      "tags": [
+        "Documents"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/partner/documents/{documentId}",
+      "operationId": "getDocument",
+      "summary": "Get a Document",
+      "tags": [
+        "Documents"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/partner/documents/{documentId}",
+      "operationId": "updateDocument",
+      "summary": "Update a Document",
+      "tags": [
+        "Documents"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/partner/documents/{documentId}",
+      "operationId": "deleteDocument",
+      "summary": "Delete a Document",
+      "tags": [
+        "Documents"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/partner/bank-statements",
+      "operationId": "listBankStatements",
+      "summary": "List All Bank Statements",
+      "tags": [
+        "Bank Statements"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/partner/bank-statements",
+      "operationId": "processBankStatement",
+      "summary": "Process a Bank Statement",
+      "tags": [
+        "Bank Statements"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/partner/bank-statements/{documentId}",
+      "operationId": "getBankStatement",
+      "summary": "Get a Bank Statement",
+      "tags": [
+        "Bank Statements"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/partner/bank-statements/{documentId}",
+      "operationId": "deleteBankStatement",
+      "summary": "Delete a Bank Statement",
+      "tags": [
+        "Bank Statements"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/partner/checks",
+      "operationId": "listChecks",
+      "summary": "List All Checks",
+      "tags": [
+        "Checks"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/partner/checks",
+      "operationId": "processCheck",
+      "summary": "Process a Check",
+      "tags": [
+        "Checks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/partner/checks/{documentId}",
+      "operationId": "getCheck",
+      "summary": "Get a Check",
+      "tags": [
+        "Checks"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/partner/checks/{documentId}",
+      "operationId": "deleteCheck",
+      "summary": "Delete a Check",
+      "tags": [
+        "Checks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/partner/w2s",
+      "operationId": "listW2s",
+      "summary": "List All W-2 Forms",
+      "tags": [
+        "W-2 Forms"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/partner/w2s",
+      "operationId": "processW2",
+      "summary": "Process a W-2 Form",
+      "tags": [
+        "W-2 Forms"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/partner/w2s/{documentId}",
+      "operationId": "getW2",
+      "summary": "Get a W-2 Form",
+      "tags": [
+        "W-2 Forms"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/partner/w2s/{documentId}",
+      "operationId": "deleteW2",
+      "summary": "Delete a W-2 Form",
+      "tags": [
+        "W-2 Forms"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/partner/w9s",
+      "operationId": "listW9s",
+      "summary": "List All W-9 Forms",
+      "tags": [
+        "W-9 Forms"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/partner/w9s",
+      "operationId": "processW9",
+      "summary": "Process a W-9 Form",
+      "tags": [
+        "W-9 Forms"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/partner/w9s/{documentId}",
+      "operationId": "getW9",
+      "summary": "Get a W-9 Form",
+      "tags": [
+        "W-9 Forms"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/partner/w9s/{documentId}",
+      "operationId": "deleteW9",
+      "summary": "Delete a W-9 Form",
+      "tags": [
+        "W-9 Forms"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/partner/any-documents",
+      "operationId": "listAnyDocuments",
+      "summary": "List Any Documents",
+      "tags": [
+        "Any Documents"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/partner/any-documents",
+      "operationId": "processAnyDocument",
+      "summary": "Process Any Document",
+      "tags": [
+        "Any Documents"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/partner/any-documents/{documentId}",
+      "operationId": "getAnyDocument",
+      "summary": "Get Any Document",
+      "tags": [
+        "Any Documents"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/partner/any-documents/{documentId}",
+      "operationId": "deleteAnyDocument",
+      "summary": "Delete Any Document",
+      "tags": [
+        "Any Documents"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/partner/classify",
+      "operationId": "classifyDocument",
+      "summary": "Classify a Document",
+      "tags": [
+        "Classification"
+      ]
+    }
+  ]
+}

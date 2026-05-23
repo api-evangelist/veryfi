@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BankStatement",
+  "title": "BankStatement",
+  "type": "object",
+  "description": "A processed bank statement with extracted transaction data",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "account_number": {
+      "type": "string",
+      "description": "Bank account number"
+    },
+    "routing_number": {
+      "type": "string",
+      "description": "Bank routing number"
+    },
+    "account_holder": {
+      "type": "string",
+      "description": "Account holder name"
+    },
+    "bank_name": {
+      "type": "string",
+      "description": "Bank or financial institution name"
+    },
+    "statement_date": {
+      "type": "string",
+      "description": "Statement period date"
+    },
+    "opening_balance": {
+      "type": "number",
+      "format": "float"
+    },
+    "closing_balance": {
+      "type": "number",
+      "format": "float"
+    },
+    "transactions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number",
+            "format": "float"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "credit",
+              "debit"
+            ]
+          },
+          "balance": {
+            "type": "number",
+            "format": "float"
+          }
+        }
+      }
+    }
+  }
+}

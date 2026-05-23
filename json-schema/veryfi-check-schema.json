@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Check",
+  "title": "Check",
+  "type": "object",
+  "description": "A processed check with extracted data",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "routing_number": {
+      "type": "string",
+      "description": "Bank routing number (MICR)"
+    },
+    "account_number": {
+      "type": "string",
+      "description": "Bank account number (MICR)"
+    },
+    "check_number": {
+      "type": "string",
+      "description": "Check number"
+    },
+    "payee": {
+      "type": "string",
+      "description": "Pay to the order of"
+    },
+    "payer": {
+      "type": "string",
+      "description": "Check issuer name"
+    },
+    "amount": {
+      "type": "number",
+      "format": "float",
+      "description": "Check amount"
+    },
+    "date": {
+      "type": "string",
+      "description": "Check date"
+    },
+    "memo": {
+      "type": "string",
+      "description": "Memo field contents"
+    }
+  }
+}

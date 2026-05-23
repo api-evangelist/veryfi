@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/W9Form",
+  "title": "W9Form",
+  "type": "object",
+  "description": "A processed W-9 request for taxpayer identification",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "taxpayer_name": {
+      "type": "string",
+      "description": "Legal name of taxpayer"
+    },
+    "business_name": {
+      "type": "string",
+      "description": "Business or DBA name"
+    },
+    "entity_type": {
+      "type": "string",
+      "description": "Federal tax classification entity type",
+      "enum": [
+        "individual",
+        "c_corporation",
+        "s_corporation",
+        "partnership",
+        "trust",
+        "llc",
+        "other"
+      ]
+    },
+    "tin": {
+      "type": "string",
+      "description": "Taxpayer Identification Number (SSN or EIN)"
+    },
+    "address": {
+      "type": "string",
+      "description": "Address of taxpayer"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "zip_code": {
+      "type": "string"
+    },
+    "exempt_payee_code": {
+      "type": "string",
+      "description": "Exempt payee code if applicable"
+    }
+  }
+}
