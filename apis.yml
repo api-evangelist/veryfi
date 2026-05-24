@@ -199,6 +199,8 @@ common:
   - name: Agent Skills
     url: https://github.com/veryfi/veryfi-openclaw-skill
     type: AgentSkill
+  - type: LLMsTxt
+    url: https://docs.veryfi.com/llms.txt
 integrations:
   - name: Build Loyalty Programs using Veryfi Embedded
   - name: Receipts OCR & Expenses App
