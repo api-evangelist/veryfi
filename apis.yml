@@ -160,7 +160,7 @@ common:
     description: Interactive API explorer for testing Veryfi OCR endpoints.
   - url: https://app.veryfi.com/signup/api/
     name: Veryfi API Sign Up
-    type: SignUp
+    type: Signup
     description: Register for a Veryfi API account.
   - url: https://faq.veryfi.com/
     name: Veryfi Help Center
@@ -182,11 +182,11 @@ common:
     description: Veryfi terms of service for API usage.
   - url: https://pypi.org/project/veryfi/
     name: Veryfi Python SDK (PyPI)
-    type: SDK
+    type: SDKs
     description: Official Veryfi Python SDK available on PyPI.
   - url: https://www.npmjs.com/package/veryfi
     name: Veryfi Node.js SDK (npm)
-    type: SDK
+    type: SDKs
     description: Official Veryfi Node.js SDK available on npm.
   - type: Integrations
     url: https://www.veryfi.com/integrations/
@@ -195,8 +195,8 @@ common:
     type: MCPServer
   - name: Agent Skills
     url: https://github.com/veryfi/veryfi-openclaw-skill
-    type: AgentSkill
-  - type: LLMsTxt
+    type: AgentSkills
+  - type: LlmsText
     url: https://docs.veryfi.com/llms.txt
 integrations:
   - name: Build Loyalty Programs using Veryfi Embedded
