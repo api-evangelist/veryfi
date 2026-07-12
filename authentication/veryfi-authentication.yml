@@ -1,0 +1,30 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/veryfi-ocr-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: clientId
+  type: apiKey
+  in: header
+  parameter: CLIENT-ID
+  description: Your Veryfi account client identifier
+  sources:
+  - openapi/veryfi-ocr-openapi.yml
+- name: apiKey
+  type: apiKey
+  in: header
+  parameter: AUTHORIZATION
+  description: 'API key in format: ''apikey USERNAME:API_KEY'''
+  sources:
+  - openapi/veryfi-ocr-openapi.yml
+- name: requestSignature
+  type: apiKey
+  in: header
+  parameter: X-Veryfi-Request-Signature
+  description: HMAC-SHA256 signature for request validation
+  sources:
+  - openapi/veryfi-ocr-openapi.yml
