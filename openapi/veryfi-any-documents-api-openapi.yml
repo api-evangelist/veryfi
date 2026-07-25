@@ -1,0 +1,307 @@
+openapi: 3.1.0
+info:
+  title: Veryfi OCR Any Documents API
+  description: The Veryfi OCR API extracts structured data from financial documents including receipts, invoices, bank statements, checks, W-2s, W-8s, W-9s, business cards, contracts, and more. The API uses AI-powered OCR to capture line items, taxes, totals, barcodes, vendor details, and other financial data across 91 currencies and 38 languages with enterprise-grade accuracy.
+  version: v8
+  contact:
+    name: Veryfi Support
+    url: https://docs.veryfi.com/
+    email: support@veryfi.com
+  license:
+    name: Proprietary
+    url: https://www.veryfi.com/terms/
+servers:
+- url: https://api.veryfi.com/api/v8
+  description: Veryfi OCR API v8
+security:
+- clientId: []
+  apiKey: []
+tags:
+- name: Any Documents
+paths:
+  /partner/any-documents:
+    post:
+      operationId: processAnyDocument
+      summary: Process Any Document
+      description: Submit any document type for custom field extraction using a named blueprint. The ∀Docs API can extract structured data from any unstructured document type including contracts, custom forms, and non-standard documents.
+      tags:
+      - Any Documents
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/ProcessDocumentRequest'
+              - type: object
+                required:
+                - blueprint_name
+                properties:
+                  blueprint_name:
+                    type: string
+                    description: Name of the custom extraction blueprint to use
+      responses:
+        '201':
+          description: Document processed using blueprint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      operationId: listAnyDocuments
+      summary: List Any Documents
+      description: Retrieve a list of documents processed with custom blueprints.
+      tags:
+      - Any Documents
+      parameters:
+      - name: created_date__gt
+        in: query
+        required: false
+        description: Filter by creation date greater than
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of any documents
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Document'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /partner/any-documents/{documentId}:
+    get:
+      operationId: getAnyDocument
+      summary: Get Any Document
+      description: Retrieve a specific document processed with a custom blueprint.
+      tags:
+      - Any Documents
+      parameters:
+      - name: documentId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Document details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteAnyDocument
+      summary: Delete Any Document
+      description: Permanently delete a custom document extraction.
+      tags:
+      - Any Documents
+      parameters:
+      - name: documentId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Deleted successfully
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Document:
+      type: object
+      description: A processed document with extracted data
+      properties:
+        id:
+          type: integer
+          description: Unique document ID
+        external_id:
+          type: string
+          description: Customer-provided external identifier
+        document_type:
+          type: string
+          description: Detected or specified document type
+        vendor:
+          type: object
+          description: Vendor information extracted from the document
+          properties:
+            name:
+              type: string
+            address:
+              type: string
+            phone_number:
+              type: string
+            email:
+              type: string
+        date:
+          type: string
+          description: Document date
+        due_date:
+          type: string
+          description: Payment due date (for invoices)
+        invoice_number:
+          type: string
+          description: Invoice or receipt number
+        total:
+          type: number
+          format: float
+          description: Total amount
+        subtotal:
+          type: number
+          format: float
+          description: Subtotal before taxes
+        tax:
+          type: number
+          format: float
+          description: Total tax amount
+        tip:
+          type: number
+          format: float
+          description: Tip/gratuity amount
+        currency_code:
+          type: string
+          description: ISO 4217 currency code
+        line_items:
+          type: array
+          description: Extracted line items
+          items:
+            type: object
+            properties:
+              description:
+                type: string
+              quantity:
+                type: number
+              price:
+                type: number
+              total:
+                type: number
+              sku:
+                type: string
+              tax:
+                type: number
+        tags:
+          type: array
+          items:
+            type: string
+          description: User-defined tags
+        created:
+          type: string
+          format: date-time
+          description: Processing timestamp
+        updated:
+          type: string
+          format: date-time
+          description: Last update timestamp
+    Error:
+      type: object
+      description: API error response
+      properties:
+        status:
+          type: integer
+          description: HTTP status code
+        error:
+          type: string
+          description: Error type
+        message:
+          type: string
+          description: Human-readable error message
+    ProcessDocumentRequest:
+      type: object
+      description: Request body for document processing operations
+      properties:
+        file_url:
+          type: string
+          format: uri
+          description: Publicly accessible URL to the document
+        file_urls:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: Multiple document URLs (for multi-page documents)
+        file_data:
+          type: string
+          description: Base64-encoded document data
+        file:
+          type: string
+          format: binary
+          description: Binary file upload
+        async:
+          type: boolean
+          default: false
+          description: Enable asynchronous processing via webhook
+        boost_mode:
+          type: boolean
+          default: false
+          description: Skip enrichment for faster processing
+        max_pages_to_process:
+          type: integer
+          default: 15
+          maximum: 15
+          description: Maximum pages to process
+        bounding_boxes:
+          type: boolean
+          default: false
+          description: Include coordinate data for extracted fields
+        confidence_details:
+          type: boolean
+          default: false
+          description: Include confidence scores for each extracted field
+        external_id:
+          type: string
+          description: Custom identifier for the document in your system
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags for document organization
+        country:
+          type: string
+          description: Two-letter country code as currency hint
+        parse_address:
+          type: boolean
+          description: Break address fields into individual components
+  securitySchemes:
+    clientId:
+      type: apiKey
+      in: header
+      name: CLIENT-ID
+      description: Your Veryfi account client identifier
+    apiKey:
+      type: apiKey
+      in: header
+      name: AUTHORIZATION
+      description: 'API key in format: ''apikey USERNAME:API_KEY'''
+    requestSignature:
+      type: apiKey
+      in: header
+      name: X-Veryfi-Request-Signature
+      description: HMAC-SHA256 signature for request validation

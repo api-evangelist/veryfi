@@ -1,0 +1,258 @@
+openapi: 3.1.0
+info:
+  title: Veryfi OCR Any Documents Bank Statements API
+  description: The Veryfi OCR API extracts structured data from financial documents including receipts, invoices, bank statements, checks, W-2s, W-8s, W-9s, business cards, contracts, and more. The API uses AI-powered OCR to capture line items, taxes, totals, barcodes, vendor details, and other financial data across 91 currencies and 38 languages with enterprise-grade accuracy.
+  version: v8
+  contact:
+    name: Veryfi Support
+    url: https://docs.veryfi.com/
+    email: support@veryfi.com
+  license:
+    name: Proprietary
+    url: https://www.veryfi.com/terms/
+servers:
+- url: https://api.veryfi.com/api/v8
+  description: Veryfi OCR API v8
+security:
+- clientId: []
+  apiKey: []
+tags:
+- name: Bank Statements
+paths:
+  /partner/bank-statements:
+    post:
+      operationId: processBankStatement
+      summary: Process a Bank Statement
+      description: Submit a bank statement for AI-powered data extraction. Returns structured transaction data, account information, balances, and metadata. Supports PDF, image formats, and multi-page documents.
+      tags:
+      - Bank Statements
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcessDocumentRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProcessDocumentRequest'
+      responses:
+        '201':
+          description: Bank statement processed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BankStatement'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      operationId: listBankStatements
+      summary: List All Bank Statements
+      description: Retrieve a list of previously processed bank statements.
+      tags:
+      - Bank Statements
+      responses:
+        '200':
+          description: List of bank statements
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BankStatement'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /partner/bank-statements/{documentId}:
+    get:
+      operationId: getBankStatement
+      summary: Get a Bank Statement
+      description: Retrieve a specific processed bank statement by ID.
+      tags:
+      - Bank Statements
+      parameters:
+      - name: documentId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Bank statement details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BankStatement'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteBankStatement
+      summary: Delete a Bank Statement
+      description: Permanently delete a processed bank statement.
+      tags:
+      - Bank Statements
+      parameters:
+      - name: documentId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Deleted successfully
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Error:
+      type: object
+      description: API error response
+      properties:
+        status:
+          type: integer
+          description: HTTP status code
+        error:
+          type: string
+          description: Error type
+        message:
+          type: string
+          description: Human-readable error message
+    ProcessDocumentRequest:
+      type: object
+      description: Request body for document processing operations
+      properties:
+        file_url:
+          type: string
+          format: uri
+          description: Publicly accessible URL to the document
+        file_urls:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: Multiple document URLs (for multi-page documents)
+        file_data:
+          type: string
+          description: Base64-encoded document data
+        file:
+          type: string
+          format: binary
+          description: Binary file upload
+        async:
+          type: boolean
+          default: false
+          description: Enable asynchronous processing via webhook
+        boost_mode:
+          type: boolean
+          default: false
+          description: Skip enrichment for faster processing
+        max_pages_to_process:
+          type: integer
+          default: 15
+          maximum: 15
+          description: Maximum pages to process
+        bounding_boxes:
+          type: boolean
+          default: false
+          description: Include coordinate data for extracted fields
+        confidence_details:
+          type: boolean
+          default: false
+          description: Include confidence scores for each extracted field
+        external_id:
+          type: string
+          description: Custom identifier for the document in your system
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags for document organization
+        country:
+          type: string
+          description: Two-letter country code as currency hint
+        parse_address:
+          type: boolean
+          description: Break address fields into individual components
+    BankStatement:
+      type: object
+      description: A processed bank statement with extracted transaction data
+      properties:
+        id:
+          type: integer
+        account_number:
+          type: string
+          description: Bank account number
+        routing_number:
+          type: string
+          description: Bank routing number
+        account_holder:
+          type: string
+          description: Account holder name
+        bank_name:
+          type: string
+          description: Bank or financial institution name
+        statement_date:
+          type: string
+          description: Statement period date
+        opening_balance:
+          type: number
+          format: float
+        closing_balance:
+          type: number
+          format: float
+        transactions:
+          type: array
+          items:
+            type: object
+            properties:
+              date:
+                type: string
+              description:
+                type: string
+              amount:
+                type: number
+                format: float
+              type:
+                type: string
+                enum:
+                - credit
+                - debit
+              balance:
+                type: number
+                format: float
+  securitySchemes:
+    clientId:
+      type: apiKey
+      in: header
+      name: CLIENT-ID
+      description: Your Veryfi account client identifier
+    apiKey:
+      type: apiKey
+      in: header
+      name: AUTHORIZATION
+      description: 'API key in format: ''apikey USERNAME:API_KEY'''
+    requestSignature:
+      type: apiKey
+      in: header
+      name: X-Veryfi-Request-Signature
+      description: HMAC-SHA256 signature for request validation

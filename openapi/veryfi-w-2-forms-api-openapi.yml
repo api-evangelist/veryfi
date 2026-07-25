@@ -1,0 +1,254 @@
+openapi: 3.1.0
+info:
+  title: Veryfi OCR Any Documents W-2 Forms API
+  description: The Veryfi OCR API extracts structured data from financial documents including receipts, invoices, bank statements, checks, W-2s, W-8s, W-9s, business cards, contracts, and more. The API uses AI-powered OCR to capture line items, taxes, totals, barcodes, vendor details, and other financial data across 91 currencies and 38 languages with enterprise-grade accuracy.
+  version: v8
+  contact:
+    name: Veryfi Support
+    url: https://docs.veryfi.com/
+    email: support@veryfi.com
+  license:
+    name: Proprietary
+    url: https://www.veryfi.com/terms/
+servers:
+- url: https://api.veryfi.com/api/v8
+  description: Veryfi OCR API v8
+security:
+- clientId: []
+  apiKey: []
+tags:
+- name: W-2 Forms
+paths:
+  /partner/w2s:
+    post:
+      operationId: processW2
+      summary: Process a W-2 Form
+      description: Submit a W-2 tax form for OCR extraction including employer details, employee information, wages, tax withholdings, and all W-2 box values.
+      tags:
+      - W-2 Forms
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcessDocumentRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProcessDocumentRequest'
+      responses:
+        '201':
+          description: W-2 processed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/W2Form'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      operationId: listW2s
+      summary: List All W-2 Forms
+      description: Retrieve a list of previously processed W-2 forms.
+      tags:
+      - W-2 Forms
+      responses:
+        '200':
+          description: List of W-2 forms
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/W2Form'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /partner/w2s/{documentId}:
+    get:
+      operationId: getW2
+      summary: Get a W-2 Form
+      description: Retrieve a specific processed W-2 form by ID.
+      tags:
+      - W-2 Forms
+      parameters:
+      - name: documentId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: W-2 form details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/W2Form'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteW2
+      summary: Delete a W-2 Form
+      description: Permanently delete a processed W-2 form.
+      tags:
+      - W-2 Forms
+      parameters:
+      - name: documentId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Deleted successfully
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    W2Form:
+      type: object
+      description: A processed W-2 wage and tax statement
+      properties:
+        id:
+          type: integer
+        employee_name:
+          type: string
+        employee_ssn:
+          type: string
+          description: Employee Social Security Number (last 4 digits)
+        employer_name:
+          type: string
+        employer_ein:
+          type: string
+          description: Employer Identification Number
+        tax_year:
+          type: string
+          description: Tax year of the W-2
+        wages:
+          type: number
+          format: float
+          description: Box 1 - Wages, tips, other compensation
+        federal_tax_withheld:
+          type: number
+          format: float
+          description: Box 2 - Federal income tax withheld
+        social_security_wages:
+          type: number
+          format: float
+          description: Box 3 - Social security wages
+        social_security_tax:
+          type: number
+          format: float
+          description: Box 4 - Social security tax withheld
+        medicare_wages:
+          type: number
+          format: float
+          description: Box 5 - Medicare wages and tips
+        medicare_tax:
+          type: number
+          format: float
+          description: Box 6 - Medicare tax withheld
+    Error:
+      type: object
+      description: API error response
+      properties:
+        status:
+          type: integer
+          description: HTTP status code
+        error:
+          type: string
+          description: Error type
+        message:
+          type: string
+          description: Human-readable error message
+    ProcessDocumentRequest:
+      type: object
+      description: Request body for document processing operations
+      properties:
+        file_url:
+          type: string
+          format: uri
+          description: Publicly accessible URL to the document
+        file_urls:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: Multiple document URLs (for multi-page documents)
+        file_data:
+          type: string
+          description: Base64-encoded document data
+        file:
+          type: string
+          format: binary
+          description: Binary file upload
+        async:
+          type: boolean
+          default: false
+          description: Enable asynchronous processing via webhook
+        boost_mode:
+          type: boolean
+          default: false
+          description: Skip enrichment for faster processing
+        max_pages_to_process:
+          type: integer
+          default: 15
+          maximum: 15
+          description: Maximum pages to process
+        bounding_boxes:
+          type: boolean
+          default: false
+          description: Include coordinate data for extracted fields
+        confidence_details:
+          type: boolean
+          default: false
+          description: Include confidence scores for each extracted field
+        external_id:
+          type: string
+          description: Custom identifier for the document in your system
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags for document organization
+        country:
+          type: string
+          description: Two-letter country code as currency hint
+        parse_address:
+          type: boolean
+          description: Break address fields into individual components
+  securitySchemes:
+    clientId:
+      type: apiKey
+      in: header
+      name: CLIENT-ID
+      description: Your Veryfi account client identifier
+    apiKey:
+      type: apiKey
+      in: header
+      name: AUTHORIZATION
+      description: 'API key in format: ''apikey USERNAME:API_KEY'''
+    requestSignature:
+      type: apiKey
+      in: header
+      name: X-Veryfi-Request-Signature
+      description: HMAC-SHA256 signature for request validation

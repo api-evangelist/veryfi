@@ -1,0 +1,105 @@
+openapi: 3.1.0
+info:
+  title: Veryfi OCR Any Documents Classification API
+  description: The Veryfi OCR API extracts structured data from financial documents including receipts, invoices, bank statements, checks, W-2s, W-8s, W-9s, business cards, contracts, and more. The API uses AI-powered OCR to capture line items, taxes, totals, barcodes, vendor details, and other financial data across 91 currencies and 38 languages with enterprise-grade accuracy.
+  version: v8
+  contact:
+    name: Veryfi Support
+    url: https://docs.veryfi.com/
+    email: support@veryfi.com
+  license:
+    name: Proprietary
+    url: https://www.veryfi.com/terms/
+servers:
+- url: https://api.veryfi.com/api/v8
+  description: Veryfi OCR API v8
+security:
+- clientId: []
+  apiKey: []
+tags:
+- name: Classification
+paths:
+  /partner/classify:
+    post:
+      operationId: classifyDocument
+      summary: Classify a Document
+      description: Submit a document for classification to determine its type before processing. Returns the detected document type to route to the appropriate extraction endpoint.
+      tags:
+      - Classification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                file_url:
+                  type: string
+                  format: uri
+                  description: URL of document to classify
+                file_data:
+                  type: string
+                  description: Base64-encoded document
+                document_types:
+                  type: array
+                  items:
+                    type: string
+                  description: Restrict classification to specific document types
+                  example:
+                  - receipt
+                  - invoice
+                  - bank_statement
+                  - w2
+                  - w9
+      responses:
+        '200':
+          description: Document classification result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  document_type:
+                    type: string
+                    description: Detected document type
+                  confidence:
+                    type: number
+                    format: float
+                    description: Classification confidence score (0-1)
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Error:
+      type: object
+      description: API error response
+      properties:
+        status:
+          type: integer
+          description: HTTP status code
+        error:
+          type: string
+          description: Error type
+        message:
+          type: string
+          description: Human-readable error message
+  securitySchemes:
+    clientId:
+      type: apiKey
+      in: header
+      name: CLIENT-ID
+      description: Your Veryfi account client identifier
+    apiKey:
+      type: apiKey
+      in: header
+      name: AUTHORIZATION
+      description: 'API key in format: ''apikey USERNAME:API_KEY'''
+    requestSignature:
+      type: apiKey
+      in: header
+      name: X-Veryfi-Request-Signature
+      description: HMAC-SHA256 signature for request validation
