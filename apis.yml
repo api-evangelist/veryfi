@@ -7,7 +7,20 @@ description: >-
   enterprise-grade accuracy. Veryfi offers SDKs in Python, Node.js, Go, Java, Swift, C#, Ruby, PHP, Rust, Kotlin, and
   Dart, plus mobile SDKs (Veryfi Lens) for iOS, Android, React Native, Ionic, Xamarin, and Cordova.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/veryfi.png
 tags:
   - AI
   - Document Processing
@@ -21,129 +34,227 @@ created: '2026-05-03'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: veryfi:ocr-api
-    name: Veryfi OCR API
-    description: >-
-      The Veryfi OCR API (v8) provides AI-powered document data extraction across multiple document types. The base URL
-      is https://api.veryfi.com/api/v8. Authentication uses CLIENT-ID header and AUTHORIZATION header with apikey
-      USERNAME:API_KEY format, plus optional HMAC-SHA256 request signatures (X-Veryfi-Request-Signature and
-      X-Veryfi-Request-Timestamp).
-    humanURL: https://docs.veryfi.com/
-    tags:
-      - AI
-      - Document Processing
-      - OCR
-    properties:
-      - type: Documentation
-        url: https://docs.veryfi.com/
-      - type: Reference
-        url: https://docs.veryfi.com/api/
-      - type: Authentication
-        url: https://docs.veryfi.com/api/getting-started/authentication/
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/veryfi/refs/heads/main/openapi/veryfi-ocr-openapi.yml
-      - type: Console
-        url: https://hub.veryfi.com/
-  - aid: veryfi:receipts-invoices-api
-    name: Veryfi Receipts & Invoices API
-    description: >-
-      The Veryfi Receipts & Invoices API uses AI-powered OCR to extract structured JSON data from receipts, invoices,
-      bills, and other financial documents. It supports documents in PDF and image formats and returns line-item level
-      data including taxes, totals, vendor details, and barcodes.
-    humanURL: https://docs.veryfi.com/
-    tags:
-      - Document Processing
-      - Invoices
-      - OCR
-      - Receipts
-    properties:
-      - type: Documentation
-        url: https://docs.veryfi.com/
-      - type: Reference
-        url: https://docs.veryfi.com/api/receipts-invoices/process-a-document/
-  - aid: veryfi:bank-statements-api
-    name: Veryfi Bank Statements API
-    description: >-
-      The Veryfi Bank Statements API extracts structured data from bank statements using AI-powered OCR, enabling
-      automated reconciliation, fraud detection, and financial data capture workflows.
-    humanURL: https://docs.veryfi.com/api/bank-statements/
-    tags:
-      - Bank Statements
-      - Finance
-      - OCR
-    properties:
-      - type: Documentation
-        url: https://docs.veryfi.com/api/bank-statements/
-      - type: Reference
-        url: https://docs.veryfi.com/api/bank-statements/get-a-bank-statement/
-  - aid: veryfi:w2-api
-    name: Veryfi W-2 API
-    description: >-
-      The Veryfi W-2 API extracts structured data from W-2 wage and tax statements using AI-powered OCR, enabling
-      automated processing of employee wage and tax documents for tax preparation and loan approvals.
-    humanURL: https://docs.veryfi.com/api/w2s/
-    tags:
-      - OCR
-      - Tax Forms
-      - W-2
-    properties:
-      - type: Documentation
-        url: https://docs.veryfi.com/api/w2s/
-  - aid: veryfi:w9-api
-    name: Veryfi W-9 API
-    description: >-
-      The Veryfi W-9 API extracts structured data from W-9 Request for Taxpayer Identification forms including TIN,
-      entity type, and address information for HR and vendor management workflows.
-    humanURL: https://docs.veryfi.com/api/w9s/
-    tags:
-      - HR
-      - OCR
-      - Tax Forms
-      - W-9
-    properties:
-      - type: Documentation
-        url: https://docs.veryfi.com/api/w9s/
-  - aid: veryfi:checks-api
-    name: Veryfi Checks API
-    description: >-
-      The Veryfi Checks API extracts bank routing numbers, account numbers, check numbers, payee names, amounts, and
-      dates from check images using AI-powered OCR.
-    humanURL: https://docs.veryfi.com/api/checks/
-    tags:
-      - Banking
-      - Checks
-      - OCR
-    properties:
-      - type: Documentation
-        url: https://docs.veryfi.com/api/checks/
-  - aid: veryfi:any-docs-api
-    name: Veryfi Any Documents API
-    description: >-
-      The Veryfi ∀Docs (Any Documents) API extracts data from any custom document type using named blueprints. Supports
-      contracts, custom forms, and any unstructured document where standard OCR APIs don't apply.
-    humanURL: https://docs.veryfi.com/
-    tags:
-      - Contracts
-      - Custom Documents
-      - Document Processing
-      - OCR
-    properties:
-      - type: Documentation
-        url: https://docs.veryfi.com/
-  - aid: veryfi:classification-api
-    name: Veryfi Classification API
-    description: >-
-      The Veryfi Classification API determines the document type before processing, enabling intelligent routing to the
-      appropriate extraction endpoint.
-    humanURL: https://docs.veryfi.com/
-    tags:
-      - Classification
-      - Document Processing
-      - OCR
-    properties:
-      - type: Documentation
-        url: https://docs.veryfi.com/
+- aid: veryfi:receipts-invoices-api
+  name: Veryfi Receipts & Invoices API
+  description: >-
+    The Veryfi Receipts & Invoices API uses AI-powered OCR to extract structured JSON data from receipts,
+    invoices, bills, and other financial documents. It supports documents in PDF and image formats and
+    returns line-item level data including taxes, totals, vendor details, and barcodes.
+  humanURL: https://docs.veryfi.com/
+  tags:
+  - Document Processing
+  - Invoices
+  - OCR
+  - Receipts
+  properties:
+  - type: Documentation
+    url: https://docs.veryfi.com/
+  - type: Reference
+    url: https://docs.veryfi.com/api/receipts-invoices/process-a-document/
+- aid: veryfi:bank-statements-api
+  name: Veryfi Bank Statements API
+  description: >-
+    The Veryfi Bank Statements API extracts structured data from bank statements using AI-powered OCR,
+    enabling automated reconciliation, fraud detection, and financial data capture workflows.
+  humanURL: https://docs.veryfi.com/api/bank-statements/
+  tags:
+  - Bank Statements
+  - Finance
+  - OCR
+  properties:
+  - type: Documentation
+    url: https://docs.veryfi.com/api/bank-statements/
+  - type: Reference
+    url: https://docs.veryfi.com/api/bank-statements/get-a-bank-statement/
+- aid: veryfi:w2-api
+  name: Veryfi W-2 API
+  description: >-
+    The Veryfi W-2 API extracts structured data from W-2 wage and tax statements using AI-powered OCR,
+    enabling automated processing of employee wage and tax documents for tax preparation and loan approvals.
+  humanURL: https://docs.veryfi.com/api/w2s/
+  tags:
+  - OCR
+  - Tax Forms
+  - W-2
+  properties:
+  - type: Documentation
+    url: https://docs.veryfi.com/api/w2s/
+- aid: veryfi:w9-api
+  name: Veryfi W-9 API
+  description: >-
+    The Veryfi W-9 API extracts structured data from W-9 Request for Taxpayer Identification forms including
+    TIN, entity type, and address information for HR and vendor management workflows.
+  humanURL: https://docs.veryfi.com/api/w9s/
+  tags:
+  - HR
+  - OCR
+  - Tax Forms
+  - W-9
+  properties:
+  - type: Documentation
+    url: https://docs.veryfi.com/api/w9s/
+- aid: veryfi:checks-api
+  name: Veryfi Checks API
+  description: >-
+    The Veryfi Checks API extracts bank routing numbers, account numbers, check numbers, payee names,
+    amounts, and dates from check images using AI-powered OCR.
+  humanURL: https://docs.veryfi.com/api/checks/
+  tags:
+  - Banking
+  - Checks
+  - OCR
+  properties:
+  - type: Documentation
+    url: https://docs.veryfi.com/api/checks/
+- aid: veryfi:any-docs-api
+  name: Veryfi Any Documents API
+  description: >-
+    The Veryfi ∀Docs (Any Documents) API extracts data from any custom document type using named blueprints.
+    Supports contracts, custom forms, and any unstructured document where standard OCR APIs don't apply.
+  humanURL: https://docs.veryfi.com/
+  tags:
+  - Contracts
+  - Custom Documents
+  - Document Processing
+  - OCR
+  properties:
+  - type: Documentation
+    url: https://docs.veryfi.com/
+- aid: veryfi:classification-api
+  name: Veryfi Classification API
+  description: >-
+    The Veryfi Classification API determines the document type before processing, enabling intelligent
+    routing to the appropriate extraction endpoint.
+  humanURL: https://docs.veryfi.com/
+  tags:
+  - Classification
+  - Document Processing
+  - OCR
+  properties:
+  - type: Documentation
+    url: https://docs.veryfi.com/
+- aid: veryfi:veryfi-any-documents-api
+  name: Veryfi Any Documents API
+  description: The Any Documents API from Veryfi — 2 operation(s) for any documents.
+  humanURL: https://docs.veryfi.com/
+  tags:
+  - Any Documents
+  properties:
+  - type: OpenAPI
+    url: openapi/veryfi-any-documents-api-openapi.yml
+  - type: Documentation
+    url: https://docs.veryfi.com/
+  - type: Reference
+    url: https://docs.veryfi.com/api/
+  - type: Authentication
+    url: https://docs.veryfi.com/api/getting-started/authentication/
+  - type: Console
+    url: https://hub.veryfi.com/
+- aid: veryfi:veryfi-bank-statements-api
+  name: Veryfi Bank Statements API
+  description: The Bank Statements API from Veryfi — 2 operation(s) for bank statements.
+  humanURL: https://docs.veryfi.com/
+  tags:
+  - Bank Statements
+  properties:
+  - type: OpenAPI
+    url: openapi/veryfi-bank-statements-api-openapi.yml
+  - type: Documentation
+    url: https://docs.veryfi.com/
+  - type: Reference
+    url: https://docs.veryfi.com/api/
+  - type: Authentication
+    url: https://docs.veryfi.com/api/getting-started/authentication/
+  - type: Console
+    url: https://hub.veryfi.com/
+- aid: veryfi:veryfi-checks-api
+  name: Veryfi Checks API
+  description: The Checks API from Veryfi — 2 operation(s) for checks.
+  humanURL: https://docs.veryfi.com/
+  tags:
+  - Checks
+  properties:
+  - type: OpenAPI
+    url: openapi/veryfi-checks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.veryfi.com/
+  - type: Reference
+    url: https://docs.veryfi.com/api/
+  - type: Authentication
+    url: https://docs.veryfi.com/api/getting-started/authentication/
+  - type: Console
+    url: https://hub.veryfi.com/
+- aid: veryfi:veryfi-classification-api
+  name: Veryfi Classification API
+  description: The Classification API from Veryfi — 1 operation(s) for classification.
+  humanURL: https://docs.veryfi.com/
+  tags:
+  - Classification
+  properties:
+  - type: OpenAPI
+    url: openapi/veryfi-classification-api-openapi.yml
+  - type: Documentation
+    url: https://docs.veryfi.com/
+  - type: Reference
+    url: https://docs.veryfi.com/api/
+  - type: Authentication
+    url: https://docs.veryfi.com/api/getting-started/authentication/
+  - type: Console
+    url: https://hub.veryfi.com/
+- aid: veryfi:veryfi-documents-api
+  name: Veryfi Documents API
+  description: The Documents API from Veryfi — 2 operation(s) for documents.
+  humanURL: https://docs.veryfi.com/
+  tags:
+  - Documents
+  properties:
+  - type: OpenAPI
+    url: openapi/veryfi-documents-api-openapi.yml
+  - type: Documentation
+    url: https://docs.veryfi.com/
+  - type: Reference
+    url: https://docs.veryfi.com/api/
+  - type: Authentication
+    url: https://docs.veryfi.com/api/getting-started/authentication/
+  - type: Console
+    url: https://hub.veryfi.com/
+- aid: veryfi:veryfi-w-2-forms-api
+  name: Veryfi W-2 Forms API
+  description: The W-2 Forms API from Veryfi — 2 operation(s) for w-2 forms.
+  humanURL: https://docs.veryfi.com/
+  tags:
+  - W-2 Forms
+  properties:
+  - type: OpenAPI
+    url: openapi/veryfi-w-2-forms-api-openapi.yml
+  - type: Documentation
+    url: https://docs.veryfi.com/
+  - type: Reference
+    url: https://docs.veryfi.com/api/
+  - type: Authentication
+    url: https://docs.veryfi.com/api/getting-started/authentication/
+  - type: Console
+    url: https://hub.veryfi.com/
+- aid: veryfi:veryfi-w-9-forms-api
+  name: Veryfi W-9 Forms API
+  description: The W-9 Forms API from Veryfi — 2 operation(s) for w-9 forms.
+  humanURL: https://docs.veryfi.com/
+  tags:
+  - W-9 Forms
+  properties:
+  - type: OpenAPI
+    url: openapi/veryfi-w-9-forms-api-openapi.yml
+  - type: Documentation
+    url: https://docs.veryfi.com/
+  - type: Reference
+    url: https://docs.veryfi.com/api/
+  - type: Authentication
+    url: https://docs.veryfi.com/api/getting-started/authentication/
+  - type: Console
+    url: https://hub.veryfi.com/
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/veryfi/overview
   - type: AgenticAccess
     url: agentic-access/veryfi-agentic-access.yml
   - type: TrustCenter
