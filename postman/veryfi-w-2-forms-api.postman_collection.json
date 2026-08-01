@@ -1,0 +1,663 @@
+{
+  "info": {
+    "_postman_id": "b293108a-bec3-4c9b-91f8-fe56c66f7141",
+    "name": "Veryfi OCR Any Documents W-2 Forms API",
+    "description": "The Veryfi OCR API extracts structured data from financial documents including receipts, invoices, bank statements, checks, W-2s, W-8s, W-9s, business cards, contracts, and more. The API uses AI-powered OCR to capture line items, taxes, totals, barcodes, vendor details, and other financial data across 91 currencies and 38 languages with enterprise-grade accuracy.\n\nContact Support:\n Name: Veryfi Support\n Email: support@veryfi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:29:33.000Z",
+    "updatedAt": "2026-07-28T03:29:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b293108a-bec3-4c9b-91f8-fe56c66f7141"
+  },
+  "item": [
+    {
+      "name": "partner",
+      "item": [
+        {
+          "name": "w2s",
+          "item": [
+            {
+              "name": "{documentId}",
+              "item": [
+                {
+                  "name": "Get a W-2 Form",
+                  "id": "a2ec1380-4abb-4518-9fc0-e0311a54714e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/w2s/:documentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "w2s",
+                        ":documentId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "2ae223e3-ca61-41d5-837a-bcce59a84689",
+                          "key": "documentId",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a specific processed W-2 form by ID."
+                  },
+                  "response": [
+                    {
+                      "id": "4b20f47f-749c-462a-a174-06f1dc0ba88e",
+                      "name": "W-2 form details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "CLIENT-ID",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/partner/w2s/:documentId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "partner",
+                            "w2s",
+                            ":documentId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "documentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"employee_name\": \"<string>\",\n  \"employee_ssn\": \"<string>\",\n  \"employer_name\": \"<string>\",\n  \"employer_ein\": \"<string>\",\n  \"tax_year\": \"<string>\",\n  \"wages\": \"<float>\",\n  \"federal_tax_withheld\": \"<float>\",\n  \"social_security_wages\": \"<float>\",\n  \"social_security_tax\": \"<float>\",\n  \"medicare_wages\": \"<float>\",\n  \"medicare_tax\": \"<float>\"\n}",
+                      "createdAt": "2026-07-28T03:29:34.000Z",
+                      "updatedAt": "2026-07-28T03:29:34.000Z",
+                      "uid": "35240-4b20f47f-749c-462a-a174-06f1dc0ba88e"
+                    },
+                    {
+                      "id": "0c3654ad-b420-4e4e-b8c5-33e8c1fdf5e2",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "CLIENT-ID",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/partner/w2s/:documentId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "partner",
+                            "w2s",
+                            ":documentId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "documentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:29:34.000Z",
+                      "updatedAt": "2026-07-28T03:29:34.000Z",
+                      "uid": "35240-0c3654ad-b420-4e4e-b8c5-33e8c1fdf5e2"
+                    },
+                    {
+                      "id": "9e48a9d1-197f-4444-9591-0c22fcdbaf43",
+                      "name": "Not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "CLIENT-ID",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/partner/w2s/:documentId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "partner",
+                            "w2s",
+                            ":documentId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "documentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:29:34.000Z",
+                      "updatedAt": "2026-07-28T03:29:34.000Z",
+                      "uid": "35240-9e48a9d1-197f-4444-9591-0c22fcdbaf43"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:29:34.000Z",
+                  "updatedAt": "2026-07-28T03:29:34.000Z",
+                  "uid": "35240-a2ec1380-4abb-4518-9fc0-e0311a54714e"
+                },
+                {
+                  "name": "Delete a W-2 Form",
+                  "id": "ca843969-d2a5-4235-a24c-adcb6e585b52",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/w2s/:documentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "w2s",
+                        ":documentId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "1b795ea9-2558-40e1-9df8-fe979c88e6cf",
+                          "key": "documentId",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Permanently delete a processed W-2 form."
+                  },
+                  "response": [
+                    {
+                      "id": "241e468f-d177-4972-921d-4ccdc136ea81",
+                      "name": "Deleted successfully",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "CLIENT-ID",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/partner/w2s/:documentId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "partner",
+                            "w2s",
+                            ":documentId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "documentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:29:34.000Z",
+                      "updatedAt": "2026-07-28T03:29:34.000Z",
+                      "uid": "35240-241e468f-d177-4972-921d-4ccdc136ea81"
+                    },
+                    {
+                      "id": "29a650b2-c6a5-4819-8407-9f4e137f5935",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "CLIENT-ID",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/partner/w2s/:documentId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "partner",
+                            "w2s",
+                            ":documentId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "documentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:29:34.000Z",
+                      "updatedAt": "2026-07-28T03:29:34.000Z",
+                      "uid": "35240-29a650b2-c6a5-4819-8407-9f4e137f5935"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:29:34.000Z",
+                  "updatedAt": "2026-07-28T03:29:34.000Z",
+                  "uid": "35240-ca843969-d2a5-4235-a24c-adcb6e585b52"
+                }
+              ],
+              "id": "411da5bf-dd30-4eca-829f-3be2426d5968",
+              "createdAt": "2026-07-28T03:29:34.000Z",
+              "updatedAt": "2026-07-28T03:29:34.000Z",
+              "uid": "35240-411da5bf-dd30-4eca-829f-3be2426d5968"
+            },
+            {
+              "name": "Process a W-2 Form",
+              "id": "11218fda-53a8-4bd7-98f6-e6e2d94b0828",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"file_url\": \"<uri>\",\n  \"file_urls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"file_data\": \"<string>\",\n  \"file\": \"<binary>\",\n  \"async\": false,\n  \"boost_mode\": false,\n  \"max_pages_to_process\": 15,\n  \"bounding_boxes\": false,\n  \"confidence_details\": false,\n  \"external_id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"country\": \"<string>\",\n  \"parse_address\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/partner/w2s",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "partner",
+                    "w2s"
+                  ]
+                },
+                "description": "Submit a W-2 tax form for OCR extraction including employer details, employee information, wages, tax withholdings, and all W-2 box values."
+              },
+              "response": [
+                {
+                  "id": "8fb85f4d-25dd-456a-b7c9-92be23f6df15",
+                  "name": "W-2 processed",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "CLIENT-ID",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"file_url\": \"<uri>\",\n  \"file_urls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"file_data\": \"<string>\",\n  \"file\": \"<binary>\",\n  \"async\": false,\n  \"boost_mode\": false,\n  \"max_pages_to_process\": 15,\n  \"bounding_boxes\": false,\n  \"confidence_details\": false,\n  \"external_id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"country\": \"<string>\",\n  \"parse_address\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/w2s",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "w2s"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<integer>\",\n  \"employee_name\": \"<string>\",\n  \"employee_ssn\": \"<string>\",\n  \"employer_name\": \"<string>\",\n  \"employer_ein\": \"<string>\",\n  \"tax_year\": \"<string>\",\n  \"wages\": \"<float>\",\n  \"federal_tax_withheld\": \"<float>\",\n  \"social_security_wages\": \"<float>\",\n  \"social_security_tax\": \"<float>\",\n  \"medicare_wages\": \"<float>\",\n  \"medicare_tax\": \"<float>\"\n}",
+                  "createdAt": "2026-07-28T03:29:34.000Z",
+                  "updatedAt": "2026-07-28T03:29:34.000Z",
+                  "uid": "35240-8fb85f4d-25dd-456a-b7c9-92be23f6df15"
+                },
+                {
+                  "id": "2481e65e-ac49-4d34-9b1e-0d0bafbdf6b1",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "CLIENT-ID",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"file_url\": \"<uri>\",\n  \"file_urls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"file_data\": \"<string>\",\n  \"file\": \"<binary>\",\n  \"async\": false,\n  \"boost_mode\": false,\n  \"max_pages_to_process\": 15,\n  \"bounding_boxes\": false,\n  \"confidence_details\": false,\n  \"external_id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"country\": \"<string>\",\n  \"parse_address\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/w2s",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "w2s"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:29:34.000Z",
+                  "updatedAt": "2026-07-28T03:29:34.000Z",
+                  "uid": "35240-2481e65e-ac49-4d34-9b1e-0d0bafbdf6b1"
+                }
+              ],
+              "createdAt": "2026-07-28T03:29:34.000Z",
+              "updatedAt": "2026-07-28T03:29:34.000Z",
+              "uid": "35240-11218fda-53a8-4bd7-98f6-e6e2d94b0828"
+            },
+            {
+              "name": "List All W-2 Forms",
+              "id": "c4679a98-8fc1-4325-b8b5-40b924043c7f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/partner/w2s",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "partner",
+                    "w2s"
+                  ]
+                },
+                "description": "Retrieve a list of previously processed W-2 forms."
+              },
+              "response": [
+                {
+                  "id": "49c9b022-d5ea-4110-9e68-e99e0a7a9612",
+                  "name": "List of W-2 forms",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "CLIENT-ID",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/w2s",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "w2s"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"employee_name\": \"<string>\",\n    \"employee_ssn\": \"<string>\",\n    \"employer_name\": \"<string>\",\n    \"employer_ein\": \"<string>\",\n    \"tax_year\": \"<string>\",\n    \"wages\": \"<float>\",\n    \"federal_tax_withheld\": \"<float>\",\n    \"social_security_wages\": \"<float>\",\n    \"social_security_tax\": \"<float>\",\n    \"medicare_wages\": \"<float>\",\n    \"medicare_tax\": \"<float>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"employee_name\": \"<string>\",\n    \"employee_ssn\": \"<string>\",\n    \"employer_name\": \"<string>\",\n    \"employer_ein\": \"<string>\",\n    \"tax_year\": \"<string>\",\n    \"wages\": \"<float>\",\n    \"federal_tax_withheld\": \"<float>\",\n    \"social_security_wages\": \"<float>\",\n    \"social_security_tax\": \"<float>\",\n    \"medicare_wages\": \"<float>\",\n    \"medicare_tax\": \"<float>\"\n  }\n]",
+                  "createdAt": "2026-07-28T03:29:34.000Z",
+                  "updatedAt": "2026-07-28T03:29:34.000Z",
+                  "uid": "35240-49c9b022-d5ea-4110-9e68-e99e0a7a9612"
+                },
+                {
+                  "id": "68d71a52-2d4f-446b-bf3c-dae396241b98",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "CLIENT-ID",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/w2s",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "w2s"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:29:34.000Z",
+                  "updatedAt": "2026-07-28T03:29:34.000Z",
+                  "uid": "35240-68d71a52-2d4f-446b-bf3c-dae396241b98"
+                }
+              ],
+              "createdAt": "2026-07-28T03:29:34.000Z",
+              "updatedAt": "2026-07-28T03:29:34.000Z",
+              "uid": "35240-c4679a98-8fc1-4325-b8b5-40b924043c7f"
+            }
+          ],
+          "id": "a52f6817-fba8-4dc0-8812-e095a1e7c233",
+          "createdAt": "2026-07-28T03:29:34.000Z",
+          "updatedAt": "2026-07-28T03:29:34.000Z",
+          "uid": "35240-a52f6817-fba8-4dc0-8812-e095a1e7c233"
+        }
+      ],
+      "id": "54342af4-b349-4ceb-8940-32cd5ebd1940",
+      "createdAt": "2026-07-28T03:29:34.000Z",
+      "updatedAt": "2026-07-28T03:29:34.000Z",
+      "uid": "35240-54342af4-b349-4ceb-8940-32cd5ebd1940"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "CLIENT-ID",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.veryfi.com/api/v8"
+    }
+  ]
+}

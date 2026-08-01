@@ -1,0 +1,663 @@
+{
+  "info": {
+    "_postman_id": "76d316a7-f310-4d15-87e7-b27f98853535",
+    "name": "Veryfi OCR Any Documents Bank Statements API",
+    "description": "The Veryfi OCR API extracts structured data from financial documents including receipts, invoices, bank statements, checks, W-2s, W-8s, W-9s, business cards, contracts, and more. The API uses AI-powered OCR to capture line items, taxes, totals, barcodes, vendor details, and other financial data across 91 currencies and 38 languages with enterprise-grade accuracy.\n\nContact Support:\n Name: Veryfi Support\n Email: support@veryfi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:29:28.000Z",
+    "updatedAt": "2026-07-28T03:29:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-76d316a7-f310-4d15-87e7-b27f98853535"
+  },
+  "item": [
+    {
+      "name": "partner",
+      "item": [
+        {
+          "name": "bank-statements",
+          "item": [
+            {
+              "name": "{documentId}",
+              "item": [
+                {
+                  "name": "Get a Bank Statement",
+                  "id": "4952442f-c6bf-4818-ad78-6241b724a0a0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/bank-statements/:documentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "bank-statements",
+                        ":documentId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "7b2f90a3-bbbb-4673-99fa-c815cc9dafc0",
+                          "key": "documentId",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a specific processed bank statement by ID."
+                  },
+                  "response": [
+                    {
+                      "id": "49e368ae-b7b5-4b6e-b1e6-96c24c2e71f3",
+                      "name": "Bank statement details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "CLIENT-ID",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/partner/bank-statements/:documentId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "partner",
+                            "bank-statements",
+                            ":documentId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "documentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"account_number\": \"<string>\",\n  \"routing_number\": \"<string>\",\n  \"account_holder\": \"<string>\",\n  \"bank_name\": \"<string>\",\n  \"statement_date\": \"<string>\",\n  \"opening_balance\": \"<float>\",\n  \"closing_balance\": \"<float>\",\n  \"transactions\": [\n    {\n      \"date\": \"<string>\",\n      \"description\": \"<string>\",\n      \"amount\": \"<float>\",\n      \"type\": \"debit\",\n      \"balance\": \"<float>\"\n    },\n    {\n      \"date\": \"<string>\",\n      \"description\": \"<string>\",\n      \"amount\": \"<float>\",\n      \"type\": \"debit\",\n      \"balance\": \"<float>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:29:29.000Z",
+                      "updatedAt": "2026-07-28T03:29:29.000Z",
+                      "uid": "35240-49e368ae-b7b5-4b6e-b1e6-96c24c2e71f3"
+                    },
+                    {
+                      "id": "74a82d05-edc9-4b60-b5d6-5ebdeb2633cd",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "CLIENT-ID",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/partner/bank-statements/:documentId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "partner",
+                            "bank-statements",
+                            ":documentId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "documentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:29:29.000Z",
+                      "updatedAt": "2026-07-28T03:29:29.000Z",
+                      "uid": "35240-74a82d05-edc9-4b60-b5d6-5ebdeb2633cd"
+                    },
+                    {
+                      "id": "1159932b-badd-4cf9-ab71-3968df494929",
+                      "name": "Not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "CLIENT-ID",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/partner/bank-statements/:documentId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "partner",
+                            "bank-statements",
+                            ":documentId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "documentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:29:29.000Z",
+                      "updatedAt": "2026-07-28T03:29:29.000Z",
+                      "uid": "35240-1159932b-badd-4cf9-ab71-3968df494929"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:29:28.000Z",
+                  "updatedAt": "2026-07-28T03:29:28.000Z",
+                  "uid": "35240-4952442f-c6bf-4818-ad78-6241b724a0a0"
+                },
+                {
+                  "name": "Delete a Bank Statement",
+                  "id": "2c599d61-deb2-4619-a0b9-819a89deafaf",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/bank-statements/:documentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "bank-statements",
+                        ":documentId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c5e72387-35c2-44b3-a565-556530f0ed88",
+                          "key": "documentId",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Permanently delete a processed bank statement."
+                  },
+                  "response": [
+                    {
+                      "id": "5f9bdd7f-a5df-4f38-8c4a-193426b181c4",
+                      "name": "Deleted successfully",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "CLIENT-ID",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/partner/bank-statements/:documentId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "partner",
+                            "bank-statements",
+                            ":documentId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "documentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:29:29.000Z",
+                      "updatedAt": "2026-07-28T03:29:29.000Z",
+                      "uid": "35240-5f9bdd7f-a5df-4f38-8c4a-193426b181c4"
+                    },
+                    {
+                      "id": "df811c52-7131-4043-afab-ff8bcea06365",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "CLIENT-ID",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/partner/bank-statements/:documentId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "partner",
+                            "bank-statements",
+                            ":documentId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "documentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:29:29.000Z",
+                      "updatedAt": "2026-07-28T03:29:29.000Z",
+                      "uid": "35240-df811c52-7131-4043-afab-ff8bcea06365"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:29:28.000Z",
+                  "updatedAt": "2026-07-28T03:29:28.000Z",
+                  "uid": "35240-2c599d61-deb2-4619-a0b9-819a89deafaf"
+                }
+              ],
+              "id": "503d8e9e-e95a-492d-9d8e-9f7f760a9274",
+              "createdAt": "2026-07-28T03:29:28.000Z",
+              "updatedAt": "2026-07-28T03:29:28.000Z",
+              "uid": "35240-503d8e9e-e95a-492d-9d8e-9f7f760a9274"
+            },
+            {
+              "name": "Process a Bank Statement",
+              "id": "e8863ecd-61fa-48ac-8abd-18844f3e62c9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"file_url\": \"<uri>\",\n  \"file_urls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"file_data\": \"<string>\",\n  \"file\": \"<binary>\",\n  \"async\": false,\n  \"boost_mode\": false,\n  \"max_pages_to_process\": 15,\n  \"bounding_boxes\": false,\n  \"confidence_details\": false,\n  \"external_id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"country\": \"<string>\",\n  \"parse_address\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/partner/bank-statements",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "partner",
+                    "bank-statements"
+                  ]
+                },
+                "description": "Submit a bank statement for AI-powered data extraction. Returns structured transaction data, account information, balances, and metadata. Supports PDF, image formats, and multi-page documents."
+              },
+              "response": [
+                {
+                  "id": "439b01b0-ea47-487a-b5a9-e41756d94fb0",
+                  "name": "Bank statement processed",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "CLIENT-ID",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"file_url\": \"<uri>\",\n  \"file_urls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"file_data\": \"<string>\",\n  \"file\": \"<binary>\",\n  \"async\": false,\n  \"boost_mode\": false,\n  \"max_pages_to_process\": 15,\n  \"bounding_boxes\": false,\n  \"confidence_details\": false,\n  \"external_id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"country\": \"<string>\",\n  \"parse_address\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/bank-statements",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "bank-statements"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<integer>\",\n  \"account_number\": \"<string>\",\n  \"routing_number\": \"<string>\",\n  \"account_holder\": \"<string>\",\n  \"bank_name\": \"<string>\",\n  \"statement_date\": \"<string>\",\n  \"opening_balance\": \"<float>\",\n  \"closing_balance\": \"<float>\",\n  \"transactions\": [\n    {\n      \"date\": \"<string>\",\n      \"description\": \"<string>\",\n      \"amount\": \"<float>\",\n      \"type\": \"debit\",\n      \"balance\": \"<float>\"\n    },\n    {\n      \"date\": \"<string>\",\n      \"description\": \"<string>\",\n      \"amount\": \"<float>\",\n      \"type\": \"debit\",\n      \"balance\": \"<float>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:29:29.000Z",
+                  "updatedAt": "2026-07-28T03:29:29.000Z",
+                  "uid": "35240-439b01b0-ea47-487a-b5a9-e41756d94fb0"
+                },
+                {
+                  "id": "35fabdd2-a42c-41f3-901c-12146e4df9b6",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "CLIENT-ID",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"file_url\": \"<uri>\",\n  \"file_urls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"file_data\": \"<string>\",\n  \"file\": \"<binary>\",\n  \"async\": false,\n  \"boost_mode\": false,\n  \"max_pages_to_process\": 15,\n  \"bounding_boxes\": false,\n  \"confidence_details\": false,\n  \"external_id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"country\": \"<string>\",\n  \"parse_address\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/bank-statements",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "bank-statements"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:29:29.000Z",
+                  "updatedAt": "2026-07-28T03:29:29.000Z",
+                  "uid": "35240-35fabdd2-a42c-41f3-901c-12146e4df9b6"
+                }
+              ],
+              "createdAt": "2026-07-28T03:29:28.000Z",
+              "updatedAt": "2026-07-28T03:29:28.000Z",
+              "uid": "35240-e8863ecd-61fa-48ac-8abd-18844f3e62c9"
+            },
+            {
+              "name": "List All Bank Statements",
+              "id": "24c69174-92e1-4f7b-bbba-2974d81a2000",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/partner/bank-statements",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "partner",
+                    "bank-statements"
+                  ]
+                },
+                "description": "Retrieve a list of previously processed bank statements."
+              },
+              "response": [
+                {
+                  "id": "ff314065-30f9-4a14-8323-d9ec5cc3780b",
+                  "name": "List of bank statements",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "CLIENT-ID",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/bank-statements",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "bank-statements"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"account_number\": \"<string>\",\n    \"routing_number\": \"<string>\",\n    \"account_holder\": \"<string>\",\n    \"bank_name\": \"<string>\",\n    \"statement_date\": \"<string>\",\n    \"opening_balance\": \"<float>\",\n    \"closing_balance\": \"<float>\",\n    \"transactions\": [\n      {\n        \"date\": \"<string>\",\n        \"description\": \"<string>\",\n        \"amount\": \"<float>\",\n        \"type\": \"debit\",\n        \"balance\": \"<float>\"\n      },\n      {\n        \"date\": \"<string>\",\n        \"description\": \"<string>\",\n        \"amount\": \"<float>\",\n        \"type\": \"credit\",\n        \"balance\": \"<float>\"\n      }\n    ]\n  },\n  {\n    \"id\": \"<integer>\",\n    \"account_number\": \"<string>\",\n    \"routing_number\": \"<string>\",\n    \"account_holder\": \"<string>\",\n    \"bank_name\": \"<string>\",\n    \"statement_date\": \"<string>\",\n    \"opening_balance\": \"<float>\",\n    \"closing_balance\": \"<float>\",\n    \"transactions\": [\n      {\n        \"date\": \"<string>\",\n        \"description\": \"<string>\",\n        \"amount\": \"<float>\",\n        \"type\": \"credit\",\n        \"balance\": \"<float>\"\n      },\n      {\n        \"date\": \"<string>\",\n        \"description\": \"<string>\",\n        \"amount\": \"<float>\",\n        \"type\": \"credit\",\n        \"balance\": \"<float>\"\n      }\n    ]\n  }\n]",
+                  "createdAt": "2026-07-28T03:29:29.000Z",
+                  "updatedAt": "2026-07-28T03:29:29.000Z",
+                  "uid": "35240-ff314065-30f9-4a14-8323-d9ec5cc3780b"
+                },
+                {
+                  "id": "8b1fc3fc-7044-4379-8a58-c85c84c04bd1",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "CLIENT-ID",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/bank-statements",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "bank-statements"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:29:29.000Z",
+                  "updatedAt": "2026-07-28T03:29:29.000Z",
+                  "uid": "35240-8b1fc3fc-7044-4379-8a58-c85c84c04bd1"
+                }
+              ],
+              "createdAt": "2026-07-28T03:29:28.000Z",
+              "updatedAt": "2026-07-28T03:29:28.000Z",
+              "uid": "35240-24c69174-92e1-4f7b-bbba-2974d81a2000"
+            }
+          ],
+          "id": "8134e337-3b51-4c72-9928-ea89d5640a29",
+          "createdAt": "2026-07-28T03:29:28.000Z",
+          "updatedAt": "2026-07-28T03:29:28.000Z",
+          "uid": "35240-8134e337-3b51-4c72-9928-ea89d5640a29"
+        }
+      ],
+      "id": "ebc11216-c287-400b-9104-b9bbdce6c4c8",
+      "createdAt": "2026-07-28T03:29:28.000Z",
+      "updatedAt": "2026-07-28T03:29:28.000Z",
+      "uid": "35240-ebc11216-c287-400b-9104-b9bbdce6c4c8"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "CLIENT-ID",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.veryfi.com/api/v8"
+    }
+  ]
+}

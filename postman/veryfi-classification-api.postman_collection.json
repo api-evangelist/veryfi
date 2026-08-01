@@ -1,0 +1,218 @@
+{
+  "info": {
+    "_postman_id": "911cdaf3-9c06-4042-89bd-73982d93e312",
+    "name": "Veryfi OCR Any Documents Classification API",
+    "description": "The Veryfi OCR API extracts structured data from financial documents including receipts, invoices, bank statements, checks, W-2s, W-8s, W-9s, business cards, contracts, and more. The API uses AI-powered OCR to capture line items, taxes, totals, barcodes, vendor details, and other financial data across 91 currencies and 38 languages with enterprise-grade accuracy.\n\nContact Support:\n Name: Veryfi Support\n Email: support@veryfi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:29:31.000Z",
+    "updatedAt": "2026-07-28T03:29:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-911cdaf3-9c06-4042-89bd-73982d93e312"
+  },
+  "item": [
+    {
+      "name": "partner",
+      "item": [
+        {
+          "name": "classify",
+          "item": [
+            {
+              "name": "Classify a Document",
+              "id": "26cf7d32-d31d-403e-a1df-6c11b9567376",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"file_url\": \"<uri>\",\n  \"file_data\": \"<string>\",\n  \"document_types\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/partner/classify",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "partner",
+                    "classify"
+                  ]
+                },
+                "description": "Submit a document for classification to determine its type before processing. Returns the detected document type to route to the appropriate extraction endpoint."
+              },
+              "response": [
+                {
+                  "id": "bdf674e9-9f36-434b-82fa-6622bafba522",
+                  "name": "Document classification result",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "CLIENT-ID",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"file_url\": \"<uri>\",\n  \"file_data\": \"<string>\",\n  \"document_types\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/classify",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "classify"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"document_type\": \"<string>\",\n  \"confidence\": \"<float>\"\n}",
+                  "createdAt": "2026-07-28T03:29:32.000Z",
+                  "updatedAt": "2026-07-28T03:29:32.000Z",
+                  "uid": "35240-bdf674e9-9f36-434b-82fa-6622bafba522"
+                },
+                {
+                  "id": "922a514d-4626-4526-a233-3e1eb6c608d9",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "CLIENT-ID",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"file_url\": \"<uri>\",\n  \"file_data\": \"<string>\",\n  \"document_types\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/classify",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "classify"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:29:32.000Z",
+                  "updatedAt": "2026-07-28T03:29:32.000Z",
+                  "uid": "35240-922a514d-4626-4526-a233-3e1eb6c608d9"
+                }
+              ],
+              "createdAt": "2026-07-28T03:29:32.000Z",
+              "updatedAt": "2026-07-28T03:29:32.000Z",
+              "uid": "35240-26cf7d32-d31d-403e-a1df-6c11b9567376"
+            }
+          ],
+          "id": "00d3a372-ca7d-44bc-88c6-83ff6076adc2",
+          "createdAt": "2026-07-28T03:29:32.000Z",
+          "updatedAt": "2026-07-28T03:29:32.000Z",
+          "uid": "35240-00d3a372-ca7d-44bc-88c6-83ff6076adc2"
+        }
+      ],
+      "id": "d4338f9a-80d7-448d-b77e-2796a931dc83",
+      "createdAt": "2026-07-28T03:29:32.000Z",
+      "updatedAt": "2026-07-28T03:29:32.000Z",
+      "uid": "35240-d4338f9a-80d7-448d-b77e-2796a931dc83"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "CLIENT-ID",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.veryfi.com/api/v8"
+    }
+  ]
+}

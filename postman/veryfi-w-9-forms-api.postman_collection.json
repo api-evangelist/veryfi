@@ -1,0 +1,663 @@
+{
+  "info": {
+    "_postman_id": "20055c61-85b1-4f9a-9bec-c0d50ccfd9ed",
+    "name": "Veryfi OCR Any Documents W-9 Forms API",
+    "description": "The Veryfi OCR API extracts structured data from financial documents including receipts, invoices, bank statements, checks, W-2s, W-8s, W-9s, business cards, contracts, and more. The API uses AI-powered OCR to capture line items, taxes, totals, barcodes, vendor details, and other financial data across 91 currencies and 38 languages with enterprise-grade accuracy.\n\nContact Support:\n Name: Veryfi Support\n Email: support@veryfi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:29:34.000Z",
+    "updatedAt": "2026-07-28T03:29:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-20055c61-85b1-4f9a-9bec-c0d50ccfd9ed"
+  },
+  "item": [
+    {
+      "name": "partner",
+      "item": [
+        {
+          "name": "w9s",
+          "item": [
+            {
+              "name": "{documentId}",
+              "item": [
+                {
+                  "name": "Get a W-9 Form",
+                  "id": "8dac94a3-3534-4697-9699-9b8685f8a2b8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/w9s/:documentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "w9s",
+                        ":documentId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "d7d668eb-8632-445e-9f32-675b593e4bec",
+                          "key": "documentId",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a specific processed W-9 form by ID."
+                  },
+                  "response": [
+                    {
+                      "id": "57af62df-9353-4d94-8ddd-d266a3d769a6",
+                      "name": "W-9 form details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "CLIENT-ID",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/partner/w9s/:documentId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "partner",
+                            "w9s",
+                            ":documentId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "documentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"taxpayer_name\": \"<string>\",\n  \"business_name\": \"<string>\",\n  \"entity_type\": \"other\",\n  \"tin\": \"<string>\",\n  \"address\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip_code\": \"<string>\",\n  \"exempt_payee_code\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:29:35.000Z",
+                      "updatedAt": "2026-07-28T03:29:35.000Z",
+                      "uid": "35240-57af62df-9353-4d94-8ddd-d266a3d769a6"
+                    },
+                    {
+                      "id": "09939665-4db4-4b0c-94ac-4f31464d3f73",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "CLIENT-ID",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/partner/w9s/:documentId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "partner",
+                            "w9s",
+                            ":documentId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "documentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:29:35.000Z",
+                      "updatedAt": "2026-07-28T03:29:35.000Z",
+                      "uid": "35240-09939665-4db4-4b0c-94ac-4f31464d3f73"
+                    },
+                    {
+                      "id": "8f15e003-d4ee-43de-8519-90a89b1eb298",
+                      "name": "Not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "CLIENT-ID",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/partner/w9s/:documentId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "partner",
+                            "w9s",
+                            ":documentId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "documentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:29:35.000Z",
+                      "updatedAt": "2026-07-28T03:29:35.000Z",
+                      "uid": "35240-8f15e003-d4ee-43de-8519-90a89b1eb298"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:29:35.000Z",
+                  "updatedAt": "2026-07-28T03:29:35.000Z",
+                  "uid": "35240-8dac94a3-3534-4697-9699-9b8685f8a2b8"
+                },
+                {
+                  "name": "Delete a W-9 Form",
+                  "id": "66a8123f-1e1b-495b-95aa-ac53ba0c3264",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/w9s/:documentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "w9s",
+                        ":documentId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "ce085a44-9c18-4975-bde7-7bc6fec0c6fa",
+                          "key": "documentId",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Permanently delete a processed W-9 form."
+                  },
+                  "response": [
+                    {
+                      "id": "35c0dd25-4566-4010-9a53-c4721c037845",
+                      "name": "Deleted successfully",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "CLIENT-ID",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/partner/w9s/:documentId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "partner",
+                            "w9s",
+                            ":documentId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "documentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:29:35.000Z",
+                      "updatedAt": "2026-07-28T03:29:35.000Z",
+                      "uid": "35240-35c0dd25-4566-4010-9a53-c4721c037845"
+                    },
+                    {
+                      "id": "ff3d9d3f-6c01-4f67-ae58-670f675bfa2a",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "CLIENT-ID",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/partner/w9s/:documentId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "partner",
+                            "w9s",
+                            ":documentId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "documentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:29:35.000Z",
+                      "updatedAt": "2026-07-28T03:29:35.000Z",
+                      "uid": "35240-ff3d9d3f-6c01-4f67-ae58-670f675bfa2a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:29:35.000Z",
+                  "updatedAt": "2026-07-28T03:29:35.000Z",
+                  "uid": "35240-66a8123f-1e1b-495b-95aa-ac53ba0c3264"
+                }
+              ],
+              "id": "9927d6b1-b806-4ced-9ff2-160922ed7541",
+              "createdAt": "2026-07-28T03:29:35.000Z",
+              "updatedAt": "2026-07-28T03:29:35.000Z",
+              "uid": "35240-9927d6b1-b806-4ced-9ff2-160922ed7541"
+            },
+            {
+              "name": "Process a W-9 Form",
+              "id": "db91be20-dea6-4b75-ba42-d9810d6ab3c4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"file_url\": \"<uri>\",\n  \"file_urls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"file_data\": \"<string>\",\n  \"file\": \"<binary>\",\n  \"async\": false,\n  \"boost_mode\": false,\n  \"max_pages_to_process\": 15,\n  \"bounding_boxes\": false,\n  \"confidence_details\": false,\n  \"external_id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"country\": \"<string>\",\n  \"parse_address\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/partner/w9s",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "partner",
+                    "w9s"
+                  ]
+                },
+                "description": "Submit a W-9 tax form for OCR extraction including taxpayer information, TIN, business name, entity type, and certification details."
+              },
+              "response": [
+                {
+                  "id": "a5618232-ccbe-498b-90c6-b8b4269c62da",
+                  "name": "W-9 processed",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "CLIENT-ID",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"file_url\": \"<uri>\",\n  \"file_urls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"file_data\": \"<string>\",\n  \"file\": \"<binary>\",\n  \"async\": false,\n  \"boost_mode\": false,\n  \"max_pages_to_process\": 15,\n  \"bounding_boxes\": false,\n  \"confidence_details\": false,\n  \"external_id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"country\": \"<string>\",\n  \"parse_address\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/w9s",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "w9s"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<integer>\",\n  \"taxpayer_name\": \"<string>\",\n  \"business_name\": \"<string>\",\n  \"entity_type\": \"other\",\n  \"tin\": \"<string>\",\n  \"address\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip_code\": \"<string>\",\n  \"exempt_payee_code\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:29:35.000Z",
+                  "updatedAt": "2026-07-28T03:29:35.000Z",
+                  "uid": "35240-a5618232-ccbe-498b-90c6-b8b4269c62da"
+                },
+                {
+                  "id": "23fcf185-296d-4ed5-8e82-69aed0e31588",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "CLIENT-ID",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"file_url\": \"<uri>\",\n  \"file_urls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"file_data\": \"<string>\",\n  \"file\": \"<binary>\",\n  \"async\": false,\n  \"boost_mode\": false,\n  \"max_pages_to_process\": 15,\n  \"bounding_boxes\": false,\n  \"confidence_details\": false,\n  \"external_id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"country\": \"<string>\",\n  \"parse_address\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/w9s",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "w9s"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:29:35.000Z",
+                  "updatedAt": "2026-07-28T03:29:35.000Z",
+                  "uid": "35240-23fcf185-296d-4ed5-8e82-69aed0e31588"
+                }
+              ],
+              "createdAt": "2026-07-28T03:29:35.000Z",
+              "updatedAt": "2026-07-28T03:29:35.000Z",
+              "uid": "35240-db91be20-dea6-4b75-ba42-d9810d6ab3c4"
+            },
+            {
+              "name": "List All W-9 Forms",
+              "id": "898b4bf9-70bf-4a7c-a92d-69d1e3bff14d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/partner/w9s",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "partner",
+                    "w9s"
+                  ]
+                },
+                "description": "Retrieve a list of previously processed W-9 forms."
+              },
+              "response": [
+                {
+                  "id": "30194d55-b97f-4941-a548-c0ab5eda1329",
+                  "name": "List of W-9 forms",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "CLIENT-ID",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/w9s",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "w9s"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"taxpayer_name\": \"<string>\",\n    \"business_name\": \"<string>\",\n    \"entity_type\": \"trust\",\n    \"tin\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip_code\": \"<string>\",\n    \"exempt_payee_code\": \"<string>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"taxpayer_name\": \"<string>\",\n    \"business_name\": \"<string>\",\n    \"entity_type\": \"trust\",\n    \"tin\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip_code\": \"<string>\",\n    \"exempt_payee_code\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-07-28T03:29:35.000Z",
+                  "updatedAt": "2026-07-28T03:29:35.000Z",
+                  "uid": "35240-30194d55-b97f-4941-a548-c0ab5eda1329"
+                },
+                {
+                  "id": "a8c1d724-7a74-4fea-b9d0-4967bcaa03e0",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "CLIENT-ID",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/w9s",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "w9s"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:29:35.000Z",
+                  "updatedAt": "2026-07-28T03:29:35.000Z",
+                  "uid": "35240-a8c1d724-7a74-4fea-b9d0-4967bcaa03e0"
+                }
+              ],
+              "createdAt": "2026-07-28T03:29:35.000Z",
+              "updatedAt": "2026-07-28T03:29:35.000Z",
+              "uid": "35240-898b4bf9-70bf-4a7c-a92d-69d1e3bff14d"
+            }
+          ],
+          "id": "a56a1f43-adc9-40e2-825b-07322cbe52df",
+          "createdAt": "2026-07-28T03:29:35.000Z",
+          "updatedAt": "2026-07-28T03:29:35.000Z",
+          "uid": "35240-a56a1f43-adc9-40e2-825b-07322cbe52df"
+        }
+      ],
+      "id": "4e73c494-ffce-4cf6-bcbf-533be729a311",
+      "createdAt": "2026-07-28T03:29:35.000Z",
+      "updatedAt": "2026-07-28T03:29:35.000Z",
+      "uid": "35240-4e73c494-ffce-4cf6-bcbf-533be729a311"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "CLIENT-ID",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.veryfi.com/api/v8"
+    }
+  ]
+}

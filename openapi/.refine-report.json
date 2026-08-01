@@ -1,0 +1,26 @@
+{
+  "provider": "veryfi",
+  "sources": [
+    "veryfi-any-documents-api-openapi.yml",
+    "veryfi-bank-statements-api-openapi.yml",
+    "veryfi-checks-api-openapi.yml",
+    "veryfi-classification-api-openapi.yml",
+    "veryfi-documents-api-openapi.yml",
+    "veryfi-w-2-forms-api-openapi.yml",
+    "veryfi-w-9-forms-api-openapi.yml"
+  ],
+  "outputs": [
+    "veryfi-any-documents-api-openapi.yml",
+    "veryfi-bank-statements-api-openapi.yml",
+    "veryfi-checks-api-openapi.yml",
+    "veryfi-classification-api-openapi.yml",
+    "veryfi-documents-api-openapi.yml",
+    "veryfi-w-2-forms-api-openapi.yml",
+    "veryfi-w-9-forms-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

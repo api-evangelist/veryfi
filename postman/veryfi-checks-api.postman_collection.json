@@ -1,0 +1,663 @@
+{
+  "info": {
+    "_postman_id": "46d9be59-ec3a-43e3-8c6c-6346a9afd029",
+    "name": "Veryfi OCR Any Documents Checks API",
+    "description": "The Veryfi OCR API extracts structured data from financial documents including receipts, invoices, bank statements, checks, W-2s, W-8s, W-9s, business cards, contracts, and more. The API uses AI-powered OCR to capture line items, taxes, totals, barcodes, vendor details, and other financial data across 91 currencies and 38 languages with enterprise-grade accuracy.\n\nContact Support:\n Name: Veryfi Support\n Email: support@veryfi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:29:30.000Z",
+    "updatedAt": "2026-07-28T03:29:31.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-46d9be59-ec3a-43e3-8c6c-6346a9afd029"
+  },
+  "item": [
+    {
+      "name": "partner",
+      "item": [
+        {
+          "name": "checks",
+          "item": [
+            {
+              "name": "{documentId}",
+              "item": [
+                {
+                  "name": "Get a Check",
+                  "id": "62b834a2-5978-4f60-a66d-886072ba9d04",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/checks/:documentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "checks",
+                        ":documentId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "ce3b352c-6295-437f-9d3e-fab2fa691fe1",
+                          "key": "documentId",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a specific processed check by ID."
+                  },
+                  "response": [
+                    {
+                      "id": "76f5df10-96fd-498e-94ad-1e3994b17f35",
+                      "name": "Check details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "CLIENT-ID",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/partner/checks/:documentId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "partner",
+                            "checks",
+                            ":documentId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "documentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"routing_number\": \"<string>\",\n  \"account_number\": \"<string>\",\n  \"check_number\": \"<string>\",\n  \"payee\": \"<string>\",\n  \"payer\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"date\": \"<string>\",\n  \"memo\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:29:31.000Z",
+                      "updatedAt": "2026-07-28T03:29:31.000Z",
+                      "uid": "35240-76f5df10-96fd-498e-94ad-1e3994b17f35"
+                    },
+                    {
+                      "id": "354a55dc-15a2-4d08-8d18-6441d6a4ca08",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "CLIENT-ID",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/partner/checks/:documentId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "partner",
+                            "checks",
+                            ":documentId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "documentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:29:31.000Z",
+                      "updatedAt": "2026-07-28T03:29:31.000Z",
+                      "uid": "35240-354a55dc-15a2-4d08-8d18-6441d6a4ca08"
+                    },
+                    {
+                      "id": "65475d63-cb7f-425a-8368-82ac8695b30c",
+                      "name": "Not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "CLIENT-ID",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/partner/checks/:documentId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "partner",
+                            "checks",
+                            ":documentId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "documentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:29:31.000Z",
+                      "updatedAt": "2026-07-28T03:29:31.000Z",
+                      "uid": "35240-65475d63-cb7f-425a-8368-82ac8695b30c"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:29:31.000Z",
+                  "updatedAt": "2026-07-28T03:29:31.000Z",
+                  "uid": "35240-62b834a2-5978-4f60-a66d-886072ba9d04"
+                },
+                {
+                  "name": "Delete a Check",
+                  "id": "a0162000-99f0-452e-9c98-658f59cac4a4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/checks/:documentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "checks",
+                        ":documentId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f0e0b6b5-2225-41e4-8fb9-db70b96834ac",
+                          "key": "documentId",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Permanently delete a processed check."
+                  },
+                  "response": [
+                    {
+                      "id": "3025b7a2-8409-4db6-aa9e-9722e7c05bbd",
+                      "name": "Deleted successfully",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "CLIENT-ID",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/partner/checks/:documentId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "partner",
+                            "checks",
+                            ":documentId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "documentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:29:31.000Z",
+                      "updatedAt": "2026-07-28T03:29:31.000Z",
+                      "uid": "35240-3025b7a2-8409-4db6-aa9e-9722e7c05bbd"
+                    },
+                    {
+                      "id": "7cd49e96-16c1-4daa-a447-3a1d7b30c649",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "CLIENT-ID",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/partner/checks/:documentId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "partner",
+                            "checks",
+                            ":documentId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "documentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:29:31.000Z",
+                      "updatedAt": "2026-07-28T03:29:31.000Z",
+                      "uid": "35240-7cd49e96-16c1-4daa-a447-3a1d7b30c649"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:29:31.000Z",
+                  "updatedAt": "2026-07-28T03:29:31.000Z",
+                  "uid": "35240-a0162000-99f0-452e-9c98-658f59cac4a4"
+                }
+              ],
+              "id": "9fa06e3e-cc15-4132-90c2-09d063529290",
+              "createdAt": "2026-07-28T03:29:31.000Z",
+              "updatedAt": "2026-07-28T03:29:31.000Z",
+              "uid": "35240-9fa06e3e-cc15-4132-90c2-09d063529290"
+            },
+            {
+              "name": "Process a Check",
+              "id": "eec9693b-5a0f-42f7-a123-223889b80efc",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"file_url\": \"<uri>\",\n  \"file_urls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"file_data\": \"<string>\",\n  \"file\": \"<binary>\",\n  \"async\": false,\n  \"boost_mode\": false,\n  \"max_pages_to_process\": 15,\n  \"bounding_boxes\": false,\n  \"confidence_details\": false,\n  \"external_id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"country\": \"<string>\",\n  \"parse_address\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/partner/checks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "partner",
+                    "checks"
+                  ]
+                },
+                "description": "Submit a check image for OCR extraction including bank routing number, account number, check number, payee, amount, and date."
+              },
+              "response": [
+                {
+                  "id": "25d5c7e5-8147-4baf-9581-d32967732e89",
+                  "name": "Check processed",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "CLIENT-ID",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"file_url\": \"<uri>\",\n  \"file_urls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"file_data\": \"<string>\",\n  \"file\": \"<binary>\",\n  \"async\": false,\n  \"boost_mode\": false,\n  \"max_pages_to_process\": 15,\n  \"bounding_boxes\": false,\n  \"confidence_details\": false,\n  \"external_id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"country\": \"<string>\",\n  \"parse_address\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/checks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "checks"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<integer>\",\n  \"routing_number\": \"<string>\",\n  \"account_number\": \"<string>\",\n  \"check_number\": \"<string>\",\n  \"payee\": \"<string>\",\n  \"payer\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"date\": \"<string>\",\n  \"memo\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:29:31.000Z",
+                  "updatedAt": "2026-07-28T03:29:31.000Z",
+                  "uid": "35240-25d5c7e5-8147-4baf-9581-d32967732e89"
+                },
+                {
+                  "id": "db0d11cf-679d-4986-9d8b-04dd8789e754",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "CLIENT-ID",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"file_url\": \"<uri>\",\n  \"file_urls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"file_data\": \"<string>\",\n  \"file\": \"<binary>\",\n  \"async\": false,\n  \"boost_mode\": false,\n  \"max_pages_to_process\": 15,\n  \"bounding_boxes\": false,\n  \"confidence_details\": false,\n  \"external_id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"country\": \"<string>\",\n  \"parse_address\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/checks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "checks"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:29:31.000Z",
+                  "updatedAt": "2026-07-28T03:29:31.000Z",
+                  "uid": "35240-db0d11cf-679d-4986-9d8b-04dd8789e754"
+                }
+              ],
+              "createdAt": "2026-07-28T03:29:31.000Z",
+              "updatedAt": "2026-07-28T03:29:31.000Z",
+              "uid": "35240-eec9693b-5a0f-42f7-a123-223889b80efc"
+            },
+            {
+              "name": "List All Checks",
+              "id": "35cd205a-5944-4cc5-a105-4d91bdbb5f6e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/partner/checks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "partner",
+                    "checks"
+                  ]
+                },
+                "description": "Retrieve a list of previously processed checks."
+              },
+              "response": [
+                {
+                  "id": "dc032b7c-856c-490f-9e01-6d829e39e0e2",
+                  "name": "List of checks",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "CLIENT-ID",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/checks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "checks"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"routing_number\": \"<string>\",\n    \"account_number\": \"<string>\",\n    \"check_number\": \"<string>\",\n    \"payee\": \"<string>\",\n    \"payer\": \"<string>\",\n    \"amount\": \"<float>\",\n    \"date\": \"<string>\",\n    \"memo\": \"<string>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"routing_number\": \"<string>\",\n    \"account_number\": \"<string>\",\n    \"check_number\": \"<string>\",\n    \"payee\": \"<string>\",\n    \"payer\": \"<string>\",\n    \"amount\": \"<float>\",\n    \"date\": \"<string>\",\n    \"memo\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-07-28T03:29:31.000Z",
+                  "updatedAt": "2026-07-28T03:29:31.000Z",
+                  "uid": "35240-dc032b7c-856c-490f-9e01-6d829e39e0e2"
+                },
+                {
+                  "id": "4c26fd57-f17d-4f32-be10-b27aa770a7a7",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "CLIENT-ID",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/partner/checks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "partner",
+                        "checks"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:29:31.000Z",
+                  "updatedAt": "2026-07-28T03:29:31.000Z",
+                  "uid": "35240-4c26fd57-f17d-4f32-be10-b27aa770a7a7"
+                }
+              ],
+              "createdAt": "2026-07-28T03:29:31.000Z",
+              "updatedAt": "2026-07-28T03:29:31.000Z",
+              "uid": "35240-35cd205a-5944-4cc5-a105-4d91bdbb5f6e"
+            }
+          ],
+          "id": "d0f11c22-bd95-4c68-b741-929ff42db699",
+          "createdAt": "2026-07-28T03:29:31.000Z",
+          "updatedAt": "2026-07-28T03:29:31.000Z",
+          "uid": "35240-d0f11c22-bd95-4c68-b741-929ff42db699"
+        }
+      ],
+      "id": "e5931f5f-2015-464d-a4f9-c4a9421c566e",
+      "createdAt": "2026-07-28T03:29:31.000Z",
+      "updatedAt": "2026-07-28T03:29:31.000Z",
+      "uid": "35240-e5931f5f-2015-464d-a4f9-c4a9421c566e"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "CLIENT-ID",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.veryfi.com/api/v8"
+    }
+  ]
+}
