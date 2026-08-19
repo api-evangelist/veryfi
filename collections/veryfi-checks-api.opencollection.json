@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Veryfi OCR Any Documents Checks API",
+    "version": "v8"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "CLIENT-ID",
+      "value": "{{CLIENT-ID}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Checks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Checks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.veryfi.com/api/v8/partner/checks"
+          },
+          "docs": "Retrieve a list of previously processed checks."
+        },
+        {
+          "info": {
+            "name": "Process a Check",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.veryfi.com/api/v8/partner/checks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a check image for OCR extraction including bank routing number, account number, check number, payee, amount, and date."
+        },
+        {
+          "info": {
+            "name": "Get a Check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.veryfi.com/api/v8/partner/checks/:documentId",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific processed check by ID."
+        },
+        {
+          "info": {
+            "name": "Delete a Check",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.veryfi.com/api/v8/partner/checks/:documentId",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Permanently delete a processed check."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

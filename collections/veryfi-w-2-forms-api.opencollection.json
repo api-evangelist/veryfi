@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Veryfi OCR Any Documents W-2 Forms API",
+    "version": "v8"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "CLIENT-ID",
+      "value": "{{CLIENT-ID}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "W-2 Forms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All W-2 Forms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.veryfi.com/api/v8/partner/w2s"
+          },
+          "docs": "Retrieve a list of previously processed W-2 forms."
+        },
+        {
+          "info": {
+            "name": "Process a W-2 Form",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.veryfi.com/api/v8/partner/w2s",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a W-2 tax form for OCR extraction including employer details, employee information, wages, tax withholdings, and all W-2 box values."
+        },
+        {
+          "info": {
+            "name": "Get a W-2 Form",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.veryfi.com/api/v8/partner/w2s/:documentId",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific processed W-2 form by ID."
+        },
+        {
+          "info": {
+            "name": "Delete a W-2 Form",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.veryfi.com/api/v8/partner/w2s/:documentId",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Permanently delete a processed W-2 form."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

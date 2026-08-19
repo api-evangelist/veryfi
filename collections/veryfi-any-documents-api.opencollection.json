@@ -1,0 +1,96 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Veryfi OCR Any Documents API",
+    "version": "v8"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "CLIENT-ID",
+      "value": "{{CLIENT-ID}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Any Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Any Documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.veryfi.com/api/v8/partner/any-documents",
+            "params": [
+              {
+                "name": "created_date__gt",
+                "value": "",
+                "type": "query",
+                "description": "Filter by creation date greater than"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of documents processed with custom blueprints."
+        },
+        {
+          "info": {
+            "name": "Process Any Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.veryfi.com/api/v8/partner/any-documents",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit any document type for custom field extraction using a named blueprint. The ∀Docs API can extract structured data from any unstructured document type including contracts, custom forms, and non-standard documents."
+        },
+        {
+          "info": {
+            "name": "Get Any Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.veryfi.com/api/v8/partner/any-documents/:documentId",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific document processed with a custom blueprint."
+        },
+        {
+          "info": {
+            "name": "Delete Any Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.veryfi.com/api/v8/partner/any-documents/:documentId",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Permanently delete a custom document extraction."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

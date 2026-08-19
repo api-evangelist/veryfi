@@ -1,0 +1,976 @@
+{
+  "item": [
+    {
+      "id": "5d4e1123-01e3-461c-b3ea-f58849dced87",
+      "name": "Bank Statements",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "134d3d07-04f3-43e0-80b4-9ec3673310b8",
+          "name": "Process a Bank Statement",
+          "request": {
+            "name": "Process a Bank Statement",
+            "description": {
+              "content": "Submit a bank statement for AI-powered data extraction. Returns structured transaction data, account information, balances, and metadata. Supports PDF, image formats, and multi-page documents.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "bank-statements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file_url",
+                  "value": "<uri>",
+                  "type": "text",
+                  "description": "Publicly accessible URL to the document"
+                },
+                {
+                  "key": "file_urls",
+                  "value": "[\"<uri>\",\"<uri>\"]",
+                  "type": "text",
+                  "description": "Multiple document URLs (for multi-page documents)"
+                },
+                {
+                  "key": "file_data",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Base64-encoded document data"
+                },
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "Binary file upload"
+                },
+                {
+                  "key": "async",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Enable asynchronous processing via webhook"
+                },
+                {
+                  "key": "boost_mode",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Skip enrichment for faster processing"
+                },
+                {
+                  "key": "max_pages_to_process",
+                  "value": "15",
+                  "type": "text",
+                  "description": "Maximum pages to process"
+                },
+                {
+                  "key": "bounding_boxes",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Include coordinate data for extracted fields"
+                },
+                {
+                  "key": "confidence_details",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Include confidence scores for each extracted field"
+                },
+                {
+                  "key": "external_id",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Custom identifier for the document in your system"
+                },
+                {
+                  "key": "tags",
+                  "value": "[\"<string>\",\"<string>\"]",
+                  "type": "text",
+                  "description": "Tags for document organization"
+                },
+                {
+                  "key": "country",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Two-letter country code as currency hint"
+                },
+                {
+                  "key": "parse_address",
+                  "value": "<boolean>",
+                  "type": "text",
+                  "description": "Break address fields into individual components"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "70688d91-d431-4800-8091-36311a52fa2b",
+              "name": "Bank statement processed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "bank-statements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "Publicly accessible URL to the document",
+                        "type": "text/plain"
+                      },
+                      "key": "file_url",
+                      "value": "<uri>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Multiple document URLs (for multi-page documents)",
+                        "type": "text/plain"
+                      },
+                      "key": "file_urls",
+                      "value": "[\"<uri>\",\"<uri>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Base64-encoded document data",
+                        "type": "text/plain"
+                      },
+                      "key": "file_data",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Binary file upload",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Enable asynchronous processing via webhook",
+                        "type": "text/plain"
+                      },
+                      "key": "async",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Skip enrichment for faster processing",
+                        "type": "text/plain"
+                      },
+                      "key": "boost_mode",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Maximum pages to process",
+                        "type": "text/plain"
+                      },
+                      "key": "max_pages_to_process",
+                      "value": "15",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Include coordinate data for extracted fields",
+                        "type": "text/plain"
+                      },
+                      "key": "bounding_boxes",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Include confidence scores for each extracted field",
+                        "type": "text/plain"
+                      },
+                      "key": "confidence_details",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Custom identifier for the document in your system",
+                        "type": "text/plain"
+                      },
+                      "key": "external_id",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Tags for document organization",
+                        "type": "text/plain"
+                      },
+                      "key": "tags",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Two-letter country code as currency hint",
+                        "type": "text/plain"
+                      },
+                      "key": "country",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Break address fields into individual components",
+                        "type": "text/plain"
+                      },
+                      "key": "parse_address",
+                      "value": "<boolean>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2891,\n  \"account_number\": \"string\",\n  \"routing_number\": \"string\",\n  \"account_holder\": \"string\",\n  \"bank_name\": \"string\",\n  \"statement_date\": \"string\",\n  \"opening_balance\": 3128.1461964299583,\n  \"closing_balance\": 2873.9153897031,\n  \"transactions\": [\n    {\n      \"date\": \"string\",\n      \"description\": \"string\",\n      \"amount\": 2187.7416154834496,\n      \"type\": \"debit\",\n      \"balance\": 3764.6718018510937\n    },\n    {\n      \"date\": \"string\",\n      \"description\": \"string\",\n      \"amount\": 6752.07299292941,\n      \"type\": \"credit\",\n      \"balance\": 1880.0299745964887\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d3b31c87-b908-45bd-aedf-e87ba2a93555",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "bank-statements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "Publicly accessible URL to the document",
+                        "type": "text/plain"
+                      },
+                      "key": "file_url",
+                      "value": "<uri>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Multiple document URLs (for multi-page documents)",
+                        "type": "text/plain"
+                      },
+                      "key": "file_urls",
+                      "value": "[\"<uri>\",\"<uri>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Base64-encoded document data",
+                        "type": "text/plain"
+                      },
+                      "key": "file_data",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Binary file upload",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Enable asynchronous processing via webhook",
+                        "type": "text/plain"
+                      },
+                      "key": "async",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Skip enrichment for faster processing",
+                        "type": "text/plain"
+                      },
+                      "key": "boost_mode",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Maximum pages to process",
+                        "type": "text/plain"
+                      },
+                      "key": "max_pages_to_process",
+                      "value": "15",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Include coordinate data for extracted fields",
+                        "type": "text/plain"
+                      },
+                      "key": "bounding_boxes",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Include confidence scores for each extracted field",
+                        "type": "text/plain"
+                      },
+                      "key": "confidence_details",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Custom identifier for the document in your system",
+                        "type": "text/plain"
+                      },
+                      "key": "external_id",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Tags for document organization",
+                        "type": "text/plain"
+                      },
+                      "key": "tags",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Two-letter country code as currency hint",
+                        "type": "text/plain"
+                      },
+                      "key": "country",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Break address fields into individual components",
+                        "type": "text/plain"
+                      },
+                      "key": "parse_address",
+                      "value": "<boolean>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 1363,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3b4bd618-1aea-4c19-ae27-56b4ecb41c13",
+          "name": "List All Bank Statements",
+          "request": {
+            "name": "List All Bank Statements",
+            "description": {
+              "content": "Retrieve a list of previously processed bank statements.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "bank-statements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "533f1580-4817-4aaf-b85b-4ae87c259e2a",
+              "name": "List of bank statements",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "bank-statements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 2359,\n    \"account_number\": \"string\",\n    \"routing_number\": \"string\",\n    \"account_holder\": \"string\",\n    \"bank_name\": \"string\",\n    \"statement_date\": \"string\",\n    \"opening_balance\": 4249.466857954778,\n    \"closing_balance\": 9215.83030933385,\n    \"transactions\": [\n      {\n        \"date\": \"string\",\n        \"description\": \"string\",\n        \"amount\": 9306.136328826695,\n        \"type\": \"credit\",\n        \"balance\": 4984.539555943518\n      },\n      {\n        \"date\": \"string\",\n        \"description\": \"string\",\n        \"amount\": 525.1590092025515,\n        \"type\": \"debit\",\n        \"balance\": 606.8419544053482\n      }\n    ]\n  },\n  {\n    \"id\": 2910,\n    \"account_number\": \"string\",\n    \"routing_number\": \"string\",\n    \"account_holder\": \"string\",\n    \"bank_name\": \"string\",\n    \"statement_date\": \"string\",\n    \"opening_balance\": 3787.648751732524,\n    \"closing_balance\": 8670.81013776057,\n    \"transactions\": [\n      {\n        \"date\": \"string\",\n        \"description\": \"string\",\n        \"amount\": 5220.211287920972,\n        \"type\": \"credit\",\n        \"balance\": 6318.366743007403\n      },\n      {\n        \"date\": \"string\",\n        \"description\": \"string\",\n        \"amount\": 4433.63704365443,\n        \"type\": \"debit\",\n        \"balance\": 4509.643433787308\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a872546f-42dd-4ed4-9c0d-871ebc73c777",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "bank-statements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 1363,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0fecbf80-cb03-4ecc-b524-7e391e928b1a",
+          "name": "Get a Bank Statement",
+          "request": {
+            "name": "Get a Bank Statement",
+            "description": {
+              "content": "Retrieve a specific processed bank statement by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "bank-statements",
+                ":documentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "documentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "501216d9-723b-40e8-b7ef-b753046a6097",
+              "name": "Bank statement details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "bank-statements",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "documentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2891,\n  \"account_number\": \"string\",\n  \"routing_number\": \"string\",\n  \"account_holder\": \"string\",\n  \"bank_name\": \"string\",\n  \"statement_date\": \"string\",\n  \"opening_balance\": 3128.1461964299583,\n  \"closing_balance\": 2873.9153897031,\n  \"transactions\": [\n    {\n      \"date\": \"string\",\n      \"description\": \"string\",\n      \"amount\": 2187.7416154834496,\n      \"type\": \"debit\",\n      \"balance\": 3764.6718018510937\n    },\n    {\n      \"date\": \"string\",\n      \"description\": \"string\",\n      \"amount\": 6752.07299292941,\n      \"type\": \"credit\",\n      \"balance\": 1880.0299745964887\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b320b18a-caa0-48ec-a592-ce5cf4fb806a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "bank-statements",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "documentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 1363,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7df28231-95b4-4da8-bcca-e4e4af58b998",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "bank-statements",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "documentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 1363,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b638eb83-80ba-4679-a06f-8f041fccfeac",
+          "name": "Delete a Bank Statement",
+          "request": {
+            "name": "Delete a Bank Statement",
+            "description": {
+              "content": "Permanently delete a processed bank statement.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "bank-statements",
+                ":documentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "documentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3b15da94-1f59-4cd3-b07b-8ceda0eed8b9",
+              "name": "Deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "bank-statements",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "documentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c8b72ae2-4904-4c84-b993-33ca68ee38b2",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "bank-statements",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "documentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 1363,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.veryfi.com/api/v8",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "CLIENT-ID"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a3a96506-cd88-4a9d-86c9-12716a1ba9a3",
+    "name": "Veryfi OCR Any Documents Bank Statements API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Veryfi OCR API extracts structured data from financial documents including receipts, invoices, bank statements, checks, W-2s, W-8s, W-9s, business cards, contracts, and more. The API uses AI-powered OCR to capture line items, taxes, totals, barcodes, vendor details, and other financial data across 91 currencies and 38 languages with enterprise-grade accuracy.\n\nContact Support:\n Name: Veryfi Support\n Email: support@veryfi.com",
+      "type": "text/plain"
+    }
+  }
+}

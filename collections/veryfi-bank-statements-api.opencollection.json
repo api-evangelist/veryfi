@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Veryfi OCR Any Documents Bank Statements API",
+    "version": "v8"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "CLIENT-ID",
+      "value": "{{CLIENT-ID}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Bank Statements",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Bank Statements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.veryfi.com/api/v8/partner/bank-statements"
+          },
+          "docs": "Retrieve a list of previously processed bank statements."
+        },
+        {
+          "info": {
+            "name": "Process a Bank Statement",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.veryfi.com/api/v8/partner/bank-statements",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a bank statement for AI-powered data extraction. Returns structured transaction data, account information, balances, and metadata. Supports PDF, image formats, and multi-page documents."
+        },
+        {
+          "info": {
+            "name": "Get a Bank Statement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.veryfi.com/api/v8/partner/bank-statements/:documentId",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific processed bank statement by ID."
+        },
+        {
+          "info": {
+            "name": "Delete a Bank Statement",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.veryfi.com/api/v8/partner/bank-statements/:documentId",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Permanently delete a processed bank statement."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

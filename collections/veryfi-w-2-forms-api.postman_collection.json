@@ -1,0 +1,976 @@
+{
+  "item": [
+    {
+      "id": "f941aa39-1e39-4aad-8d91-bb255d4f5167",
+      "name": "W-2 Forms",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1384bd38-c4b7-4f55-96cc-17c22852024b",
+          "name": "Process a W-2 Form",
+          "request": {
+            "name": "Process a W-2 Form",
+            "description": {
+              "content": "Submit a W-2 tax form for OCR extraction including employer details, employee information, wages, tax withholdings, and all W-2 box values.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "w2s"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file_url",
+                  "value": "<uri>",
+                  "type": "text",
+                  "description": "Publicly accessible URL to the document"
+                },
+                {
+                  "key": "file_urls",
+                  "value": "[\"<uri>\",\"<uri>\"]",
+                  "type": "text",
+                  "description": "Multiple document URLs (for multi-page documents)"
+                },
+                {
+                  "key": "file_data",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Base64-encoded document data"
+                },
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "Binary file upload"
+                },
+                {
+                  "key": "async",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Enable asynchronous processing via webhook"
+                },
+                {
+                  "key": "boost_mode",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Skip enrichment for faster processing"
+                },
+                {
+                  "key": "max_pages_to_process",
+                  "value": "15",
+                  "type": "text",
+                  "description": "Maximum pages to process"
+                },
+                {
+                  "key": "bounding_boxes",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Include coordinate data for extracted fields"
+                },
+                {
+                  "key": "confidence_details",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Include confidence scores for each extracted field"
+                },
+                {
+                  "key": "external_id",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Custom identifier for the document in your system"
+                },
+                {
+                  "key": "tags",
+                  "value": "[\"<string>\",\"<string>\"]",
+                  "type": "text",
+                  "description": "Tags for document organization"
+                },
+                {
+                  "key": "country",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Two-letter country code as currency hint"
+                },
+                {
+                  "key": "parse_address",
+                  "value": "<boolean>",
+                  "type": "text",
+                  "description": "Break address fields into individual components"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dade9d76-4549-474d-86a3-f459ee5a6420",
+              "name": "W-2 processed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "w2s"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "Publicly accessible URL to the document",
+                        "type": "text/plain"
+                      },
+                      "key": "file_url",
+                      "value": "<uri>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Multiple document URLs (for multi-page documents)",
+                        "type": "text/plain"
+                      },
+                      "key": "file_urls",
+                      "value": "[\"<uri>\",\"<uri>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Base64-encoded document data",
+                        "type": "text/plain"
+                      },
+                      "key": "file_data",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Binary file upload",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Enable asynchronous processing via webhook",
+                        "type": "text/plain"
+                      },
+                      "key": "async",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Skip enrichment for faster processing",
+                        "type": "text/plain"
+                      },
+                      "key": "boost_mode",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Maximum pages to process",
+                        "type": "text/plain"
+                      },
+                      "key": "max_pages_to_process",
+                      "value": "15",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Include coordinate data for extracted fields",
+                        "type": "text/plain"
+                      },
+                      "key": "bounding_boxes",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Include confidence scores for each extracted field",
+                        "type": "text/plain"
+                      },
+                      "key": "confidence_details",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Custom identifier for the document in your system",
+                        "type": "text/plain"
+                      },
+                      "key": "external_id",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Tags for document organization",
+                        "type": "text/plain"
+                      },
+                      "key": "tags",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Two-letter country code as currency hint",
+                        "type": "text/plain"
+                      },
+                      "key": "country",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Break address fields into individual components",
+                        "type": "text/plain"
+                      },
+                      "key": "parse_address",
+                      "value": "<boolean>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1629,\n  \"employee_name\": \"string\",\n  \"employee_ssn\": \"string\",\n  \"employer_name\": \"string\",\n  \"employer_ein\": \"string\",\n  \"tax_year\": \"string\",\n  \"wages\": 3467.4852640786758,\n  \"federal_tax_withheld\": 6651.845538932894,\n  \"social_security_wages\": 1760.682527120273,\n  \"social_security_tax\": 606.6272801806483,\n  \"medicare_wages\": 6281.058785811865,\n  \"medicare_tax\": 8334.340251608413\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "72bca579-ec88-49b2-a416-90b7b0ef4675",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "w2s"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "Publicly accessible URL to the document",
+                        "type": "text/plain"
+                      },
+                      "key": "file_url",
+                      "value": "<uri>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Multiple document URLs (for multi-page documents)",
+                        "type": "text/plain"
+                      },
+                      "key": "file_urls",
+                      "value": "[\"<uri>\",\"<uri>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Base64-encoded document data",
+                        "type": "text/plain"
+                      },
+                      "key": "file_data",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Binary file upload",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Enable asynchronous processing via webhook",
+                        "type": "text/plain"
+                      },
+                      "key": "async",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Skip enrichment for faster processing",
+                        "type": "text/plain"
+                      },
+                      "key": "boost_mode",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Maximum pages to process",
+                        "type": "text/plain"
+                      },
+                      "key": "max_pages_to_process",
+                      "value": "15",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Include coordinate data for extracted fields",
+                        "type": "text/plain"
+                      },
+                      "key": "bounding_boxes",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Include confidence scores for each extracted field",
+                        "type": "text/plain"
+                      },
+                      "key": "confidence_details",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Custom identifier for the document in your system",
+                        "type": "text/plain"
+                      },
+                      "key": "external_id",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Tags for document organization",
+                        "type": "text/plain"
+                      },
+                      "key": "tags",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Two-letter country code as currency hint",
+                        "type": "text/plain"
+                      },
+                      "key": "country",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Break address fields into individual components",
+                        "type": "text/plain"
+                      },
+                      "key": "parse_address",
+                      "value": "<boolean>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 7129,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0cb0930-e66f-448f-ab1c-ebfc3086ce71",
+          "name": "List All W-2 Forms",
+          "request": {
+            "name": "List All W-2 Forms",
+            "description": {
+              "content": "Retrieve a list of previously processed W-2 forms.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "w2s"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "73eac871-bb61-43d9-83a5-ac0baf74d72e",
+              "name": "List of W-2 forms",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "w2s"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 6266,\n    \"employee_name\": \"string\",\n    \"employee_ssn\": \"string\",\n    \"employer_name\": \"string\",\n    \"employer_ein\": \"string\",\n    \"tax_year\": \"string\",\n    \"wages\": 649.5252701556775,\n    \"federal_tax_withheld\": 8685.98127845781,\n    \"social_security_wages\": 3486.2732241521667,\n    \"social_security_tax\": 9086.354571543006,\n    \"medicare_wages\": 9868.666901963012,\n    \"medicare_tax\": 6346.509285565376\n  },\n  {\n    \"id\": 6589,\n    \"employee_name\": \"string\",\n    \"employee_ssn\": \"string\",\n    \"employer_name\": \"string\",\n    \"employer_ein\": \"string\",\n    \"tax_year\": \"string\",\n    \"wages\": 8720.76893718744,\n    \"federal_tax_withheld\": 2141.3683813910834,\n    \"social_security_wages\": 6421.062300816525,\n    \"social_security_tax\": 5297.0653815634505,\n    \"medicare_wages\": 7254.41730976418,\n    \"medicare_tax\": 1909.360593088174\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf27c168-33d6-49a6-8670-80ad503aaced",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "w2s"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 7129,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4abf5e4c-07b8-4530-b49c-6a722553dd0d",
+          "name": "Get a W-2 Form",
+          "request": {
+            "name": "Get a W-2 Form",
+            "description": {
+              "content": "Retrieve a specific processed W-2 form by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "w2s",
+                ":documentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "documentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fd192b86-3314-47a4-9fdf-f4ac261948a5",
+              "name": "W-2 form details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "w2s",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "documentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1629,\n  \"employee_name\": \"string\",\n  \"employee_ssn\": \"string\",\n  \"employer_name\": \"string\",\n  \"employer_ein\": \"string\",\n  \"tax_year\": \"string\",\n  \"wages\": 3467.4852640786758,\n  \"federal_tax_withheld\": 6651.845538932894,\n  \"social_security_wages\": 1760.682527120273,\n  \"social_security_tax\": 606.6272801806483,\n  \"medicare_wages\": 6281.058785811865,\n  \"medicare_tax\": 8334.340251608413\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a3bad93-ec61-4dc8-a7d7-65e7b47c1057",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "w2s",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "documentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 7129,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5094a6fe-84a9-42de-b737-ce91ff6f7f9c",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "w2s",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "documentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 7129,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "51fd5e54-48fe-4081-8576-9dd5b2ad1262",
+          "name": "Delete a W-2 Form",
+          "request": {
+            "name": "Delete a W-2 Form",
+            "description": {
+              "content": "Permanently delete a processed W-2 form.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "w2s",
+                ":documentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "documentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cf2aab5d-72e7-4f38-becd-b45476d483ab",
+              "name": "Deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "w2s",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "documentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e893e27b-a852-430c-bd97-b45430043967",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "w2s",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "documentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 7129,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.veryfi.com/api/v8",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "CLIENT-ID"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "666d0649-5401-4728-8af3-d20a42ca66e8",
+    "name": "Veryfi OCR Any Documents W-2 Forms API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Veryfi OCR API extracts structured data from financial documents including receipts, invoices, bank statements, checks, W-2s, W-8s, W-9s, business cards, contracts, and more. The API uses AI-powered OCR to capture line items, taxes, totals, barcodes, vendor details, and other financial data across 91 currencies and 38 languages with enterprise-grade accuracy.\n\nContact Support:\n Name: Veryfi Support\n Email: support@veryfi.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Veryfi OCR Any Documents Classification API",
+    "version": "v8"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "CLIENT-ID",
+      "value": "{{CLIENT-ID}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Classification",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Classify a Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.veryfi.com/api/v8/partner/classify",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a document for classification to determine its type before processing. Returns the detected document type to route to the appropriate extraction endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

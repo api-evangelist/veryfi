@@ -1,0 +1,139 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Veryfi OCR Any Documents API",
+    "version": "v8"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "CLIENT-ID",
+      "value": "{{CLIENT-ID}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.veryfi.com/api/v8/partner/documents",
+            "params": [
+              {
+                "name": "created_date__gt",
+                "value": "",
+                "type": "query",
+                "description": "Filter documents created after this date (format YYYY-MM-DD+HH:MM:SS)"
+              },
+              {
+                "name": "created_date__lt",
+                "value": "",
+                "type": "query",
+                "description": "Filter documents created before this date"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of documents per page"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of previously processed documents with optional filtering by date range, tags, and other criteria."
+        },
+        {
+          "info": {
+            "name": "Process a Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.veryfi.com/api/v8/partner/documents",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a document (receipt, invoice, bill, or other financial document) for AI-powered OCR extraction. Returns structured JSON with vendor details, line items, taxes, totals, and other captured fields. Supports file uploads, URLs, base64-encoded data, and S3 references. Optionally supports asynchronous processing via webhooks."
+        },
+        {
+          "info": {
+            "name": "Get a Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.veryfi.com/api/v8/partner/documents/:documentId",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "Unique document identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve a previously processed document by its ID."
+        },
+        {
+          "info": {
+            "name": "Update a Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.veryfi.com/api/v8/partner/documents/:documentId",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "Unique document identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update metadata, tags, or category for a processed document."
+        },
+        {
+          "info": {
+            "name": "Delete a Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.veryfi.com/api/v8/partner/documents/:documentId",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "Unique document identifier"
+              }
+            ]
+          },
+          "docs": "Permanently delete a processed document and its extracted data."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

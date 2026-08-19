@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Veryfi OCR Any Documents W-9 Forms API",
+    "version": "v8"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "CLIENT-ID",
+      "value": "{{CLIENT-ID}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "W-9 Forms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All W-9 Forms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.veryfi.com/api/v8/partner/w9s"
+          },
+          "docs": "Retrieve a list of previously processed W-9 forms."
+        },
+        {
+          "info": {
+            "name": "Process a W-9 Form",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.veryfi.com/api/v8/partner/w9s",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a W-9 tax form for OCR extraction including taxpayer information, TIN, business name, entity type, and certification details."
+        },
+        {
+          "info": {
+            "name": "Get a W-9 Form",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.veryfi.com/api/v8/partner/w9s/:documentId",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific processed W-9 form by ID."
+        },
+        {
+          "info": {
+            "name": "Delete a W-9 Form",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.veryfi.com/api/v8/partner/w9s/:documentId",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Permanently delete a processed W-9 form."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

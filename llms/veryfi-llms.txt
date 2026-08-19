@@ -1,0 +1,58 @@
+# https://docs.veryfi.com/ llms.txt
+
+## Overall Summary
+
+> Veryfi is an industry leader specializing in ultra-secure data extraction and capture solutions that revolutionize document processing and management. The company offers a robust OCR API and mobile SDKs that enable businesses to extract real-time data from unstructured documents such as invoices, receipts, business cards, bank statements, checks, and W-2 forms across 91 currencies and 38 languages. Veryfi's comprehensive suite of APIs and SDKs allows seamless integration, ensuring swift, accurate data conversion and enhancing efficiency in financial operations. Users can leverage capabilities like synchronous and asynchronous processing, making it easy to handle bulk document uploads or single document submissions. With a strong focus on developer-friendly tools, Veryfi also provides comprehensive visual development aids and open-source SDKs in multiple programming languages to speed up implementation and shorten the time to value. By innovatively harnessing machine learning models, Veryfi continuously refines its data extraction accuracy, maintaining exceptional standards for its diverse offerings, from processing PDF documents to handling complex business processes with unrivaled precision and speed. Veryfi stands out for its dedication to enabling businesses to efficiently turn unstructured data into insightful, actionable information.
+
+## Page Links
+
+- [Veryfi Documentation](https://docs.veryfi.com): Explore Veryfi's OCR API for efficient data extraction from various document types.
+- [Veryfi OCR API Reference](https://docs.veryfi.com/api/getting-started/reference): Explore the Veryfi API for TLS, UTF-8 encoding, and date formats.
+- [Sync vs Async Processing](https://docs.veryfi.com/api/getting-started/sync-vs-async-processing): Explore Veryfi's synchronous and asynchronous document processing for efficient data extraction.
+- [Document Processing Guide](https://docs.veryfi.com/api/getting-started/document-processing): Learn to process documents with Veryfi's easy-to-use API methods.
+- [Veryfi API Error Guide](https://docs.veryfi.com/api/getting-started/errors): Explore comprehensive Veryfi API error codes, solutions, and troubleshooting tips.
+- [Veryfi API Authentication](https://docs.veryfi.com/api/getting-started/authentication): Learn to authenticate and access the Veryfi API effortlessly with your credentials.
+- [Veryfi SDKs Overview](https://docs.veryfi.com/api/getting-started/sdks): Explore Veryfi's SDKs for rapid API integration and development in multiple languages.
+- [Veryfi API Documentation](https://docs.veryfi.com/api/veryfi-api): Explore Veryfi API for seamless integration and efficient document processing solutions.
+- [Veryfi API Rate Limits](https://docs.veryfi.com/api/getting-started/rate-limits): Understand Veryfi's API rate limits to optimize your application usage effectively.
+- [Model Training Guide](https://docs.veryfi.com/api/getting-started/model-training): Learn to improve Veryfi's data extraction accuracy through model training techniques.
+- [OCR Counts API](https://docs.veryfi.com/api/get-ocr-counts): Retrieve OCR scan counts easily with Veryfi's robust API integration.
+- [Search Documents API](https://docs.veryfi.com/api/receipts-invoices/search-documents): Quickly search, filter, and retrieve documents using Veryfi's powerful API.
+- [Asynchronous Bank Statement Processing](https://docs.veryfi.com/api/bank-statements/process-a-bank-statement-asynchronously): Process bank statements asynchronously with Veryfi's efficient API integration.
+- [Retrieve PDF Documents](https://docs.veryfi.com/api/receipts-invoices/get-documents-from-pdf): Access previously processed documents easily using Veryfi's API.
+- [Retrieve Bank Statement](https://docs.veryfi.com/api/bank-statements/get-a-bank-statement): Access previously processed bank statements easily using Veryfi's API.
+- [Add Tag to Document](https://docs.veryfi.com/api/receipts-invoices/add-a-tag-to-a-document): Easily tag your documents with Veryfi's API for seamless organization.
+- [Tagging Documents API](https://docs.veryfi.com/api/receipts-invoices/add-tags-to-a-document): Easily add or create tags for your documents with Veryfi's API integration.
+- [Delete Document API](https://docs.veryfi.com/api/receipts-invoices/delete-a-document): Easily delete documents with Veryfi's efficient API endpoint for document management.
+- [Retrieve Processed Checks](https://docs.veryfi.com/api/checks/get-a-check): Access previously processed checks easily with Veryfi's Get a Check API.
+- [OpenAPI Schema Guide](https://docs.veryfi.com/api/get-open-api-schema): Explore Veryfi's OpenAPI schema for seamless API integration and usage.
+- [Retrieve Contract Details](https://docs.veryfi.com/api/contracts/get-a-contract): Access and manage your processed contracts effortlessly with Veryfi's API.
+- [Process a ∀Doc](https://docs.veryfi.com/api/anydocs/process-a-A-doc): Easily extract data from unstructured documents with Veryfi's advanced API.
+- [Bulk Document Processing](https://docs.veryfi.com/api/receipts-invoices/bulk-process-multiple-documents): Easily process multiple documents with Veryfi's powerful API for streamlined management.
+- [Business Cards API](https://docs.veryfi.com/api/business-cards/get-business-cards): Access, retrieve, and manage business card data effortlessly with Veryfi's API.
+- [Delete Business Card API](https://docs.veryfi.com/api/business-cards/delete-a-business-card): Learn how to delete a business card using Veryfi's API effortlessly.
+- [Get AnyDocs API](https://docs.veryfi.com/api/anydocs/get-A-docs): Access and retrieve processed documents easily with Veryfi's Get AnyDocs API.
+- [Retrieve Bank Statements](https://docs.veryfi.com/api/bank-statements/get-bank-statements): Access and manage your bank statements seamlessly with Veryfi's powerful API.
+- [Process Bank Statements](https://docs.veryfi.com/api/bank-statements/process-a-bank-statement): Submit and extract valuable data from bank statements effortlessly with Veryfi's API.
+- [Process a Contract](https://docs.veryfi.com/api/contracts/process-a-contract): Effortlessly submit and extract data from contracts using Veryfi's API endpoint.
+- [Process a Check](https://docs.veryfi.com/api/checks/process-a-check): Submit and extract data from checks using Veryfi's powerful API endpoint.
+- [Update Bank Statement](https://docs.veryfi.com/api/bank-statements/update-a-bank-statement): Use Veryfi's API to efficiently update bank statements for accurate data management.
+- [Retrieve Checks API](https://docs.veryfi.com/api/checks/get-checks): Access and manage processed checks with Veryfi's powerful API solutions.
+- [Retrieve Business Card](https://docs.veryfi.com/api/business-cards/get-a-business-card): Access your processed business card effortlessly with Veryfi's API endpoint.
+- [Delete a Contract](https://docs.veryfi.com/api/contracts/delete-a-contract): Effortlessly delete contracts using Veryfi's API for seamless document management.
+- [Update Business Card](https://docs.veryfi.com/api/business-cards/update-a-business-card): Easily update processed business card documents for accurate data extraction with Veryfi.
+- [Asynchronous Document Processing](https://docs.veryfi.com/api/anydocs/process-a-A-doc-asynchronously): Efficiently process documents asynchronously with Veryfi's powerful API solutions.
+- [Delete a Check API](https://docs.veryfi.com/api/checks/delete-a-check): Effortlessly delete checks via Veryfi's robust API endpoint with proper authentication.
+- [Create Line Item](https://docs.veryfi.com/api/receipts-invoices/create-a-line-item): Learn to create line items in Veryfi's API for receipts and invoices.
+- [Process Business Cards](https://docs.veryfi.com/api/business-cards/process-a-business-card): Effortlessly extract insights from business cards using Veryfi's API endpoint.
+- [Get Contracts API](https://docs.veryfi.com/api/contracts/get-contracts): Access and fetch processed contract data effortlessly with Veryfi's API.
+- [Asynchronous Check Processing](https://docs.veryfi.com/api/checks/process-a-check-asynchronously): Efficiently process checks asynchronously with Veryfi's API for seamless document management.
+- [Retrieve Document Details](https://docs.veryfi.com/api/receipts-invoices/get-a-document): Access and extract detailed information from documents via Veryfi's API endpoint.
+- [Veryfi API Overview](https://docs.veryfi.com/api/v7/v7-veryfi-api): Access Veryfi API for seamless authentication and data integration solutions.
+- [PDF Split and Process](https://docs.veryfi.com/api/receipts-invoices/split-and-process-a-pdf): Easily split and process multi-page PDFs with Veryfi's powerful API.
+- [Retrieve Processed Documents](https://docs.veryfi.com/api/anydocs/get-a-A-doc): Access and retrieve previously processed documents quickly with Veryfi's API.
+- [Update Document API](https://docs.veryfi.com/api/receipts-invoices/update-a-document): Easily update processed documents with Veryfi's accurate Machine Learning models.
+- [Update a Check](https://docs.veryfi.com/api/checks/update-a-check): Learn how to update processed documents for accuracy with Veryfi's API.
+- [Process Documents API](https://docs.veryfi.com/api/receipts-invoices/process-a-document): Easily extract insights from documents using Veryfi's powerful API for businesses.
+- [Process Check Remittance](https://docs.veryfi.com/api/checks/process-a-check-with-remittance): Easily submit and extract data from checks with remittance using Veryfi's API.
+- [Veryfi Interactive API](https://docs.veryfi.com/interactive-api): Access and integrate Veryfi's powerful interactive API for efficient document processing. 

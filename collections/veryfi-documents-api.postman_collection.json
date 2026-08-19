@@ -1,0 +1,1659 @@
+{
+  "item": [
+    {
+      "id": "43588f3f-1800-4721-b0a0-7e9d6650b488",
+      "name": "Documents",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "287abcc9-53d5-4257-ad73-b106db03967a",
+          "name": "Process a Document",
+          "request": {
+            "name": "Process a Document",
+            "description": {
+              "content": "Submit a document (receipt, invoice, bill, or other financial document) for AI-powered OCR extraction. Returns structured JSON with vendor details, line items, taxes, totals, and other captured fields. Supports file uploads, URLs, base64-encoded data, and S3 references. Optionally supports asynchronous processing via webhooks.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file_url",
+                  "value": "<uri>",
+                  "type": "text",
+                  "description": "Publicly accessible URL to the document"
+                },
+                {
+                  "key": "file_urls",
+                  "value": "[\"<uri>\",\"<uri>\"]",
+                  "type": "text",
+                  "description": "Multiple document URLs (for multi-page documents)"
+                },
+                {
+                  "key": "file_data",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Base64-encoded document data"
+                },
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "Binary file upload"
+                },
+                {
+                  "key": "async",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Enable asynchronous processing via webhook"
+                },
+                {
+                  "key": "boost_mode",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Skip enrichment for faster processing"
+                },
+                {
+                  "key": "max_pages_to_process",
+                  "value": "15",
+                  "type": "text",
+                  "description": "Maximum pages to process"
+                },
+                {
+                  "key": "bounding_boxes",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Include coordinate data for extracted fields"
+                },
+                {
+                  "key": "confidence_details",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Include confidence scores for each extracted field"
+                },
+                {
+                  "key": "external_id",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Custom identifier for the document in your system"
+                },
+                {
+                  "key": "tags",
+                  "value": "[\"<string>\",\"<string>\"]",
+                  "type": "text",
+                  "description": "Tags for document organization"
+                },
+                {
+                  "key": "country",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Two-letter country code as currency hint"
+                },
+                {
+                  "key": "parse_address",
+                  "value": "<boolean>",
+                  "type": "text",
+                  "description": "Break address fields into individual components"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b34b094d-c997-4352-a731-3804444e241a",
+              "name": "Document successfully processed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "Publicly accessible URL to the document",
+                        "type": "text/plain"
+                      },
+                      "key": "file_url",
+                      "value": "<uri>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Multiple document URLs (for multi-page documents)",
+                        "type": "text/plain"
+                      },
+                      "key": "file_urls",
+                      "value": "[\"<uri>\",\"<uri>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Base64-encoded document data",
+                        "type": "text/plain"
+                      },
+                      "key": "file_data",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Binary file upload",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Enable asynchronous processing via webhook",
+                        "type": "text/plain"
+                      },
+                      "key": "async",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Skip enrichment for faster processing",
+                        "type": "text/plain"
+                      },
+                      "key": "boost_mode",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Maximum pages to process",
+                        "type": "text/plain"
+                      },
+                      "key": "max_pages_to_process",
+                      "value": "15",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Include coordinate data for extracted fields",
+                        "type": "text/plain"
+                      },
+                      "key": "bounding_boxes",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Include confidence scores for each extracted field",
+                        "type": "text/plain"
+                      },
+                      "key": "confidence_details",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Custom identifier for the document in your system",
+                        "type": "text/plain"
+                      },
+                      "key": "external_id",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Tags for document organization",
+                        "type": "text/plain"
+                      },
+                      "key": "tags",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Two-letter country code as currency hint",
+                        "type": "text/plain"
+                      },
+                      "key": "country",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Break address fields into individual components",
+                        "type": "text/plain"
+                      },
+                      "key": "parse_address",
+                      "value": "<boolean>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 7493,\n  \"external_id\": \"string\",\n  \"document_type\": \"string\",\n  \"vendor\": {\n    \"name\": \"string\",\n    \"address\": \"string\",\n    \"phone_number\": \"string\",\n    \"email\": \"string\"\n  },\n  \"date\": \"string\",\n  \"due_date\": \"string\",\n  \"invoice_number\": \"string\",\n  \"total\": 7787.753187634927,\n  \"subtotal\": 9105.421493128864,\n  \"tax\": 6579.973815648937,\n  \"tip\": 9817.835825121383,\n  \"currency_code\": \"string\",\n  \"line_items\": [\n    {\n      \"description\": \"string\",\n      \"quantity\": 4819.911406232387,\n      \"price\": 8562.269285338325,\n      \"total\": 6341.974142335508,\n      \"sku\": \"string\",\n      \"tax\": 7463.150490580841\n    },\n    {\n      \"description\": \"string\",\n      \"quantity\": 7523.936271270011,\n      \"price\": 5061.454396029569,\n      \"total\": 2980.650969186398,\n      \"sku\": \"string\",\n      \"tax\": 3804.277106712417\n    }\n  ],\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"created\": \"1964-05-05T21:02:46.591Z\",\n  \"updated\": \"1955-09-24T16:48:36.264Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "37821360-1a6f-404c-bcfd-c115070bd36b",
+              "name": "Bad request - malformed or missing required fields",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "Publicly accessible URL to the document",
+                        "type": "text/plain"
+                      },
+                      "key": "file_url",
+                      "value": "<uri>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Multiple document URLs (for multi-page documents)",
+                        "type": "text/plain"
+                      },
+                      "key": "file_urls",
+                      "value": "[\"<uri>\",\"<uri>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Base64-encoded document data",
+                        "type": "text/plain"
+                      },
+                      "key": "file_data",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Binary file upload",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Enable asynchronous processing via webhook",
+                        "type": "text/plain"
+                      },
+                      "key": "async",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Skip enrichment for faster processing",
+                        "type": "text/plain"
+                      },
+                      "key": "boost_mode",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Maximum pages to process",
+                        "type": "text/plain"
+                      },
+                      "key": "max_pages_to_process",
+                      "value": "15",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Include coordinate data for extracted fields",
+                        "type": "text/plain"
+                      },
+                      "key": "bounding_boxes",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Include confidence scores for each extracted field",
+                        "type": "text/plain"
+                      },
+                      "key": "confidence_details",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Custom identifier for the document in your system",
+                        "type": "text/plain"
+                      },
+                      "key": "external_id",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Tags for document organization",
+                        "type": "text/plain"
+                      },
+                      "key": "tags",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Two-letter country code as currency hint",
+                        "type": "text/plain"
+                      },
+                      "key": "country",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Break address fields into individual components",
+                        "type": "text/plain"
+                      },
+                      "key": "parse_address",
+                      "value": "<boolean>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 9451,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55a980f5-545e-43e6-b2bb-26e979470ce3",
+              "name": "Unauthorized - invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "Publicly accessible URL to the document",
+                        "type": "text/plain"
+                      },
+                      "key": "file_url",
+                      "value": "<uri>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Multiple document URLs (for multi-page documents)",
+                        "type": "text/plain"
+                      },
+                      "key": "file_urls",
+                      "value": "[\"<uri>\",\"<uri>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Base64-encoded document data",
+                        "type": "text/plain"
+                      },
+                      "key": "file_data",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Binary file upload",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Enable asynchronous processing via webhook",
+                        "type": "text/plain"
+                      },
+                      "key": "async",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Skip enrichment for faster processing",
+                        "type": "text/plain"
+                      },
+                      "key": "boost_mode",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Maximum pages to process",
+                        "type": "text/plain"
+                      },
+                      "key": "max_pages_to_process",
+                      "value": "15",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Include coordinate data for extracted fields",
+                        "type": "text/plain"
+                      },
+                      "key": "bounding_boxes",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Include confidence scores for each extracted field",
+                        "type": "text/plain"
+                      },
+                      "key": "confidence_details",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Custom identifier for the document in your system",
+                        "type": "text/plain"
+                      },
+                      "key": "external_id",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Tags for document organization",
+                        "type": "text/plain"
+                      },
+                      "key": "tags",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Two-letter country code as currency hint",
+                        "type": "text/plain"
+                      },
+                      "key": "country",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Break address fields into individual components",
+                        "type": "text/plain"
+                      },
+                      "key": "parse_address",
+                      "value": "<boolean>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 9451,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6088cdbf-ab80-41a3-9ba3-64aa1b5ffda6",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "Publicly accessible URL to the document",
+                        "type": "text/plain"
+                      },
+                      "key": "file_url",
+                      "value": "<uri>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Multiple document URLs (for multi-page documents)",
+                        "type": "text/plain"
+                      },
+                      "key": "file_urls",
+                      "value": "[\"<uri>\",\"<uri>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Base64-encoded document data",
+                        "type": "text/plain"
+                      },
+                      "key": "file_data",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Binary file upload",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Enable asynchronous processing via webhook",
+                        "type": "text/plain"
+                      },
+                      "key": "async",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Skip enrichment for faster processing",
+                        "type": "text/plain"
+                      },
+                      "key": "boost_mode",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Maximum pages to process",
+                        "type": "text/plain"
+                      },
+                      "key": "max_pages_to_process",
+                      "value": "15",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Include coordinate data for extracted fields",
+                        "type": "text/plain"
+                      },
+                      "key": "bounding_boxes",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Include confidence scores for each extracted field",
+                        "type": "text/plain"
+                      },
+                      "key": "confidence_details",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Custom identifier for the document in your system",
+                        "type": "text/plain"
+                      },
+                      "key": "external_id",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Tags for document organization",
+                        "type": "text/plain"
+                      },
+                      "key": "tags",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Two-letter country code as currency hint",
+                        "type": "text/plain"
+                      },
+                      "key": "country",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Break address fields into individual components",
+                        "type": "text/plain"
+                      },
+                      "key": "parse_address",
+                      "value": "<boolean>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 9451,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eab9af34-ef41-417c-848c-9249f1e40955",
+          "name": "List All Documents",
+          "request": {
+            "name": "List All Documents",
+            "description": {
+              "content": "Retrieve a paginated list of previously processed documents with optional filtering by date range, tags, and other criteria.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "created_date__gt",
+                  "value": "<string>",
+                  "description": "Filter documents created after this date (format YYYY-MM-DD+HH:MM:SS)"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_date__lt",
+                  "value": "<string>",
+                  "description": "Filter documents created before this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "50",
+                  "description": "Number of documents per page"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "61f728a0-abe0-4357-93d5-7fc6dbe242e6",
+              "name": "List of documents",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "created_date__gt",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_date__lt",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 8825,\n  \"documents\": [\n    {\n      \"id\": 3795,\n      \"external_id\": \"string\",\n      \"document_type\": \"string\",\n      \"vendor\": {\n        \"name\": \"string\",\n        \"address\": \"string\",\n        \"phone_number\": \"string\",\n        \"email\": \"string\"\n      },\n      \"date\": \"string\",\n      \"due_date\": \"string\",\n      \"invoice_number\": \"string\",\n      \"total\": 8023.664271420573,\n      \"subtotal\": 6161.773701170594,\n      \"tax\": 9691.696063594263,\n      \"tip\": 6580.4286597306345,\n      \"currency_code\": \"string\",\n      \"line_items\": [\n        {\n          \"description\": \"string\",\n          \"quantity\": 2728.253546005769,\n          \"price\": 6504.669545236713,\n          \"total\": 4637.5592625863,\n          \"sku\": \"string\",\n          \"tax\": 6596.394637564963\n        },\n        {\n          \"description\": \"string\",\n          \"quantity\": 5189.763069418434,\n          \"price\": 9351.449880408047,\n          \"total\": 4419.233060308599,\n          \"sku\": \"string\",\n          \"tax\": 60.84841435285426\n        }\n      ],\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"created\": \"2018-12-25T18:02:26.489Z\",\n      \"updated\": \"1963-08-17T21:01:02.814Z\"\n    },\n    {\n      \"id\": 9143,\n      \"external_id\": \"string\",\n      \"document_type\": \"string\",\n      \"vendor\": {\n        \"name\": \"string\",\n        \"address\": \"string\",\n        \"phone_number\": \"string\",\n        \"email\": \"string\"\n      },\n      \"date\": \"string\",\n      \"due_date\": \"string\",\n      \"invoice_number\": \"string\",\n      \"total\": 2016.533808333648,\n      \"subtotal\": 2265.8429693916073,\n      \"tax\": 6475.5177198156425,\n      \"tip\": 1326.0879582898533,\n      \"currency_code\": \"string\",\n      \"line_items\": [\n        {\n          \"description\": \"string\",\n          \"quantity\": 5402.817089424267,\n          \"price\": 8070.946160131447,\n          \"total\": 6276.032176776036,\n          \"sku\": \"string\",\n          \"tax\": 8404.87572623986\n        },\n        {\n          \"description\": \"string\",\n          \"quantity\": 4000.5595456730903,\n          \"price\": 7520.740762811727,\n          \"total\": 5064.784082322218,\n          \"sku\": \"string\",\n          \"tax\": 4821.7750751606745\n        }\n      ],\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"created\": \"1948-08-09T16:49:19.939Z\",\n      \"updated\": \"2000-07-19T00:35:07.025Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "071b27af-164c-4fdc-ab8f-f91af6eb27a7",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "created_date__gt",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_date__lt",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 9451,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "01950b9e-0586-4c1e-a540-76ea1cc3ec26",
+          "name": "Get a Document",
+          "request": {
+            "name": "Get a Document",
+            "description": {
+              "content": "Retrieve a previously processed document by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "documents",
+                ":documentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "documentId",
+                  "description": "(Required) Unique document identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f605a563-08d7-4145-abc8-dc51ac3ed47c",
+              "name": "Document details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "documents",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "documentId",
+                      "description": "(Required) Unique document identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 7493,\n  \"external_id\": \"string\",\n  \"document_type\": \"string\",\n  \"vendor\": {\n    \"name\": \"string\",\n    \"address\": \"string\",\n    \"phone_number\": \"string\",\n    \"email\": \"string\"\n  },\n  \"date\": \"string\",\n  \"due_date\": \"string\",\n  \"invoice_number\": \"string\",\n  \"total\": 7787.753187634927,\n  \"subtotal\": 9105.421493128864,\n  \"tax\": 6579.973815648937,\n  \"tip\": 9817.835825121383,\n  \"currency_code\": \"string\",\n  \"line_items\": [\n    {\n      \"description\": \"string\",\n      \"quantity\": 4819.911406232387,\n      \"price\": 8562.269285338325,\n      \"total\": 6341.974142335508,\n      \"sku\": \"string\",\n      \"tax\": 7463.150490580841\n    },\n    {\n      \"description\": \"string\",\n      \"quantity\": 7523.936271270011,\n      \"price\": 5061.454396029569,\n      \"total\": 2980.650969186398,\n      \"sku\": \"string\",\n      \"tax\": 3804.277106712417\n    }\n  ],\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"created\": \"1964-05-05T21:02:46.591Z\",\n  \"updated\": \"1955-09-24T16:48:36.264Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7bc12fc7-ba20-4575-ad2c-6588d34f1c05",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "documents",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "documentId",
+                      "description": "(Required) Unique document identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 9451,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "473aa75c-a968-4fc6-8012-4fa353b86d51",
+              "name": "Document not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "documents",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "documentId",
+                      "description": "(Required) Unique document identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 9451,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3d29f20e-1748-47ca-bd89-5d812e60f014",
+          "name": "Update a Document",
+          "request": {
+            "name": "Update a Document",
+            "description": {
+              "content": "Update metadata, tags, or category for a processed document.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "documents",
+                ":documentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "documentId",
+                  "description": "(Required) Unique document identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"category\": \"<string>\",\n  \"external_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f581b4e2-d552-43e6-b2ba-ae1a1e846434",
+              "name": "Document updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "documents",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "documentId",
+                      "description": "(Required) Unique document identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"category\": \"<string>\",\n  \"external_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 7493,\n  \"external_id\": \"string\",\n  \"document_type\": \"string\",\n  \"vendor\": {\n    \"name\": \"string\",\n    \"address\": \"string\",\n    \"phone_number\": \"string\",\n    \"email\": \"string\"\n  },\n  \"date\": \"string\",\n  \"due_date\": \"string\",\n  \"invoice_number\": \"string\",\n  \"total\": 7787.753187634927,\n  \"subtotal\": 9105.421493128864,\n  \"tax\": 6579.973815648937,\n  \"tip\": 9817.835825121383,\n  \"currency_code\": \"string\",\n  \"line_items\": [\n    {\n      \"description\": \"string\",\n      \"quantity\": 4819.911406232387,\n      \"price\": 8562.269285338325,\n      \"total\": 6341.974142335508,\n      \"sku\": \"string\",\n      \"tax\": 7463.150490580841\n    },\n    {\n      \"description\": \"string\",\n      \"quantity\": 7523.936271270011,\n      \"price\": 5061.454396029569,\n      \"total\": 2980.650969186398,\n      \"sku\": \"string\",\n      \"tax\": 3804.277106712417\n    }\n  ],\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"created\": \"1964-05-05T21:02:46.591Z\",\n  \"updated\": \"1955-09-24T16:48:36.264Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc09c47e-745a-4af2-9940-c64f56d3b4ef",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "documents",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "documentId",
+                      "description": "(Required) Unique document identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"category\": \"<string>\",\n  \"external_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 9451,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d76b8121-e84c-43ab-9146-c47ccb115881",
+              "name": "Document not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "documents",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "documentId",
+                      "description": "(Required) Unique document identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"category\": \"<string>\",\n  \"external_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 9451,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f21139a6-fe1e-4301-9141-fb5a4fca232f",
+          "name": "Delete a Document",
+          "request": {
+            "name": "Delete a Document",
+            "description": {
+              "content": "Permanently delete a processed document and its extracted data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "documents",
+                ":documentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "documentId",
+                  "description": "(Required) Unique document identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f3d987a9-804e-4bfd-bc51-84392710571c",
+              "name": "Document deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "documents",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "documentId",
+                      "description": "(Required) Unique document identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6df7104d-d3de-448d-9ad9-7fd68f467c0c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "documents",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "documentId",
+                      "description": "(Required) Unique document identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 9451,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "966b9c16-3aa5-40ff-be8a-5651837b34fd",
+              "name": "Document not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "documents",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "documentId",
+                      "description": "(Required) Unique document identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 9451,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.veryfi.com/api/v8",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "CLIENT-ID"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "167f19b4-b16a-4019-a883-54e4201a8320",
+    "name": "Veryfi OCR Any Documents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Veryfi OCR API extracts structured data from financial documents including receipts, invoices, bank statements, checks, W-2s, W-8s, W-9s, business cards, contracts, and more. The API uses AI-powered OCR to capture line items, taxes, totals, barcodes, vendor details, and other financial data across 91 currencies and 38 languages with enterprise-grade accuracy.\n\nContact Support:\n Name: Veryfi Support\n Email: support@veryfi.com",
+      "type": "text/plain"
+    }
+  }
+}

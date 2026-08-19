@@ -1,0 +1,694 @@
+{
+  "item": [
+    {
+      "id": "048dc79a-8a70-4a4b-b14b-17671a154131",
+      "name": "Any Documents",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cf70d1ea-acff-4d66-b595-10d7af89d3b8",
+          "name": "Process Any Document",
+          "request": {
+            "name": "Process Any Document",
+            "description": {
+              "content": "Submit any document type for custom field extraction using a named blueprint. The ∀Docs API can extract structured data from any unstructured document type including contracts, custom forms, and non-standard documents.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "any-documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"blueprint_name\": \"<string>\",\n  \"file_url\": \"<uri>\",\n  \"file_urls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"file_data\": \"<string>\",\n  \"file\": \"<binary>\",\n  \"async\": false,\n  \"boost_mode\": false,\n  \"max_pages_to_process\": 15,\n  \"bounding_boxes\": false,\n  \"confidence_details\": false,\n  \"external_id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"country\": \"<string>\",\n  \"parse_address\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cbf5f2f7-92e8-4015-9d3e-c5dbea82c35e",
+              "name": "Document processed using blueprint",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "any-documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blueprint_name\": \"<string>\",\n  \"file_url\": \"http://PnpauUpZAJhRjsqUbsDAwwBrVyXs.kcLF,it-z-2H+H4Hm3DaEhsnHaOATaZrsidPjaCAhp4t5FDgqgofm.agGhYgnW4Ovr8Y\",\n  \"file_urls\": [\n    \"https://WgHjZObMKSchxzllmAZqMdcbXXLYCBnY.wfpepFO3B7ERU.Rnyw1bjKyti+jVZxNv2.w3sx\",\n    \"http://ltNTNRSsdUsJebUXXpcciSCKh.ddehL8y,aOAliXgXZy68ev,X,EwDLM\"\n  ],\n  \"file_data\": \"string\",\n  \"file\": \"string\",\n  \"async\": false,\n  \"boost_mode\": false,\n  \"max_pages_to_process\": 15,\n  \"bounding_boxes\": false,\n  \"confidence_details\": false,\n  \"external_id\": \"string\",\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"country\": \"string\",\n  \"parse_address\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 512,\n  \"external_id\": \"string\",\n  \"document_type\": \"string\",\n  \"vendor\": {\n    \"name\": \"string\",\n    \"address\": \"string\",\n    \"phone_number\": \"string\",\n    \"email\": \"string\"\n  },\n  \"date\": \"string\",\n  \"due_date\": \"string\",\n  \"invoice_number\": \"string\",\n  \"total\": 2922.8028889181855,\n  \"subtotal\": 6702.260508486617,\n  \"tax\": 5471.180071081119,\n  \"tip\": 197.4797079183288,\n  \"currency_code\": \"string\",\n  \"line_items\": [\n    {\n      \"description\": \"string\",\n      \"quantity\": 5515.461208066947,\n      \"price\": 1965.4428746371611,\n      \"total\": 2842.7342432383275,\n      \"sku\": \"string\",\n      \"tax\": 7816.185959672126\n    },\n    {\n      \"description\": \"string\",\n      \"quantity\": 967.5000183818472,\n      \"price\": 9083.229562883485,\n      \"total\": 7153.828532392955,\n      \"sku\": \"string\",\n      \"tax\": 3792.31999025785\n    }\n  ],\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"created\": \"2020-07-09T18:45:23.331Z\",\n  \"updated\": \"2001-01-29T04:21:41.676Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8473ac7b-4702-4a53-958f-845e23dfb967",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "any-documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blueprint_name\": \"<string>\",\n  \"file_url\": \"http://PnpauUpZAJhRjsqUbsDAwwBrVyXs.kcLF,it-z-2H+H4Hm3DaEhsnHaOATaZrsidPjaCAhp4t5FDgqgofm.agGhYgnW4Ovr8Y\",\n  \"file_urls\": [\n    \"https://WgHjZObMKSchxzllmAZqMdcbXXLYCBnY.wfpepFO3B7ERU.Rnyw1bjKyti+jVZxNv2.w3sx\",\n    \"http://ltNTNRSsdUsJebUXXpcciSCKh.ddehL8y,aOAliXgXZy68ev,X,EwDLM\"\n  ],\n  \"file_data\": \"string\",\n  \"file\": \"string\",\n  \"async\": false,\n  \"boost_mode\": false,\n  \"max_pages_to_process\": 15,\n  \"bounding_boxes\": false,\n  \"confidence_details\": false,\n  \"external_id\": \"string\",\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"country\": \"string\",\n  \"parse_address\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 1185,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4bdf5e25-331a-4011-818b-a9d31c0a157f",
+          "name": "List Any Documents",
+          "request": {
+            "name": "List Any Documents",
+            "description": {
+              "content": "Retrieve a list of documents processed with custom blueprints.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "any-documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "created_date__gt",
+                  "value": "<string>",
+                  "description": "Filter by creation date greater than"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f04904f6-c8f4-4da4-a4a8-07364b83f0b7",
+              "name": "List of any documents",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "any-documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "created_date__gt",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 8566,\n    \"external_id\": \"string\",\n    \"document_type\": \"string\",\n    \"vendor\": {\n      \"name\": \"string\",\n      \"address\": \"string\",\n      \"phone_number\": \"string\",\n      \"email\": \"string\"\n    },\n    \"date\": \"string\",\n    \"due_date\": \"string\",\n    \"invoice_number\": \"string\",\n    \"total\": 5476.133848888846,\n    \"subtotal\": 1201.2891202611243,\n    \"tax\": 1609.3898819721164,\n    \"tip\": 2278.766810416364,\n    \"currency_code\": \"string\",\n    \"line_items\": [\n      {\n        \"description\": \"string\",\n        \"quantity\": 6062.616389076357,\n        \"price\": 1182.9544983880369,\n        \"total\": 9995.993267707447,\n        \"sku\": \"string\",\n        \"tax\": 4313.641311276767\n      },\n      {\n        \"description\": \"string\",\n        \"quantity\": 5112.787070844398,\n        \"price\": 2759.324629938391,\n        \"total\": 7348.272602414758,\n        \"sku\": \"string\",\n        \"tax\": 5859.011761101283\n      }\n    ],\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"created\": \"1967-11-08T09:30:48.198Z\",\n    \"updated\": \"1961-12-30T04:38:09.822Z\"\n  },\n  {\n    \"id\": 1893,\n    \"external_id\": \"string\",\n    \"document_type\": \"string\",\n    \"vendor\": {\n      \"name\": \"string\",\n      \"address\": \"string\",\n      \"phone_number\": \"string\",\n      \"email\": \"string\"\n    },\n    \"date\": \"string\",\n    \"due_date\": \"string\",\n    \"invoice_number\": \"string\",\n    \"total\": 5929.981157966087,\n    \"subtotal\": 501.310487048261,\n    \"tax\": 808.150303074584,\n    \"tip\": 5530.336421194608,\n    \"currency_code\": \"string\",\n    \"line_items\": [\n      {\n        \"description\": \"string\",\n        \"quantity\": 4168.078233563381,\n        \"price\": 5582.158554791724,\n        \"total\": 133.89132365682732,\n        \"sku\": \"string\",\n        \"tax\": 2949.4562655640834\n      },\n      {\n        \"description\": \"string\",\n        \"quantity\": 122.39467493486144,\n        \"price\": 1217.9942227024876,\n        \"total\": 8469.568926866417,\n        \"sku\": \"string\",\n        \"tax\": 9438.803503057141\n      }\n    ],\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"created\": \"2018-04-18T00:37:53.663Z\",\n    \"updated\": \"1990-12-12T18:32:29.893Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10ce9b8a-9a20-4024-bdbf-5463681e61c5",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "any-documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "created_date__gt",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 1185,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e8d0a73b-3c24-42e4-a81a-fb7a5f0018d6",
+          "name": "Get Any Document",
+          "request": {
+            "name": "Get Any Document",
+            "description": {
+              "content": "Retrieve a specific document processed with a custom blueprint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "any-documents",
+                ":documentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "documentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6977c3d8-a5b4-4d3a-b538-9bed8ac72bf4",
+              "name": "Document details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "any-documents",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "documentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 512,\n  \"external_id\": \"string\",\n  \"document_type\": \"string\",\n  \"vendor\": {\n    \"name\": \"string\",\n    \"address\": \"string\",\n    \"phone_number\": \"string\",\n    \"email\": \"string\"\n  },\n  \"date\": \"string\",\n  \"due_date\": \"string\",\n  \"invoice_number\": \"string\",\n  \"total\": 2922.8028889181855,\n  \"subtotal\": 6702.260508486617,\n  \"tax\": 5471.180071081119,\n  \"tip\": 197.4797079183288,\n  \"currency_code\": \"string\",\n  \"line_items\": [\n    {\n      \"description\": \"string\",\n      \"quantity\": 5515.461208066947,\n      \"price\": 1965.4428746371611,\n      \"total\": 2842.7342432383275,\n      \"sku\": \"string\",\n      \"tax\": 7816.185959672126\n    },\n    {\n      \"description\": \"string\",\n      \"quantity\": 967.5000183818472,\n      \"price\": 9083.229562883485,\n      \"total\": 7153.828532392955,\n      \"sku\": \"string\",\n      \"tax\": 3792.31999025785\n    }\n  ],\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"created\": \"2020-07-09T18:45:23.331Z\",\n  \"updated\": \"2001-01-29T04:21:41.676Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe2a5192-9cd5-4f4c-bdf5-ef567b1d0cbd",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "any-documents",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "documentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 1185,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b685c61f-dd9e-478e-b4da-00a77cf9a1c1",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "any-documents",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "documentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 1185,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "169366f3-2725-4335-a8f5-2363f2d88a18",
+          "name": "Delete Any Document",
+          "request": {
+            "name": "Delete Any Document",
+            "description": {
+              "content": "Permanently delete a custom document extraction.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "any-documents",
+                ":documentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "documentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7193d8e0-a62a-4388-a636-860550ca8718",
+              "name": "Deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "any-documents",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "documentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "eb1a4787-9ece-4f66-8824-3aa1f47fffbc",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "any-documents",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "documentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 1185,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.veryfi.com/api/v8",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "CLIENT-ID"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5d6ade23-2565-4bde-9c8c-16d274a3eeb4",
+    "name": "Veryfi OCR Any Documents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Veryfi OCR API extracts structured data from financial documents including receipts, invoices, bank statements, checks, W-2s, W-8s, W-9s, business cards, contracts, and more. The API uses AI-powered OCR to capture line items, taxes, totals, barcodes, vendor details, and other financial data across 91 currencies and 38 languages with enterprise-grade accuracy.\n\nContact Support:\n Name: Veryfi Support\n Email: support@veryfi.com",
+      "type": "text/plain"
+    }
+  }
+}

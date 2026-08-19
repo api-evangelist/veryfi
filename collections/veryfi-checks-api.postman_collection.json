@@ -1,0 +1,976 @@
+{
+  "item": [
+    {
+      "id": "1fbda002-9ec6-40ea-be04-b0e86a8598ee",
+      "name": "Checks",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "870c597e-0726-4576-be3b-9e951a6296c6",
+          "name": "Process a Check",
+          "request": {
+            "name": "Process a Check",
+            "description": {
+              "content": "Submit a check image for OCR extraction including bank routing number, account number, check number, payee, amount, and date.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "checks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file_url",
+                  "value": "<uri>",
+                  "type": "text",
+                  "description": "Publicly accessible URL to the document"
+                },
+                {
+                  "key": "file_urls",
+                  "value": "[\"<uri>\",\"<uri>\"]",
+                  "type": "text",
+                  "description": "Multiple document URLs (for multi-page documents)"
+                },
+                {
+                  "key": "file_data",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Base64-encoded document data"
+                },
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "Binary file upload"
+                },
+                {
+                  "key": "async",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Enable asynchronous processing via webhook"
+                },
+                {
+                  "key": "boost_mode",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Skip enrichment for faster processing"
+                },
+                {
+                  "key": "max_pages_to_process",
+                  "value": "15",
+                  "type": "text",
+                  "description": "Maximum pages to process"
+                },
+                {
+                  "key": "bounding_boxes",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Include coordinate data for extracted fields"
+                },
+                {
+                  "key": "confidence_details",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Include confidence scores for each extracted field"
+                },
+                {
+                  "key": "external_id",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Custom identifier for the document in your system"
+                },
+                {
+                  "key": "tags",
+                  "value": "[\"<string>\",\"<string>\"]",
+                  "type": "text",
+                  "description": "Tags for document organization"
+                },
+                {
+                  "key": "country",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Two-letter country code as currency hint"
+                },
+                {
+                  "key": "parse_address",
+                  "value": "<boolean>",
+                  "type": "text",
+                  "description": "Break address fields into individual components"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5cce201c-5d62-4971-97a9-a9ebf82db949",
+              "name": "Check processed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "checks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "Publicly accessible URL to the document",
+                        "type": "text/plain"
+                      },
+                      "key": "file_url",
+                      "value": "<uri>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Multiple document URLs (for multi-page documents)",
+                        "type": "text/plain"
+                      },
+                      "key": "file_urls",
+                      "value": "[\"<uri>\",\"<uri>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Base64-encoded document data",
+                        "type": "text/plain"
+                      },
+                      "key": "file_data",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Binary file upload",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Enable asynchronous processing via webhook",
+                        "type": "text/plain"
+                      },
+                      "key": "async",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Skip enrichment for faster processing",
+                        "type": "text/plain"
+                      },
+                      "key": "boost_mode",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Maximum pages to process",
+                        "type": "text/plain"
+                      },
+                      "key": "max_pages_to_process",
+                      "value": "15",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Include coordinate data for extracted fields",
+                        "type": "text/plain"
+                      },
+                      "key": "bounding_boxes",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Include confidence scores for each extracted field",
+                        "type": "text/plain"
+                      },
+                      "key": "confidence_details",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Custom identifier for the document in your system",
+                        "type": "text/plain"
+                      },
+                      "key": "external_id",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Tags for document organization",
+                        "type": "text/plain"
+                      },
+                      "key": "tags",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Two-letter country code as currency hint",
+                        "type": "text/plain"
+                      },
+                      "key": "country",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Break address fields into individual components",
+                        "type": "text/plain"
+                      },
+                      "key": "parse_address",
+                      "value": "<boolean>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2110,\n  \"routing_number\": \"string\",\n  \"account_number\": \"string\",\n  \"check_number\": \"string\",\n  \"payee\": \"string\",\n  \"payer\": \"string\",\n  \"amount\": 8082.076971652121,\n  \"date\": \"string\",\n  \"memo\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "08220759-5ef6-432e-b72f-2cbed4d68728",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "checks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "Publicly accessible URL to the document",
+                        "type": "text/plain"
+                      },
+                      "key": "file_url",
+                      "value": "<uri>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Multiple document URLs (for multi-page documents)",
+                        "type": "text/plain"
+                      },
+                      "key": "file_urls",
+                      "value": "[\"<uri>\",\"<uri>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Base64-encoded document data",
+                        "type": "text/plain"
+                      },
+                      "key": "file_data",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Binary file upload",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Enable asynchronous processing via webhook",
+                        "type": "text/plain"
+                      },
+                      "key": "async",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Skip enrichment for faster processing",
+                        "type": "text/plain"
+                      },
+                      "key": "boost_mode",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Maximum pages to process",
+                        "type": "text/plain"
+                      },
+                      "key": "max_pages_to_process",
+                      "value": "15",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Include coordinate data for extracted fields",
+                        "type": "text/plain"
+                      },
+                      "key": "bounding_boxes",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Include confidence scores for each extracted field",
+                        "type": "text/plain"
+                      },
+                      "key": "confidence_details",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Custom identifier for the document in your system",
+                        "type": "text/plain"
+                      },
+                      "key": "external_id",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Tags for document organization",
+                        "type": "text/plain"
+                      },
+                      "key": "tags",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Two-letter country code as currency hint",
+                        "type": "text/plain"
+                      },
+                      "key": "country",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Break address fields into individual components",
+                        "type": "text/plain"
+                      },
+                      "key": "parse_address",
+                      "value": "<boolean>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 4650,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1e349e42-98ef-4ef0-8eba-56031f7e9654",
+          "name": "List All Checks",
+          "request": {
+            "name": "List All Checks",
+            "description": {
+              "content": "Retrieve a list of previously processed checks.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "checks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1d8c7cca-7165-494d-889c-5ab405aa7a63",
+              "name": "List of checks",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "checks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 4391,\n    \"routing_number\": \"string\",\n    \"account_number\": \"string\",\n    \"check_number\": \"string\",\n    \"payee\": \"string\",\n    \"payer\": \"string\",\n    \"amount\": 2190.490435995964,\n    \"date\": \"string\",\n    \"memo\": \"string\"\n  },\n  {\n    \"id\": 3500,\n    \"routing_number\": \"string\",\n    \"account_number\": \"string\",\n    \"check_number\": \"string\",\n    \"payee\": \"string\",\n    \"payer\": \"string\",\n    \"amount\": 5042.218886679789,\n    \"date\": \"string\",\n    \"memo\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33f980a0-25a0-46a1-b7b8-57644416f9b3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "checks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 4650,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "54c367e2-987e-41ca-aeda-92a676498e1c",
+          "name": "Get a Check",
+          "request": {
+            "name": "Get a Check",
+            "description": {
+              "content": "Retrieve a specific processed check by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "checks",
+                ":documentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "documentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d8c1805c-b541-4d2b-a090-125ca5354b04",
+              "name": "Check details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "checks",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "documentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2110,\n  \"routing_number\": \"string\",\n  \"account_number\": \"string\",\n  \"check_number\": \"string\",\n  \"payee\": \"string\",\n  \"payer\": \"string\",\n  \"amount\": 8082.076971652121,\n  \"date\": \"string\",\n  \"memo\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2343a7c9-7f84-4322-bf9e-e8ce2747e046",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "checks",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "documentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 4650,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b4a8652b-ec2e-4864-93e9-1c3891857470",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "checks",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "documentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 4650,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f78117d-bf78-4963-a5a7-94ad82d59516",
+          "name": "Delete a Check",
+          "request": {
+            "name": "Delete a Check",
+            "description": {
+              "content": "Permanently delete a processed check.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "checks",
+                ":documentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "documentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "44eaa730-c0e9-4573-9450-244cf87e6595",
+              "name": "Deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "checks",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "documentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3fc07ca6-212f-4d63-90e2-1286b84b80cf",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "checks",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "documentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "CLIENT-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 4650,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.veryfi.com/api/v8",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "CLIENT-ID"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bc46e6a0-1a55-4b38-bc3d-94a29c407e6d",
+    "name": "Veryfi OCR Any Documents Checks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Veryfi OCR API extracts structured data from financial documents including receipts, invoices, bank statements, checks, W-2s, W-8s, W-9s, business cards, contracts, and more. The API uses AI-powered OCR to capture line items, taxes, totals, barcodes, vendor details, and other financial data across 91 currencies and 38 languages with enterprise-grade accuracy.\n\nContact Support:\n Name: Veryfi Support\n Email: support@veryfi.com",
+      "type": "text/plain"
+    }
+  }
+}
