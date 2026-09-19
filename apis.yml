@@ -107,6 +107,11 @@ apis:
     TIN, entity type, and address information for HR and vendor management workflows.
   humanURL: https://docs.veryfi.com/api/w9s/
   tags:
+  - Human Resources
+  - OCR
+  - Tax Forms
+  - W-9
+  tags_raw:
   - HR
   - OCR
   - Tax Forms
