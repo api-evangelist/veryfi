@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Veryfi OCR Any Documents Checks API
+  title: Veryfi OCR Checks API
   description: The Veryfi OCR API extracts structured data from financial documents including receipts, invoices, bank statements, checks, W-2s, W-8s, W-9s, business cards, contracts, and more. The API uses AI-powered OCR to capture line items, taxes, totals, barcodes, vendor details, and other financial data across 91 currencies and 38 languages with enterprise-grade accuracy.
   version: v8
   contact:
@@ -124,50 +124,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Check:
-      type: object
-      description: A processed check with extracted data
-      properties:
-        id:
-          type: integer
-        routing_number:
-          type: string
-          description: Bank routing number (MICR)
-        account_number:
-          type: string
-          description: Bank account number (MICR)
-        check_number:
-          type: string
-          description: Check number
-        payee:
-          type: string
-          description: Pay to the order of
-        payer:
-          type: string
-          description: Check issuer name
-        amount:
-          type: number
-          format: float
-          description: Check amount
-        date:
-          type: string
-          description: Check date
-        memo:
-          type: string
-          description: Memo field contents
-    Error:
-      type: object
-      description: API error response
-      properties:
-        status:
-          type: integer
-          description: HTTP status code
-        error:
-          type: string
-          description: Error type
-        message:
-          type: string
-          description: Human-readable error message
     ProcessDocumentRequest:
       type: object
       description: Request body for document processing operations
@@ -224,6 +180,50 @@ components:
         parse_address:
           type: boolean
           description: Break address fields into individual components
+    Check:
+      type: object
+      description: A processed check with extracted data
+      properties:
+        id:
+          type: integer
+        routing_number:
+          type: string
+          description: Bank routing number (MICR)
+        account_number:
+          type: string
+          description: Bank account number (MICR)
+        check_number:
+          type: string
+          description: Check number
+        payee:
+          type: string
+          description: Pay to the order of
+        payer:
+          type: string
+          description: Check issuer name
+        amount:
+          type: number
+          format: float
+          description: Check amount
+        date:
+          type: string
+          description: Check date
+        memo:
+          type: string
+          description: Memo field contents
+    Error:
+      type: object
+      description: API error response
+      properties:
+        status:
+          type: integer
+          description: HTTP status code
+        error:
+          type: string
+          description: Error type
+        message:
+          type: string
+          description: Human-readable error message
   securitySchemes:
     clientId:
       type: apiKey

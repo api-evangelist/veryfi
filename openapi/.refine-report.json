@@ -1,13 +1,7 @@
 {
   "provider": "veryfi",
   "sources": [
-    "veryfi-any-documents-api-openapi.yml",
-    "veryfi-bank-statements-api-openapi.yml",
-    "veryfi-checks-api-openapi.yml",
-    "veryfi-classification-api-openapi.yml",
-    "veryfi-documents-api-openapi.yml",
-    "veryfi-w-2-forms-api-openapi.yml",
-    "veryfi-w-9-forms-api-openapi.yml"
+    "_original/veryfi-ocr-openapi.yml"
   ],
   "outputs": [
     "veryfi-any-documents-api-openapi.yml",
@@ -21,6 +15,25 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "veryfi-ocr-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "veryfi-ocr-openapi.yml: declared missing tag: Any Documents",
+    "veryfi-ocr-openapi.yml: declared missing tag: Bank Statements",
+    "veryfi-ocr-openapi.yml: declared missing tag: Checks",
+    "veryfi-ocr-openapi.yml: declared missing tag: Classification",
+    "veryfi-ocr-openapi.yml: declared missing tag: Documents",
+    "veryfi-ocr-openapi.yml: declared missing tag: W-2 Forms",
+    "veryfi-ocr-openapi.yml: declared missing tag: W-9 Forms",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "veryfi-any-documents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "veryfi-bank-statements-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "veryfi-checks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "veryfi-classification-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "veryfi-documents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "veryfi-w-2-forms-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "veryfi-w-9-forms-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
