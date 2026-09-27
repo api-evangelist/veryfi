@@ -124,6 +124,19 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Error:
+      type: object
+      description: API error response
+      properties:
+        status:
+          type: integer
+          description: HTTP status code
+        error:
+          type: string
+          description: Error type
+        message:
+          type: string
+          description: Human-readable error message
     ProcessDocumentRequest:
       type: object
       description: Request body for document processing operations
@@ -211,19 +224,6 @@ components:
         memo:
           type: string
           description: Memo field contents
-    Error:
-      type: object
-      description: API error response
-      properties:
-        status:
-          type: integer
-          description: HTTP status code
-        error:
-          type: string
-          description: Error type
-        message:
-          type: string
-          description: Human-readable error message
   securitySchemes:
     clientId:
       type: apiKey

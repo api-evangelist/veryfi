@@ -136,6 +136,19 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Error:
+      type: object
+      description: API error response
+      properties:
+        status:
+          type: integer
+          description: HTTP status code
+        error:
+          type: string
+          description: Error type
+        message:
+          type: string
+          description: Human-readable error message
     ProcessDocumentRequest:
       type: object
       description: Request body for document processing operations
@@ -192,19 +205,6 @@ components:
         parse_address:
           type: boolean
           description: Break address fields into individual components
-    Error:
-      type: object
-      description: API error response
-      properties:
-        status:
-          type: integer
-          description: HTTP status code
-        error:
-          type: string
-          description: Error type
-        message:
-          type: string
-          description: Human-readable error message
     Document:
       type: object
       description: A processed document with extracted data
