@@ -124,6 +124,19 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Error:
+      type: object
+      description: API error response
+      properties:
+        status:
+          type: integer
+          description: HTTP status code
+        error:
+          type: string
+          description: Error type
+        message:
+          type: string
+          description: Human-readable error message
     W2Form:
       type: object
       description: A processed W-2 wage and tax statement
@@ -167,19 +180,6 @@ components:
           type: number
           format: float
           description: Box 6 - Medicare tax withheld
-    Error:
-      type: object
-      description: API error response
-      properties:
-        status:
-          type: integer
-          description: HTTP status code
-        error:
-          type: string
-          description: Error type
-        message:
-          type: string
-          description: Human-readable error message
     ProcessDocumentRequest:
       type: object
       description: Request body for document processing operations
