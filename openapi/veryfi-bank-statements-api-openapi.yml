@@ -124,19 +124,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      description: API error response
-      properties:
-        status:
-          type: integer
-          description: HTTP status code
-        error:
-          type: string
-          description: Error type
-        message:
-          type: string
-          description: Human-readable error message
     BankStatement:
       type: object
       description: A processed bank statement with extracted transaction data
@@ -240,6 +227,19 @@ components:
         parse_address:
           type: boolean
           description: Break address fields into individual components
+    Error:
+      type: object
+      description: API error response
+      properties:
+        status:
+          type: integer
+          description: HTTP status code
+        error:
+          type: string
+          description: Error type
+        message:
+          type: string
+          description: Human-readable error message
   securitySchemes:
     clientId:
       type: apiKey
