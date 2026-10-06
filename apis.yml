@@ -52,7 +52,7 @@ tags_raw:
   - Tax Forms
 url: https://raw.githubusercontent.com/api-evangelist/veryfi/refs/heads/main/apis.yml
 created: '2026-05-03'
-modified: '2026-05-19'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: veryfi:receipts-invoices-api
@@ -279,6 +279,8 @@ apis:
   - type: Console
     url: https://hub.veryfi.com/
 common:
+  - url: https://www.veryfi.com/engineering/
+    type: Blog
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/veryfi/overview
   - type: AgenticAccess
