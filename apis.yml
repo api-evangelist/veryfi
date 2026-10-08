@@ -279,6 +279,12 @@ apis:
   - type: Console
     url: https://hub.veryfi.com/
 common:
+  - type: Plans
+    url: plans/veryfi-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/veryfi-rate-limits.yml
+  - type: FinOps
+    url: finops/veryfi-finops.yml
   - url: https://www.veryfi.com/engineering/
     type: Blog
   - type: PostmanWorkspace
