@@ -25,23 +25,6 @@ edges:
     builder: unknown (not in the directory record)
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
-- partner_name: Slack (own)
-  partner: slack
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://slack.com/marketplace/A08R17T9P-veryfi-receipts-expenses
-  mirror_of: slack/integrations/slack-integration-edges.yml
-  apps:
-  - Veryfi Receipts & Expenses
-  listing_count: 1
-  detected: '2026-10-18'
-  detected_by: mirror-platform-listings.py
-  category: Slack app
 - partner_name: Mozilla Firefox Add-ons (AMO)
   partner: null
   partner_match: null
@@ -73,6 +56,42 @@ edges:
     detected: '2026-10-21'
   detected_by: sweep-browser-extension-stores.py
   first_seen: '2026-10-21'
+- partner_name: Slack (own)
+  partner: slack
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://slack.com/marketplace/A08R17T9P-veryfi-receipts-expenses
+  mirror_of: slack/integrations/slack-integration-edges.yml
+  apps:
+  - Veryfi Receipts & Expenses
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Slack app
+- partner_name: Xero (own)
+  partner: xero
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://apps.xero.com/nz/app/veryfi-receipts-expenses-and-projects
+  mirror_of: xero/integrations/xero-integration-edges.yml
+  apps:
+  - Veryfi - Receipts, Expenses & Projects
+  listing_count: 1
+  detected: '2026-10-23'
+  detected_by: mirror-platform-listings.py
+  category: Bills and expenses
+  features:
+  - Sign Up with Xero
 method: searched
 checked:
 - https://zapier.com/api/v4/apps/
@@ -80,5 +99,6 @@ checked:
 - https://addons.mozilla.org/api/v5/addons/addon/<slug>/
 - https://addons.mozilla.org/api/v5/addons/search/?type=extension&app=firefox
 - https://chromewebstore.google.com/sitemap
+- xero/integrations/xero-integration-edges.yml
 source:
 - https://zapier.com/api/v4/apps/

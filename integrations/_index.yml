@@ -28,19 +28,6 @@
     builder: unknown (not in the directory record)
   status: not-a-workflow
   arazzo: null
-- slug: veryfi-slack-own
-  label: Slack (own)
-  partner: slack
-  partner_name: Slack (own)
-  category: Slack app
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://slack.com/marketplace/A08R17T9P-veryfi-receipts-expenses
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
 - slug: veryfi-mozilla-firefox-add-ons-amo
   label: Mozilla Firefox Add-ons (AMO)
   partner_name: Mozilla Firefox Add-ons (AMO)
@@ -67,5 +54,31 @@
       to mirror.
     detected_by: sweep-browser-extension-stores.py
     detected: '2026-10-21'
+  status: not-a-workflow
+  arazzo: null
+- slug: veryfi-slack-own
+  label: Slack (own)
+  partner: slack
+  partner_name: Slack (own)
+  category: Slack app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://slack.com/marketplace/A08R17T9P-veryfi-receipts-expenses
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: veryfi-xero-own
+  label: Xero (own)
+  partner: xero
+  partner_name: Xero (own)
+  category: Bills and expenses
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://apps.xero.com/nz/app/veryfi-receipts-expenses-and-projects
+  source: edge
+  relationship: platform-app
   status: not-a-workflow
   arazzo: null
